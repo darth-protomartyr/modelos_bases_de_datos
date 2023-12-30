@@ -3,9 +3,9 @@ use salonmanager;
 
 CREATE TABLE config(
 	config_table_total INT, /*nro total de tabs*/
-    config_table_numPanes VARCHAR(50), /*número de mesas por pane*/
-	config_table_namePanes VARCHAR(200),  /*nombre de cada pane*/
-    config_table_chartPanes VARCHAR(50), /*Inicial de cada pane*/
+    config_table_num_panes VARCHAR(50), /*número de mesas por pane*/
+	config_table_name_panes VARCHAR(200),  /*nombre de cada pane*/
+    config_table_chart_panes VARCHAR(50), /*Inicial de cada pane*/
     config_open_ws BOOLEAN, /*turno actual abierto*/
     config_open_ws_id INT, /*openWsId*/
     config_open_session BOOLEAN, /*sesion actual abierto*/
@@ -17,14 +17,15 @@ CREATE TABLE config(
 
 CREATE TABLE users(
     user_id VARCHAR(200) UNIQUE,
-    user_name VARCHAR(200),
-    user_last_name VARCHAR(200),
-    user_mail VARCHAR(200) UNIQUE,
-    user_role VARCHAR(200),    
-    user_image_route VARCHAR(200),
-    user_image_name VARCHAR(200),
-    user_password VARCHAR(200),
+    user_name VARCHAR(50),
+    user_last_name VARCHAR(50),
+    user_mail VARCHAR(50) UNIQUE,
+    user_role VARCHAR(50),    
+    user_image_route VARCHAR(500),
+    user_image_name VARCHAR(100),
+    user_password VARCHAR(50),
     user_code_permission int,
+    user_phone VARCHAR(30),
     user_active boolean
 );
 
@@ -38,8 +39,8 @@ CREATE TABLE itemcards(
     itemcard_cost DOUBLE,
     itemcard_price DOUBLE,
     itemcard_stock INT,
-    itemcard_dateCreation DATETIME(3),
-    itemcard_dateUpdate DATETIME(3),
+    itemcard_date_creation DATETIME(3),
+    itemcard_date_update DATETIME(3),
     itemcard_tip BOOLEAN,
     itemcard_active BOOLEAN
 );
@@ -62,56 +63,41 @@ CREATE TABLE tabs(
     table_active BOOLEAN
 );
 
-
-CREATE TABLE itemcardOrder_tabs(
-    itemcardOrder_tabs_id INT PRIMARY KEY AUTO_INCREMENT,
-    itemcardOrder_tabs_active BOOLEAN,
-    itemcardOrder_id_fkey INT,
+CREATE TABLE itemcard_order_tabs(
+    itemcard_order_tabs_id INT PRIMARY KEY AUTO_INCREMENT,
+    itemcard_order_tabs_active BOOLEAN,
+    itemcard_order_id_fkey INT,
     table_id_fkey VARCHAR(50),
-    FOREIGN KEY (itemcardOrder_id_fkey) REFERENCES itemcards(itemcard_id),
+    FOREIGN KEY (itemcard_order_id_fkey) REFERENCES itemcards(itemcard_id),
     FOREIGN KEY (table_id_fkey) REFERENCES tabs(table_id)
 );
 
-
-CREATE TABLE itemcardGift_tabs(
-    itemcardGift_tabs_id INT PRIMARY KEY AUTO_INCREMENT,
-    itemcardGift_tabs_active BOOLEAN,
-    itemcardGift_id_fkey INT,
+CREATE TABLE itemcard_gift_tabs(
+    itemcard_gift_tabs_id INT PRIMARY KEY AUTO_INCREMENT,
+    itemcardgift_tabs_active BOOLEAN,
+    itemcard_gift_id_fkey INT,
     table_id_fkey VARCHAR(50),
-    FOREIGN KEY (itemcardGift_id_fkey) REFERENCES itemcards(itemcard_id),
+    FOREIGN KEY (itemcard_gift_id_fkey) REFERENCES itemcards(itemcard_id),
     FOREIGN KEY (table_id_fkey) REFERENCES tabs(table_id)
 );
 
-
-CREATE TABLE itemcardPayed_tabs(
-    itemcardPayed_tabs_id INT PRIMARY KEY AUTO_INCREMENT,
-    itemcardPayed_tabs_active BOOLEAN,
-    itemcardPayed_id_fkey INT,
+CREATE TABLE itemcard_payed_tabs(
+    itemcard_payed_tabs_id INT PRIMARY KEY AUTO_INCREMENT,
+    itemcard_payed_tabs_active BOOLEAN,
+    itemcard_payed_id_fkey INT,
     table_id_fkey VARCHAR(50),
-    FOREIGN KEY (itemcardPayed_id_fkey) REFERENCES itemcards(itemcard_id),
+    FOREIGN KEY (itemcard_payed_id_fkey) REFERENCES itemcards(itemcard_id),
     FOREIGN KEY (table_id_fkey) REFERENCES tabs(table_id)
 );
 
-
-CREATE TABLE itemcardPayedND_tabs(
-    itemcardPayedND_tabs_id INT PRIMARY KEY AUTO_INCREMENT,
-    itemcardPayedND_tab_active BOOLEAN,
-    itemcardPayedND_id_fkey INT,
+CREATE TABLE itemcard_payed_nd_tabs(
+    itemcard_payed_nd_tabs_id INT PRIMARY KEY AUTO_INCREMENT,
+    itemcard_payed_nd_tab_active BOOLEAN,
+    itemcard_payed_nd_id_fkey INT,
     table_id_fkey VARCHAR(50),
-    FOREIGN KEY (itemcardPayedND_id_fkey) REFERENCES itemcards(itemcard_id),
+    FOREIGN KEY (itemcard_payed_nd_id_fkey) REFERENCES itemcards(itemcard_id),
     FOREIGN KEY (table_id_fkey) REFERENCES tabs(table_id)
 );
-
-/*
-CREATE TABLE itemcardError_tabs(
-    itemcardError_tabs_id INT PRIMARY KEY AUTO_INCREMENT,
-    itemcardError_tabs_active BOOLEAN,
-    itemcardError_id_fkey INT,
-    table_id_fkey VARCHAR(50),
-    FOREIGN KEY (itemcardError_id_fkey) REFERENCES itemcard(itemcard_id),
-    FOREIGN KEY (table_id_fkey) REFERENCES tabs(table_id)
-);
-*/
 
 CREATE TABLE waiter_tabs(
     waiter_tab_id INT PRIMARY KEY AUTO_INCREMENT,
@@ -132,6 +118,25 @@ CREATE TABLE registers(
     register_modification VARCHAR(2000)
 );
 
+CREATE TABLE item_monits(
+	item_monit_id VARCHAR(100),
+    item_monit_table_id VARCHAR(50),
+    item_monit_item_id INT,
+    item_monit_tipe VARCHAR(20),
+    item_monit_init_bool BOOLEAN,
+    item_monit_init_date DATETIME(3),
+    item_monit_cook_bool BOOLEAN,
+    item_monit_cook_date DATETIME(3),
+    item_monit_ready_bool BOOLEAN,
+    item_monit_ready_date DATETIME(3),
+    item_monit_otw_bool BOOLEAN,
+    item_monit_otw_date DATETIME(3),
+    item_monit_open BOOLEAN,
+    item_monit_active BOOLEAN,
+    item_monit_indications VARCHAR(500)
+);
+
+
 CREATE TABLE workshifts(
 	workshift_id INT AUTO_INCREMENT PRIMARY KEY,
     workshift_open_shift DATETIME(3), 
@@ -146,6 +151,7 @@ CREATE TABLE workshifts(
     workshift_active BOOLEAN
 );
 
+
 CREATE TABLE cashier_workshifts(
     cashier_tab_id INT PRIMARY KEY AUTO_INCREMENT,
     cashier_tab_active BOOLEAN,
@@ -154,6 +160,7 @@ CREATE TABLE cashier_workshifts(
     FOREIGN KEY (cashier_id_fkey) REFERENCES users(user_id),
     FOREIGN KEY (workshift_id_fkey) REFERENCES workshifts(workshift_id)
 );
+
 
 CREATE TABLE sessions(
 	session_id INT AUTO_INCREMENT PRIMARY KEY,
@@ -192,53 +199,75 @@ CREATE TABLE workshift_sessions(
     FOREIGN KEY (session_id_fkey) REFERENCES sessions(session_id)
 );
 
+CREATE TABLE consumers (
+	consumer_id INT AUTO_INCREMENT PRIMARY KEY,
+    consumer_street VARCHAR(100),
+    consumer_num VARCHAR(30),
+    consumer_district VARCHAR(100),
+    consumer_area VARCHAR(100),
+    consumer_detail VARCHAR(500),
+    consumer_name VARCHAR(50),
+    consumer_phone VARCHAR(30),
+    consumer_delivery_id VARCHAR(200),
+    consumer_active BOOLEAN
+);
+
+CREATE TABLE consumer_tabs(
+    consumer_tabs_id INT PRIMARY KEY AUTO_INCREMENT,
+    consumer_tabs_active BOOLEAN,
+    consumer_id_fkey INT,
+    table_id_fkey VARCHAR(50),
+    FOREIGN KEY (consumer_id_fkey) REFERENCES consumers(consumer_id),
+    FOREIGN KEY (table_id_fkey) REFERENCES tabs(table_id)
+);
+
 /*Config*/
-INSERT INTO config(config_table_total, config_table_numPanes, config_table_namePanes, config_table_chartPanes, config_open_ws, config_open_ws_id, config_open_session, config_open_session_id, config_last_session_time, config_active)
+INSERT INTO config(config_table_total, config_table_num_panes, config_table_name_panes, config_table_chart_panes, config_open_ws, config_open_ws_id, config_open_session, config_open_session_id, config_last_session_time, config_active)
 	VALUES(12, "12-", "salon-", "s-", false, 0, false, 0, null, true);
     
 /*Usuarios*/
-INSERT INTO users(user_id, user_name, user_last_name, user_mail, user_role, user_image_route, user_image_name, user_password, user_active)
-	VALUES('WDep7urv', 'Gonzalo', 'Di nasso', 'gon@gmail.com', 'ADMIN', 'C:|Users|ferlo|Documents|imagenes_salon|dylan.jpg', 'dylan.jpg', '27949874', true);
-INSERT INTO users(user_id, user_name, user_last_name, user_mail, user_role, user_image_route, user_image_name, user_password, user_active)
-	VALUES('WDec7tyv', 'Lucho', 'Velez', 'luch@gmail.com', 'MOZO', '', '', '27949774', true);
-INSERT INTO users(user_id, user_name, user_last_name, user_mail, user_role, user_image_route, user_image_name, user_password, user_active)
-	VALUES('WDeu7tpv', 'Abi', 'Fritz', 'abi@gmail.com', 'MOZO', '', '', '27944574', true);
+INSERT INTO users(user_id, user_name, user_last_name, user_mail, user_role, user_image_route, user_image_name, user_password, user_phone, user_active)
+	VALUES('WDep7urv', 'Gonzalo', 'Di nasso', 'gon@gmail.com', 'ADMIN', 'C:|Users|ferlo|Documents|imagenes_salon|dylan.jpg', 'dylan.jpg', '27949874', "2615613868",  true);
+INSERT INTO users(user_id, user_name, user_last_name, user_mail, user_role, user_image_route, user_image_name, user_password, user_phone, user_active)
+	VALUES('WDec7tyv', 'Lucho', 'Velez', 'luch@gmail.com', 'MOZO', '', '', '27949774', "", true);
+INSERT INTO users(user_id, user_name, user_last_name, user_mail, user_role, user_image_route, user_image_name, user_password, user_phone, user_active)
+	VALUES('WDeu7tpv', 'Abi', 'Fritz', 'abi@gmail.com', 'MOZO', '', '', '27944574', "", true);
 
 /*Items card*/
-INSERT INTO itemcards(itemcard_code, itemcard_name, itemcard_caption, itemcard_description, itemcard_cost, itemcard_price, itemcard_stock, itemcard_dateCreation, itemcard_tip, itemcard_active)
+INSERT INTO itemcards(itemcard_code, itemcard_name, itemcard_caption, itemcard_description, itemcard_cost, itemcard_price, itemcard_stock, itemcard_date_creation, itemcard_tip, itemcard_active)
 	VALUES( 'B1','Coca Cola 500','BEBIDAS','Botella 500cm3','350.0','700.0','12','2023-09-01 17:28:35.892',true, true);
 
-INSERT INTO itemcards(itemcard_code, itemcard_name, itemcard_caption, itemcard_description, itemcard_cost, itemcard_price, itemcard_stock, itemcard_dateCreation, itemcard_tip, itemcard_active)
+INSERT INTO itemcards(itemcard_code, itemcard_name, itemcard_caption, itemcard_description, itemcard_cost, itemcard_price, itemcard_stock, itemcard_date_creation, itemcard_tip, itemcard_active)
 	VALUES( 'B2','Sprite 500','BEBIDAS','Botella 500cm3','350.0','700.0','12','2023-09-01 17:52:38.71',true, true);
 
-INSERT INTO itemcards(itemcard_code, itemcard_name, itemcard_caption, itemcard_description, itemcard_cost, itemcard_price, itemcard_stock, itemcard_dateCreation, itemcard_tip, itemcard_active)
+INSERT INTO itemcards(itemcard_code, itemcard_name, itemcard_caption, itemcard_description, itemcard_cost, itemcard_price, itemcard_stock, itemcard_date_creation, itemcard_tip, itemcard_active)
 	VALUES( 'B3','Fanta 500','BEBIDAS','Botella 500cm3','350.0','700.0','12','2023-09-01 18:05:57.279',true, true);
 
-INSERT INTO itemcards(itemcard_code, itemcard_name, itemcard_caption, itemcard_description, itemcard_cost, itemcard_price, itemcard_stock, itemcard_dateCreation, itemcard_tip, itemcard_active)
+INSERT INTO itemcards(itemcard_code, itemcard_name, itemcard_caption, itemcard_description, itemcard_cost, itemcard_price, itemcard_stock, itemcard_date_creation, itemcard_tip, itemcard_active)
 	VALUES( 'B4','Agua 500','BEBIDAS','Botella 500cm3','350.0','700.0','12','2023-09-01 18:23:13.906',true, true);
 
-INSERT INTO itemcards(itemcard_code, itemcard_name, itemcard_caption, itemcard_description, itemcard_cost, itemcard_price, itemcard_stock, itemcard_dateCreation, itemcard_tip, itemcard_active)
+INSERT INTO itemcards(itemcard_code, itemcard_name, itemcard_caption, itemcard_description, itemcard_cost, itemcard_price, itemcard_stock, itemcard_date_creation, itemcard_tip, itemcard_active)
 	VALUES( 'B5','Agua c/gas','BEBIDAS','Botella 500','350.0','700.0','12','2023-09-01 18:55:21.699',true, true);
 
-INSERT INTO itemcards(itemcard_code, itemcard_name, itemcard_caption, itemcard_description, itemcard_cost, itemcard_price, itemcard_stock, itemcard_dateCreation, itemcard_tip, itemcard_active)
+INSERT INTO itemcards(itemcard_code, itemcard_name, itemcard_caption, itemcard_description, itemcard_cost, itemcard_price, itemcard_stock, itemcard_date_creation, itemcard_tip, itemcard_active)
 	VALUES( 'B6','Vino Maleante Malbec','BEBIDAS',' Vino Maleante Malbec por 750 cm3.','1200.0','2500.0','0','2023-09-05 18:36:37.67',true, true);
 
-INSERT INTO itemcards(itemcard_code, itemcard_name, itemcard_caption, itemcard_description, itemcard_cost, itemcard_price, itemcard_stock, itemcard_dateCreation, itemcard_tip, itemcard_active)
+INSERT INTO itemcards(itemcard_code, itemcard_name, itemcard_caption, itemcard_description, itemcard_cost, itemcard_price, itemcard_stock, itemcard_date_creation, itemcard_tip, itemcard_active)
 	VALUES( 'P1','Lomo Completo','PLATOS','Bife de lomo, tomate, lechuga, jamón, queso, huevo','2000.0','4500.0','0','2023-09-07 17:28:35.892',true, true);
 
-INSERT INTO itemcards(itemcard_code, itemcard_name, itemcard_caption, itemcard_description, itemcard_cost, itemcard_price, itemcard_stock, itemcard_dateCreation, itemcard_tip, itemcard_active)
+INSERT INTO itemcards(itemcard_code, itemcard_name, itemcard_caption, itemcard_description, itemcard_cost, itemcard_price, itemcard_stock, itemcard_date_creation, itemcard_tip, itemcard_active)
 	VALUES( 'P2','Choripán','PLATOS','Choripán, tomate, huevo','1500.0','3500.0','0','2023-09-04 17:52:38.71',true, true);
 
-INSERT INTO itemcards(itemcard_code, itemcard_name, itemcard_caption, itemcard_description, itemcard_cost, itemcard_price, itemcard_stock, itemcard_dateCreation, itemcard_tip, itemcard_active)
+INSERT INTO itemcards(itemcard_code, itemcard_name, itemcard_caption, itemcard_description, itemcard_cost, itemcard_price, itemcard_stock, itemcard_date_creation, itemcard_tip, itemcard_active)
 	VALUES( 'P3','Pizza Muzzarella','PLATOS','Pizza Muzzarella con aceitunas','1200.0','3000.0','0','2023-09-12 18:05:57.279',true, true);    
 
-INSERT INTO itemcards(itemcard_code, itemcard_name, itemcard_caption, itemcard_description, itemcard_cost, itemcard_price, itemcard_stock, itemcard_dateCreation, itemcard_tip, itemcard_active)
+INSERT INTO itemcards(itemcard_code, itemcard_name, itemcard_caption, itemcard_description, itemcard_cost, itemcard_price, itemcard_stock, itemcard_date_creation, itemcard_tip, itemcard_active)
 	VALUES( 'P4','Pizza Especial','PLATOS','Pizza Muzzarella con aceitunas y jamón','1800.0','3500.0','0','2023-08-12 19:05:57.279',true, true);  
     
-INSERT INTO itemcards(itemcard_code, itemcard_name, itemcard_caption, itemcard_description, itemcard_cost, itemcard_price, itemcard_stock, itemcard_dateCreation, itemcard_tip, itemcard_active)
+INSERT INTO itemcards(itemcard_code, itemcard_name, itemcard_caption, itemcard_description, itemcard_cost, itemcard_price, itemcard_stock, itemcard_date_creation, itemcard_tip, itemcard_active)
 	VALUES( 'P5','Pizza Serrana','PLATOS','Pizza Muzzarella con jamón serrano y rucula','2000.0','4000.0','0','2023-08-12 18:05:57.279',true, true);  
 
-INSERT INTO itemcards(itemcard_code, itemcard_name, itemcard_caption, itemcard_description, itemcard_cost, itemcard_price, itemcard_stock, itemcard_dateCreation, itemcard_tip, itemcard_active)
+INSERT INTO itemcards(itemcard_code, itemcard_name, itemcard_caption, itemcard_description, itemcard_cost, itemcard_price, itemcard_stock, itemcard_date_creation, itemcard_tip, itemcard_active)
 	VALUES( 'P6','Pizza Napolitana','PLATOS','Pizza Muzzarella con aceitunas, tomate y pesto','1800.0','3500.0','0','2023-03-12 18:05:57.279',true, true);  
 
 
