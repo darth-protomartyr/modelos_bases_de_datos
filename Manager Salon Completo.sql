@@ -202,13 +202,15 @@ CREATE TABLE workshift_sessions(
 CREATE TABLE consumers (
 	consumer_id INT AUTO_INCREMENT PRIMARY KEY,
     consumer_street VARCHAR(100),
-    consumer_num VARCHAR(30),
+    consumer_street_num VARCHAR(30),
+    consumer_dept_floor VARCHAR(20),
+    consumer_dept_num VARCHAR(6),
     consumer_district VARCHAR(100),
     consumer_area VARCHAR(100),
-    consumer_detail VARCHAR(500),
+    consumer_details VARCHAR(500),
     consumer_name VARCHAR(50),
     consumer_phone VARCHAR(30),
-    consumer_delivery_id VARCHAR(200),
+    consume_social_network VARCHAR(50),
     consumer_active BOOLEAN
 );
 
@@ -221,6 +223,21 @@ CREATE TABLE consumer_tabs(
     FOREIGN KEY (table_id_fkey) REFERENCES tabs(table_id)
 );
 
+CREATE TABLE deliverys(
+	delivery_id INT AUTO_INCREMENT PRIMARY KEY,
+    delivery_consumer int,
+    delivery_tab int,
+    delivery_user VARCHAR(200),
+    delivery_open BOOLEAN,
+    delivery_active BOOLEAN
+);
+
+
+
+
+
+
+
 /*Config*/
 INSERT INTO config(config_table_total, config_table_num_panes, config_table_name_panes, config_table_chart_panes, config_open_ws, config_open_ws_id, config_open_session, config_open_session_id, config_last_session_time, config_active)
 	VALUES(12, "12-", "salon-", "s-", false, 0, false, 0, null, true);
@@ -229,9 +246,25 @@ INSERT INTO config(config_table_total, config_table_num_panes, config_table_name
 INSERT INTO users(user_id, user_name, user_last_name, user_mail, user_role, user_image_route, user_image_name, user_password, user_phone, user_active)
 	VALUES('WDep7urv', 'Gonzalo', 'Di nasso', 'gon@gmail.com', 'ADMIN', 'C:|Users|ferlo|Documents|imagenes_salon|dylan.jpg', 'dylan.jpg', '27949874', "2615613868",  true);
 INSERT INTO users(user_id, user_name, user_last_name, user_mail, user_role, user_image_route, user_image_name, user_password, user_phone, user_active)
-	VALUES('WDec7tyv', 'Lucho', 'Velez', 'luch@gmail.com', 'MOZO', '', '', '27949774', "", true);
+	VALUES('WDec7tyv', 'Lucho', 'Velez', 'luch@gmail.com', 'MOZO', '', '', '27949774', '2516473832', true);
 INSERT INTO users(user_id, user_name, user_last_name, user_mail, user_role, user_image_route, user_image_name, user_password, user_phone, user_active)
-	VALUES('WDeu7tpv', 'Abi', 'Fritz', 'abi@gmail.com', 'MOZO', '', '', '27944574', "", true);
+	VALUES('WDeu7tpv', 'Abi', 'Fritz', 'abi@gmail.com', 'MOZO', '', '', '27944574', '2614733546', true);
+INSERT INTO users(user_id, user_name, user_last_name, user_mail, user_role, user_image_route, user_image_name, user_password, user_phone, user_active)
+	VALUES('WDeu7syt', 'Folder', 'Fruitz', 'rolo@gmail.com', 'DELIVERY', '', '', '27944574', '2615613868', true);
+INSERT INTO users(user_id, user_name, user_last_name, user_mail, user_role, user_image_route, user_image_name, user_password, user_phone, user_active)
+	VALUES('WDeu7nht', 'Gabi', 'Ritzo', 'gabi@gmail.com', 'DELIVERY', '', '', '27944574', '2615613868', true);
+
+
+/*Clientes*/
+INSERT INTO consumers(consumer_street, consumer_street_num, consumer_dept_floor, consumer_dept_num, consumer_district, consumer_area, consumer_details, consumer_name, consumer_phone, consume_social_network, consumer_active)
+	VALUES('José Mármol', '482', '1', 'A3', 'Dorrego', 'Guaymallén', 'Puerta negra de metal', 'Franco Di Nasso', "2613456907", "Twitter @Dignatius12" ,true);
+
+INSERT INTO consumers(consumer_street, consumer_street_num, consumer_dept_floor, consumer_dept_num, consumer_district, consumer_area, consumer_details, consumer_name, consumer_phone, consume_social_network, consumer_active)
+	VALUES('Victor Mármol', '472', '', '', 'Dorrego', 'Guaymallén', 'Puerta blanca de chapa', 'Guillermo Di Nasso', "2613456909", "Twitter @Dignatius10" ,true);
+    
+INSERT INTO consumers(consumer_street, consumer_street_num, consumer_dept_floor, consumer_dept_num, consumer_district, consumer_area, consumer_details, consumer_name, consumer_phone, consume_social_network, consumer_active)
+	VALUES('José Bárbol', '489', '', '', 'Dorrego', 'Guaymallén', 'Puerta gris de madera', 'Julieta Di Nasso', "2613456920", "Twitter @Dignatius13" ,true);
+
 
 /*Items card*/
 INSERT INTO itemcards(itemcard_code, itemcard_name, itemcard_caption, itemcard_description, itemcard_cost, itemcard_price, itemcard_stock, itemcard_date_creation, itemcard_tip, itemcard_active)
