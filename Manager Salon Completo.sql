@@ -24,8 +24,7 @@ CREATE TABLE users(
     user_image_route VARCHAR(500),
     user_image_name VARCHAR(100),
     user_password VARCHAR(50),
-    user_code_permission int,
-    user_phone VARCHAR(30),
+    user_phone VARCHAR(30) UNIQUE,
     user_active boolean
 );
 
@@ -74,7 +73,7 @@ CREATE TABLE itemcard_order_tabs(
 
 CREATE TABLE itemcard_gift_tabs(
     itemcard_gift_tabs_id INT PRIMARY KEY AUTO_INCREMENT,
-    itemcardgift_tabs_active BOOLEAN,
+    itemcard_gift_tabs_active BOOLEAN,
     itemcard_gift_id_fkey INT,
     table_id_fkey VARCHAR(50),
     FOREIGN KEY (itemcard_gift_id_fkey) REFERENCES itemcards(itemcard_id),
@@ -226,16 +225,11 @@ CREATE TABLE consumer_tabs(
 CREATE TABLE deliverys(
 	delivery_id INT AUTO_INCREMENT PRIMARY KEY,
     delivery_consumer int,
-    delivery_tab int,
-    delivery_user VARCHAR(200),
+    delivery_tab VARCHAR(100),
+    delivery_user VARCHAR(30),
     delivery_open BOOLEAN,
     delivery_active BOOLEAN
 );
-
-
-
-
-
 
 
 /*Config*/
@@ -250,9 +244,9 @@ INSERT INTO users(user_id, user_name, user_last_name, user_mail, user_role, user
 INSERT INTO users(user_id, user_name, user_last_name, user_mail, user_role, user_image_route, user_image_name, user_password, user_phone, user_active)
 	VALUES('WDeu7tpv', 'Abi', 'Fritz', 'abi@gmail.com', 'MOZO', '', '', '27944574', '2614733546', true);
 INSERT INTO users(user_id, user_name, user_last_name, user_mail, user_role, user_image_route, user_image_name, user_password, user_phone, user_active)
-	VALUES('WDeu7syt', 'Folder', 'Fruitz', 'rolo@gmail.com', 'DELIVERY', '', '', '27944574', '2615613868', true);
+	VALUES('WDeu7syt', 'Folder', 'Fruitz', 'rolo@gmail.com', 'DELIVERY', '', '', '27944574', '2615613863', true);
 INSERT INTO users(user_id, user_name, user_last_name, user_mail, user_role, user_image_route, user_image_name, user_password, user_phone, user_active)
-	VALUES('WDeu7nht', 'Gabi', 'Ritzo', 'gabi@gmail.com', 'DELIVERY', '', '', '27944574', '2615613868', true);
+	VALUES('WDeu7nht', 'Gabi', 'Ritzo', 'gabi@gmail.com', 'DELIVERY', '', '', '27944574', '2615613898', true);
 
 
 /*Clientes*/
