@@ -1,17 +1,20 @@
 CREATE DATABASE salonmanager;
 use salonmanager;
 
-CREATE TABLE config(
+CREATE TABLE config_general(
 	config_table_total INT, /*nro total de tabs*/
     config_table_num_panes VARCHAR(50), /*número de mesas por pane*/
 	config_table_name_panes VARCHAR(200),  /*nombre de cada pane*/
     config_table_chart_panes VARCHAR(50), /*Inicial de cada pane*/
+    config_active BOOLEAN
+);
+
+CREATE TABLE config_actual(
     config_open_ws BOOLEAN, /*turno actual abierto*/
     config_open_ws_id INT, /*openWsId*/
     config_open_session BOOLEAN, /*sesion actual abierto*/
     config_open_session_id INT, /*openIdSession*/
-	config_last_session_time TIMESTAMP,
-    config_active BOOLEAN
+	config_last_session_time TIMESTAMP
 );
 
 
@@ -223,7 +226,7 @@ CREATE TABLE consumer_tabs(
 );
 
 CREATE TABLE deliverys(
-	delivery_id INT AUTO_INCREMENT PRIMARY KEY,
+	delivery_id VARCHAR(50),
     delivery_consumer int,
     delivery_tab VARCHAR(100),
     delivery_user VARCHAR(30),
