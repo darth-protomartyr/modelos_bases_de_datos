@@ -14,7 +14,8 @@ CREATE TABLE config_actual(
     config_open_ws_id INT, /*openWsId*/
     config_open_session BOOLEAN, /*sesion actual abierto*/
     config_open_session_id INT, /*openIdSession*/
-	config_last_session_time TIMESTAMP
+	config_last_session_time TIMESTAMP,
+    congif_defer_close_ws VARCHAR(1000)
 );
 
 
@@ -227,17 +228,20 @@ CREATE TABLE consumer_tabs(
 
 CREATE TABLE deliverys(
 	delivery_id VARCHAR(50),
-    delivery_consumer int,
-    delivery_tab VARCHAR(100),
-    delivery_user VARCHAR(30),
+    delivery_consumer_phone VARCHAR(50),
+    delivery_tab_id VARCHAR(100),
+    delivery_user_id VARCHAR(30),
     delivery_open BOOLEAN,
     delivery_active BOOLEAN
 );
 
 
 /*Config*/
-INSERT INTO config(config_table_total, config_table_num_panes, config_table_name_panes, config_table_chart_panes, config_open_ws, config_open_ws_id, config_open_session, config_open_session_id, config_last_session_time, config_active)
-	VALUES(12, "12-", "salon-", "s-", false, 0, false, 0, null, true);
+INSERT INTO config_general(config_table_total, config_table_num_panes, config_table_name_panes, config_table_chart_panes, config_active)
+	VALUES(12, "12-", "salon-", "s-", true);
+
+INSERT INTO config_actual(config_open_ws, config_open_ws_id, config_open_session, config_open_session_id, config_last_session_time, congif_defer_close_ws)
+	VALUES(false, 0, false, 0, null, "");
     
 /*Usuarios*/
 INSERT INTO users(user_id, user_name, user_last_name, user_mail, user_role, user_image_route, user_image_name, user_password, user_phone, user_active)
