@@ -156,8 +156,8 @@ CREATE TABLE workshifts(
 
 
 CREATE TABLE cashier_workshifts(
-    cashier_tab_id INT PRIMARY KEY AUTO_INCREMENT,
-    cashier_tab_active BOOLEAN,
+    cashier_workshift_id INT PRIMARY KEY AUTO_INCREMENT,
+    cashier_workshift_active BOOLEAN,
     cashier_id_fkey VARCHAR(200),
     workshift_id_fkey INT,
     FOREIGN KEY (cashier_id_fkey) REFERENCES users(user_id),
