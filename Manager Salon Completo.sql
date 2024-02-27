@@ -245,7 +245,7 @@ INSERT INTO config_actual(config_open_ws, config_open_ws_id, config_open_session
     
 /*Usuarios*/
 INSERT INTO users(user_id, user_name, user_last_name, user_mail, user_role, user_image_route, user_image_name, user_password, user_phone, user_active)
-	VALUES('WDep7urv', 'Gonzalo', 'Di nasso', 'gon@gmail.com', 'ADMIN', 'C:|Users|ferlo|Documents|imagenes_salon|dylan.jpg', 'dylan.jpg', '27949874', "2615613868",  true);
+	VALUES('WDep7urv', 'Gonzalo', 'Di nasso', 'gon@gmail.com', 'ADMIN', 'C:|Users|Gonzalo|Documents|NetbeansProject|SalonManager|resources|images|bill_evans.jpg', 'dylan.jpg', '27949874', "2615613868",  true);
 INSERT INTO users(user_id, user_name, user_last_name, user_mail, user_role, user_image_route, user_image_name, user_password, user_phone, user_active)
 	VALUES('WDec7tyv', 'Lucho', 'Velez', 'luch@gmail.com', 'MOZO', '', '', '27949774', '2516473832', true);
 INSERT INTO users(user_id, user_name, user_last_name, user_mail, user_role, user_image_route, user_image_name, user_password, user_phone, user_active)
