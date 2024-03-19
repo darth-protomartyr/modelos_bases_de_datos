@@ -12,9 +12,6 @@ CREATE TABLE config_general(
 CREATE TABLE config_actual(
     config_open_ws BOOLEAN, /*turno actual abierto*/
     config_open_ws_id INT, /*openWsId*/
-    config_open_session BOOLEAN, /*sesion actual abierto*/
-    config_open_session_id INT, /*openIdSession*/
-	config_last_session_time TIMESTAMP,
     congif_defer_close_ws VARCHAR(1000)
 );
 
@@ -151,8 +148,23 @@ CREATE TABLE workshifts(
 	workshift_total_mount_real DOUBLE,
 	workshift_error_mount DOUBLE,
 	workshift_error_mount_real DOUBLE,
+    workshift_cash_flow_cash DOUBLE,
+    workshift_cash_flow_elec DOUBLE,
+    workshift_comment VARCHAR(500),
     workshift_active BOOLEAN
 );
+
+CREATE TABLE workshift_flows(
+    workshift_flow_id INT AUTO_INCREMENT PRIMARY KEY,
+	workshift_flow_kind BOOLEAN,
+    workshift_flow_m_k BOOLEAN,
+    workshift_flow_amount DOUBLE,
+	workshift_flow_comment VARCHAR(500),
+    workshift_flow_time DATETIME(3),
+	workshift_id INT,
+    workshift_flow_active BOOLEAN
+);
+
 
 
 CREATE TABLE cashier_workshifts(
@@ -162,44 +174,6 @@ CREATE TABLE cashier_workshifts(
     workshift_id_fkey INT,
     FOREIGN KEY (cashier_id_fkey) REFERENCES users(user_id),
     FOREIGN KEY (workshift_id_fkey) REFERENCES workshifts(workshift_id)
-);
-
-
-CREATE TABLE sessions(
-	session_id INT AUTO_INCREMENT PRIMARY KEY,
-    session_open DATETIME(3), 
-	session_close DATETIME(3),
-	session_state BOOLEAN,
-	session_total_mount DOUBLE,
-	session_error_mount DOUBLE,
-    session_active BOOLEAN
-);
-
-CREATE TABLE cashier_session_init(
-    cashier_session_init_id INT PRIMARY KEY AUTO_INCREMENT,
-    cashier_session_init_active BOOLEAN,
-    cashier_init_id_fkey VARCHAR(200),
-    session_init_id_fkey INT,
-    FOREIGN KEY (cashier_init_id_fkey) REFERENCES users(user_id),
-    FOREIGN KEY (session_init_id_fkey) REFERENCES sessions(session_id)
-);
-
-CREATE TABLE cashier_session_ends(
-    cashier_session_end_id INT PRIMARY KEY AUTO_INCREMENT,
-    cashier_session_end_active BOOLEAN,
-    cashier_end_id_fkey VARCHAR(200),
-    session_end_id_fkey INT,
-    FOREIGN KEY (cashier_end_id_fkey) REFERENCES users(user_id),
-    FOREIGN KEY (session_end_id_fkey) REFERENCES sessions(session_id)
-);
-
-CREATE TABLE workshift_sessions(
-    workshift_session_id INT PRIMARY KEY AUTO_INCREMENT,
-    workshift_session_active BOOLEAN,
-    workshift_id_fkey INT,
-    session_id_fkey INT,
-    FOREIGN KEY (workshift_id_fkey) REFERENCES workshifts(workshift_id),
-    FOREIGN KEY (session_id_fkey) REFERENCES sessions(session_id)
 );
 
 CREATE TABLE consumers (
@@ -236,12 +210,27 @@ CREATE TABLE deliverys(
 );
 
 
+CREATE TABLE item_sales_statics(
+    item_sale_statics_id INT PRIMARY KEY AUTO_INCREMENT,
+    item_sale_id INT,
+	item_sale_caption VARCHAR(20),
+    item_sale_tab_pos VARCHAR(20),
+    item_sale_waiter_id VARCHAR(30),
+    item_sale_workshift_id INT,
+    item_sale_price DOUBLE,
+    item_sale_date DATETIME(3),
+    item_sale_active BOOLEAN    
+);
+
+
+
+
 /*Config*/
 INSERT INTO config_general(config_table_total, config_table_num_panes, config_table_name_panes, config_table_chart_panes, config_active)
 	VALUES(12, "12-", "salon-", "s-", true);
 
-INSERT INTO config_actual(config_open_ws, config_open_ws_id, config_open_session, config_open_session_id, config_last_session_time, congif_defer_close_ws)
-	VALUES(false, 0, false, 0, null, "");
+INSERT INTO config_actual(config_open_ws, config_open_ws_id, congif_defer_close_ws)
+	VALUES(false, 0, "");
     
 /*Usuarios*/
 INSERT INTO users(user_id, user_name, user_last_name, user_mail, user_role, user_image_route, user_image_name, user_password, user_phone, user_active)
