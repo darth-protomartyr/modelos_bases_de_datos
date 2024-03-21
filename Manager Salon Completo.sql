@@ -15,7 +15,6 @@ CREATE TABLE config_actual(
     congif_defer_close_ws VARCHAR(1000)
 );
 
-
 CREATE TABLE users(
     user_id VARCHAR(200) UNIQUE,
     user_name VARCHAR(50),
@@ -28,7 +27,6 @@ CREATE TABLE users(
     user_phone VARCHAR(30) UNIQUE,
     user_active boolean
 );
-
 
 CREATE TABLE itemcards(
 	itemcard_id INT AUTO_INCREMENT PRIMARY KEY,
@@ -49,6 +47,7 @@ CREATE TABLE tabs(
 	table_num INT,
     table_pos VARCHAR(10),
     table_open_time DATETIME(3),
+    table_close_time DATETIME(3),
     table_id VARCHAR(50) PRIMARY KEY,
     table_open BOOLEAN,
     table_bill BOOLEAN,
@@ -104,7 +103,7 @@ CREATE TABLE waiter_tabs(
     waiter_tab_active BOOLEAN,
     waiter_id_fkey VARCHAR(200),
     table_id_fkey VARCHAR(50),
-    FOREIGN KEY (waiter_id_fkey) REFERENCES users(user_id),
+     FOREIGN KEY (waiter_id_fkey) REFERENCES users(user_id),
     FOREIGN KEY (table_id_fkey) REFERENCES tabs(table_id)
 );
 
@@ -164,8 +163,6 @@ CREATE TABLE workshift_flows(
 	workshift_id INT,
     workshift_flow_active BOOLEAN
 );
-
-
 
 CREATE TABLE cashier_workshifts(
     cashier_workshift_id INT PRIMARY KEY AUTO_INCREMENT,
