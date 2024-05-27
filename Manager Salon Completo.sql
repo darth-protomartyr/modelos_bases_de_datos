@@ -5,6 +5,7 @@ CREATE TABLE config_general(
 	config_table_total INT, /*nro total de tabs*/
     config_table_num_panes VARCHAR(50), /*número de mesas por pane*/
 	config_table_name_panes VARCHAR(200),  /*nombre de cada pane*/
+  	config_table_name_captions VARCHAR(200),  /*nombre de rubros*/
     config_table_chart_panes VARCHAR(50), /*Inicial de cada pane*/
     config_active BOOLEAN
 );
@@ -28,6 +29,7 @@ CREATE TABLE users(
     user_active boolean
 );
 
+
 CREATE TABLE itemcards(
 	itemcard_id INT AUTO_INCREMENT PRIMARY KEY,
     itemcard_code VARCHAR(5) UNIQUE,
@@ -42,6 +44,7 @@ CREATE TABLE itemcards(
     itemcard_tip BOOLEAN,
     itemcard_active BOOLEAN
 );
+
 
 CREATE TABLE tabs(
 	table_num INT,
@@ -62,6 +65,7 @@ CREATE TABLE tabs(
     table_active BOOLEAN
 );
 
+
 CREATE TABLE itemcard_order_tabs(
     itemcard_order_tabs_id INT PRIMARY KEY AUTO_INCREMENT,
     itemcard_order_tabs_active BOOLEAN,
@@ -71,6 +75,7 @@ CREATE TABLE itemcard_order_tabs(
     FOREIGN KEY (table_id_fkey) REFERENCES tabs(table_id)
 );
 
+
 CREATE TABLE itemcard_gift_tabs(
     itemcard_gift_tabs_id INT PRIMARY KEY AUTO_INCREMENT,
     itemcard_gift_tabs_active BOOLEAN,
@@ -79,6 +84,7 @@ CREATE TABLE itemcard_gift_tabs(
     FOREIGN KEY (itemcard_gift_id_fkey) REFERENCES itemcards(itemcard_id),
     FOREIGN KEY (table_id_fkey) REFERENCES tabs(table_id)
 );
+
 
 CREATE TABLE itemcard_payed_tabs(
     itemcard_payed_tabs_id INT PRIMARY KEY AUTO_INCREMENT,
@@ -206,7 +212,6 @@ CREATE TABLE deliverys(
     delivery_active BOOLEAN
 );
 
-
 CREATE TABLE item_sales_statics(
     item_sale_statics_id INT PRIMARY KEY AUTO_INCREMENT,
     item_sale_id INT,
@@ -219,16 +224,13 @@ CREATE TABLE item_sales_statics(
     item_sale_active BOOLEAN    
 );
 
-
-
-
 /*Config*/
-INSERT INTO config_general(config_table_total, config_table_num_panes, config_table_name_panes, config_table_chart_panes, config_active)
-	VALUES(12, "12-", "salon-", "s-", true);
+INSERT INTO config_general(config_table_total, config_table_num_panes, config_table_name_panes, config_table_name_captions, config_table_chart_panes, config_active)
+	VALUES(12, "12-", "salon-", "PLATOS-ENTRADAS-BEBIDAS-POSTRES-CAFETERIA-OTROS-", "s-", true);
 
 INSERT INTO config_actual(config_open_ws, config_open_ws_id, congif_defer_close_ws)
 	VALUES(false, 0, "");
-    
+
 /*Usuarios*/
 INSERT INTO users(user_id, user_name, user_last_name, user_mail, user_role, user_image_route, user_image_name, user_password, user_phone, user_active)
 	VALUES('WDep7urv', 'Gonzalo', 'Di nasso', 'gon@gmail.com', 'ADMIN', 'C:|Users|Gonzalo|Documents|NetbeansProject|SalonManager|resources|images|bill_evans.jpg', 'dylan.jpg', '27949874', "2615613868",  true);
@@ -251,8 +253,7 @@ INSERT INTO consumers(consumer_street, consumer_street_num, consumer_dept_floor,
     
 INSERT INTO consumers(consumer_street, consumer_street_num, consumer_dept_floor, consumer_dept_num, consumer_district, consumer_area, consumer_details, consumer_name, consumer_phone, consume_social_network, consumer_active)
 	VALUES('José Bárbol', '489', '', '', 'Dorrego', 'Guaymallén', 'Puerta gris de madera', 'Julieta Di Nasso', "2613456920", "Twitter @Dignatius13" ,true);
-
-
+    
 /*Items card*/
 INSERT INTO itemcards(itemcard_code, itemcard_name, itemcard_caption, itemcard_description, itemcard_cost, itemcard_price, itemcard_stock, itemcard_date_creation, itemcard_tip, itemcard_active)
 	VALUES( 'B1','Coca Cola 500','BEBIDAS','Botella 500cm3','350.0','700.0','12','2023-09-01 17:28:35.892',true, true);
