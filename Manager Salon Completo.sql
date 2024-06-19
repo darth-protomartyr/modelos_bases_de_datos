@@ -5,7 +5,7 @@ CREATE TABLE config_general(
 	config_table_total INT, /*nro total de tabs*/
     config_table_num_panes VARCHAR(50), /*número de mesas por pane*/
 	config_table_name_panes VARCHAR(200),  /*nombre de cada pane*/
-  	config_table_name_captions VARCHAR(200),  /*nombre de rubros*/
+  	config_table_name_categories VARCHAR(200),  /*nombre de rubros*/
     config_table_chart_panes VARCHAR(50), /*Inicial de cada pane*/
     config_active BOOLEAN
 );
@@ -13,7 +13,8 @@ CREATE TABLE config_general(
 CREATE TABLE config_actual(
     config_open_ws BOOLEAN, /*turno actual abierto*/
     config_open_ws_id INT, /*openWsId*/
-    congif_defer_close_ws VARCHAR(1000)
+    congif_defer_close_ws VARCHAR(10000),
+    congif_unmod_tabs VARCHAR(1000)
 );
 
 CREATE TABLE users(
@@ -29,15 +30,26 @@ CREATE TABLE users(
     user_active boolean
 );
 
+CREATE TABLE categories(
+    category_name VARCHAR(10)
+);
+
+CREATE TABLE spaces(
+    space_name VARCHAR(14)
+);
+
+CREATE TABLE chars(
+    char_name VARCHAR(1)
+);
 
 CREATE TABLE itemcards(
 	itemcard_id INT AUTO_INCREMENT PRIMARY KEY,
     itemcard_code VARCHAR(5) UNIQUE,
     itemcard_name VARCHAR(50),
-    itemcard_caption VARCHAR(50),
+    itemcard_category VARCHAR(50),
     itemcard_description VARCHAR(150),
     itemcard_cost DOUBLE,
-    itemcard_price DOUBLE,
+    itemcard_price VARCHAR(30),
     itemcard_stock INT,
     itemcard_date_creation DATETIME(3),
     itemcard_date_update DATETIME(3),
@@ -156,6 +168,7 @@ CREATE TABLE workshifts(
     workshift_cash_flow_cash DOUBLE,
     workshift_cash_flow_elec DOUBLE,
     workshift_comment VARCHAR(500),
+    workshift_error BOOLEAN,
     workshift_active BOOLEAN
 );
 
@@ -169,6 +182,7 @@ CREATE TABLE workshift_flows(
 	workshift_id INT,
     workshift_flow_active BOOLEAN
 );
+
 
 CREATE TABLE cashier_workshifts(
     cashier_workshift_id INT PRIMARY KEY AUTO_INCREMENT,
@@ -215,7 +229,7 @@ CREATE TABLE deliverys(
 CREATE TABLE item_sales_statics(
     item_sale_statics_id INT PRIMARY KEY AUTO_INCREMENT,
     item_sale_id INT,
-	item_sale_caption VARCHAR(20),
+	item_sale_category VARCHAR(20),
     item_sale_tab_pos VARCHAR(20),
     item_sale_waiter_id VARCHAR(30),
     item_sale_workshift_id INT,
@@ -225,11 +239,84 @@ CREATE TABLE item_sales_statics(
 );
 
 /*Config*/
-INSERT INTO config_general(config_table_total, config_table_num_panes, config_table_name_panes, config_table_name_captions, config_table_chart_panes, config_active)
-	VALUES(12, "12-", "salon-", "PLATOS-ENTRADAS-BEBIDAS-POSTRES-CAFETERIA-OTROS-", "s-", true);
+INSERT INTO config_actual(config_open_ws, config_open_ws_id, congif_defer_close_ws, congif_unmod_tabs)
+	VALUES(false, 0, "", "");
 
-INSERT INTO config_actual(config_open_ws, config_open_ws_id, congif_defer_close_ws)
-	VALUES(false, 0, "");
+
+INSERT INTO spaces(space_name)
+	VALUES('salón');
+INSERT INTO spaces(space_name)
+	VALUES('patio');
+INSERT INTO spaces(space_name)
+	VALUES('vereda');
+INSERT INTO spaces(space_name)
+	VALUES('frente');
+INSERT INTO spaces(space_name)
+	VALUES('fondo');
+INSERT INTO spaces(space_name)
+	VALUES('sala arriba');
+INSERT INTO spaces(space_name)
+	VALUES('sala adelante');
+INSERT INTO spaces(space_name)
+	VALUES('sector norte');
+INSERT INTO spaces(space_name)
+	VALUES('sector sur');
+INSERT INTO spaces(space_name)
+	VALUES('sector este');
+INSERT INTO spaces(space_name)
+	VALUES('sector oeste');
+
+INSERT INTO chars(char_name)
+	VALUES('s');
+INSERT INTO chars(char_name)
+	VALUES('p');
+INSERT INTO chars(char_name)
+	VALUES('v');
+INSERT INTO chars(char_name)
+	VALUES('f');
+INSERT INTO chars(char_name)
+	VALUES('F');
+INSERT INTO chars(char_name)
+	VALUES('a');
+INSERT INTO chars(char_name)
+	VALUES('A');
+INSERT INTO chars(char_name)
+	VALUES('N');
+INSERT INTO chars(char_name)
+	VALUES('S');
+INSERT INTO chars(char_name)
+	VALUES('E');
+INSERT INTO chars(char_name)
+	VALUES('O');
+
+INSERT INTO categories(category_name)
+	VALUES('PLATOS');
+INSERT INTO categories(category_name)
+	VALUES('BEBIDAS');
+INSERT INTO categories(category_name)
+	VALUES('TRAGOS');
+INSERT INTO categories(category_name)
+	VALUES('ENTRADAS');
+INSERT INTO categories(category_name)
+	VALUES('POSTRES');
+INSERT INTO categories(category_name)
+	VALUES('OTROS');
+INSERT INTO categories(category_name)
+	VALUES('PIZZAS');
+INSERT INTO categories(category_name)
+	VALUES('PASTAS');
+INSERT INTO categories(category_name)
+	VALUES('CAFETERÍA');
+INSERT INTO categories(category_name)
+	VALUES('PANADERÍA');
+INSERT INTO categories(category_name)
+	VALUES('ENSALADAS');
+INSERT INTO categories(category_name)
+	VALUES('SANDWICHS');
+INSERT INTO categories(category_name)
+	VALUES('VINOS');
+INSERT INTO categories(category_name)
+	VALUES('CERVEZAS');
 
 /*Usuarios*/
 INSERT INTO users(user_id, user_name, user_last_name, user_mail, user_role, user_image_route, user_image_name, user_password, user_phone, user_active)
@@ -255,44 +342,38 @@ INSERT INTO consumers(consumer_street, consumer_street_num, consumer_dept_floor,
 	VALUES('José Bárbol', '489', '', '', 'Dorrego', 'Guaymallén', 'Puerta gris de madera', 'Julieta Di Nasso', "2613456920", "Twitter @Dignatius13" ,true);
     
 /*Items card*/
-INSERT INTO itemcards(itemcard_code, itemcard_name, itemcard_caption, itemcard_description, itemcard_cost, itemcard_price, itemcard_stock, itemcard_date_creation, itemcard_tip, itemcard_active)
-	VALUES( 'B1','Coca Cola 500','BEBIDAS','Botella 500cm3','350.0','700.0','12','2023-09-01 17:28:35.892',true, true);
+INSERT INTO itemcards(itemcard_code, itemcard_name, itemcard_category, itemcard_description, itemcard_cost, itemcard_price, itemcard_stock, itemcard_date_creation, itemcard_tip, itemcard_active)
+	VALUES( 'B1','Coca Cola 500','BEBIDAS','Botella 500cm3','350.0','700.0-0-','12','2023-09-01 17:28:35.892',true, true);
 
-INSERT INTO itemcards(itemcard_code, itemcard_name, itemcard_caption, itemcard_description, itemcard_cost, itemcard_price, itemcard_stock, itemcard_date_creation, itemcard_tip, itemcard_active)
-	VALUES( 'B2','Sprite 500','BEBIDAS','Botella 500cm3','350.0','700.0','12','2023-09-01 17:52:38.71',true, true);
+INSERT INTO itemcards(itemcard_code, itemcard_name, itemcard_category, itemcard_description, itemcard_cost, itemcard_price, itemcard_stock, itemcard_date_creation, itemcard_tip, itemcard_active)
+	VALUES( 'B2','Sprite 500','BEBIDAS','Botella 500cm3','350.0','700.0-0-','12','2023-09-01 17:52:38.71',true, true);
 
-INSERT INTO itemcards(itemcard_code, itemcard_name, itemcard_caption, itemcard_description, itemcard_cost, itemcard_price, itemcard_stock, itemcard_date_creation, itemcard_tip, itemcard_active)
-	VALUES( 'B3','Fanta 500','BEBIDAS','Botella 500cm3','350.0','700.0','12','2023-09-01 18:05:57.279',true, true);
+INSERT INTO itemcards(itemcard_code, itemcard_name, itemcard_category, itemcard_description, itemcard_cost, itemcard_price, itemcard_stock, itemcard_date_creation, itemcard_tip, itemcard_active)
+	VALUES( 'B3','Fanta 500','BEBIDAS','Botella 500cm3','350.0','700.0-0-','12','2023-09-01 18:05:57.279',true, true);
 
-INSERT INTO itemcards(itemcard_code, itemcard_name, itemcard_caption, itemcard_description, itemcard_cost, itemcard_price, itemcard_stock, itemcard_date_creation, itemcard_tip, itemcard_active)
-	VALUES( 'B4','Agua 500','BEBIDAS','Botella 500cm3','350.0','700.0','12','2023-09-01 18:23:13.906',true, true);
+INSERT INTO itemcards(itemcard_code, itemcard_name, itemcard_category, itemcard_description, itemcard_cost, itemcard_price, itemcard_stock, itemcard_date_creation, itemcard_tip, itemcard_active)
+	VALUES( 'B4','Agua 500','BEBIDAS','Botella 500cm3','350.0','700.0-0-','12','2023-09-01 18:23:13.906',true, true);
 
-INSERT INTO itemcards(itemcard_code, itemcard_name, itemcard_caption, itemcard_description, itemcard_cost, itemcard_price, itemcard_stock, itemcard_date_creation, itemcard_tip, itemcard_active)
-	VALUES( 'B5','Agua c/gas','BEBIDAS','Botella 500','350.0','700.0','12','2023-09-01 18:55:21.699',true, true);
+INSERT INTO itemcards(itemcard_code, itemcard_name, itemcard_category, itemcard_description, itemcard_cost, itemcard_price, itemcard_stock, itemcard_date_creation, itemcard_tip, itemcard_active)
+	VALUES( 'B5','Agua c/gas','BEBIDAS','Botella 500','350.0','700.0-0-','12','2023-09-01 18:55:21.699',true, true);
 
-INSERT INTO itemcards(itemcard_code, itemcard_name, itemcard_caption, itemcard_description, itemcard_cost, itemcard_price, itemcard_stock, itemcard_date_creation, itemcard_tip, itemcard_active)
-	VALUES( 'B6','Vino Maleante Malbec','BEBIDAS',' Vino Maleante Malbec por 750 cm3.','1200.0','2500.0','0','2023-09-05 18:36:37.67',true, true);
+INSERT INTO itemcards(itemcard_code, itemcard_name, itemcard_category, itemcard_description, itemcard_cost, itemcard_price, itemcard_stock, itemcard_date_creation, itemcard_tip, itemcard_active)
+	VALUES( 'B6','Vino Maleante Malbec','BEBIDAS',' Vino Maleante Malbec por 750 cm3.','1200.0','2500.0-0-','0','2023-09-05 18:36:37.67',true, true);
 
-INSERT INTO itemcards(itemcard_code, itemcard_name, itemcard_caption, itemcard_description, itemcard_cost, itemcard_price, itemcard_stock, itemcard_date_creation, itemcard_tip, itemcard_active)
-	VALUES( 'P1','Lomo Completo','PLATOS','Bife de lomo, tomate, lechuga, jamón, queso, huevo','2000.0','4500.0','0','2023-09-07 17:28:35.892',true, true);
+INSERT INTO itemcards(itemcard_code, itemcard_name, itemcard_category, itemcard_description, itemcard_cost, itemcard_price, itemcard_stock, itemcard_date_creation, itemcard_tip, itemcard_active)
+	VALUES( 'P1','Lomo Completo','PLATOS','Bife de lomo, tomate, lechuga, jamón, queso, huevo','2000.0','4500.0-0-','0','2023-09-07 17:28:35.892',true, true);
 
-INSERT INTO itemcards(itemcard_code, itemcard_name, itemcard_caption, itemcard_description, itemcard_cost, itemcard_price, itemcard_stock, itemcard_date_creation, itemcard_tip, itemcard_active)
-	VALUES( 'P2','Choripán','PLATOS','Choripán, tomate, huevo','1500.0','3500.0','0','2023-09-04 17:52:38.71',true, true);
+INSERT INTO itemcards(itemcard_code, itemcard_name, itemcard_category, itemcard_description, itemcard_cost, itemcard_price, itemcard_stock, itemcard_date_creation, itemcard_tip, itemcard_active)
+	VALUES( 'P2','Choripán','PLATOS','Choripán, tomate, huevo','1500.0','3500.0-0-','0','2023-09-04 17:52:38.71',true, true);
 
-INSERT INTO itemcards(itemcard_code, itemcard_name, itemcard_caption, itemcard_description, itemcard_cost, itemcard_price, itemcard_stock, itemcard_date_creation, itemcard_tip, itemcard_active)
-	VALUES( 'P3','Pizza Muzzarella','PLATOS','Pizza Muzzarella con aceitunas','1200.0','3000.0','0','2023-09-12 18:05:57.279',true, true);    
+INSERT INTO itemcards(itemcard_code, itemcard_name, itemcard_category, itemcard_description, itemcard_cost, itemcard_price, itemcard_stock, itemcard_date_creation, itemcard_tip, itemcard_active)
+	VALUES( 'P3','Pizza Muzzarella','PLATOS','Pizza Muzzarella con aceitunas','1200.0','3000.0-0-','0','2023-09-12 18:05:57.279',true, true);    
 
-INSERT INTO itemcards(itemcard_code, itemcard_name, itemcard_caption, itemcard_description, itemcard_cost, itemcard_price, itemcard_stock, itemcard_date_creation, itemcard_tip, itemcard_active)
-	VALUES( 'P4','Pizza Especial','PLATOS','Pizza Muzzarella con aceitunas y jamón','1800.0','3500.0','0','2023-08-12 19:05:57.279',true, true);  
+INSERT INTO itemcards(itemcard_code, itemcard_name, itemcard_category, itemcard_description, itemcard_cost, itemcard_price, itemcard_stock, itemcard_date_creation, itemcard_tip, itemcard_active)
+	VALUES( 'P4','Pizza Especial','PLATOS','Pizza Muzzarella con aceitunas y jamón','1800.0','3500.0-0-','0','2023-08-12 19:05:57.279',true, true);  
     
-INSERT INTO itemcards(itemcard_code, itemcard_name, itemcard_caption, itemcard_description, itemcard_cost, itemcard_price, itemcard_stock, itemcard_date_creation, itemcard_tip, itemcard_active)
-	VALUES( 'P5','Pizza Serrana','PLATOS','Pizza Muzzarella con jamón serrano y rucula','2000.0','4000.0','0','2023-08-12 18:05:57.279',true, true);  
+INSERT INTO itemcards(itemcard_code, itemcard_name, itemcard_category, itemcard_description, itemcard_cost, itemcard_price, itemcard_stock, itemcard_date_creation, itemcard_tip, itemcard_active)
+	VALUES( 'P5','Pizza Serrana','PLATOS','Pizza Muzzarella con jamón serrano y rucula','2000.0','4000.0-0-','0','2023-08-12 18:05:57.279',true, true);  
 
-INSERT INTO itemcards(itemcard_code, itemcard_name, itemcard_caption, itemcard_description, itemcard_cost, itemcard_price, itemcard_stock, itemcard_date_creation, itemcard_tip, itemcard_active)
-	VALUES( 'P6','Pizza Napolitana','PLATOS','Pizza Muzzarella con aceitunas, tomate y pesto','1800.0','3500.0','0','2023-03-12 18:05:57.279',true, true);  
-
-
-/*
-INSERT INTO users(user_id, user_name, user_last_name, user_mail, user_role, user_image_route, user_image_name, user_password, user_active)
-	VALUES('VeDQlNqdTiN2QvKGDISVYA==','8m2WNjRYQJ/wjxf/1ldSrQ==', 'KwjSsk5R48lMu2Id/ItU0Q==', 'BpPQj59jKQnyJvtIgEiDPw==', 'JtcIB/jIonX6g007aK0WuQ==', 'BtUA8NAIqMHUKbIFHu+hhmxccrbrOs6L4QkFWDQ7DJ4YSA5CAJFw6xKr0KIrFm5+ynnLItd766fAGZhrEZmqaA==', 'gebCrDg29V7e1XkR7moUGQ==', 'LvpxCndaQ9U4XJeRILdEGg==', true);
-*/
+INSERT INTO itemcards(itemcard_code, itemcard_name, itemcard_category, itemcard_description, itemcard_cost, itemcard_price, itemcard_stock, itemcard_date_creation, itemcard_tip, itemcard_active)
+	VALUES( 'P6','Pizza Napolitana','PLATOS','Pizza Muzzarella con aceitunas, tomate y pesto','1800.0','3500.0-0-','0','2023-03-12 18:05:57.279',true, true);
