@@ -322,6 +322,8 @@ INSERT INTO categories(category_name)
 INSERT INTO users(user_id, user_name, user_last_name, user_mail, user_role, user_image_route, user_image_name, user_password, user_phone, user_active)
 	VALUES('WDep7urv', 'Gonzalo', 'Di nasso', 'gon@gmail.com', 'ADMIN', 'C:|Users|Gonzalo|Documents|NetbeansProject|SalonManager|resources|images|bill_evans.jpg', 'dylan.jpg', '27949874', "2615613868",  true);
 INSERT INTO users(user_id, user_name, user_last_name, user_mail, user_role, user_image_route, user_image_name, user_password, user_phone, user_active)
+	VALUES('WDep7urk', 'Franco', 'Di nasso', 'on@gmail.com', 'CAJERO', 'C:|Users|Gonzalo|Documents|NetbeansProject|SalonManager|resources|images|bill_evans.jpg', 'dylan.jpg', '27949874', "2615613867",  true);
+INSERT INTO users(user_id, user_name, user_last_name, user_mail, user_role, user_image_route, user_image_name, user_password, user_phone, user_active)
 	VALUES('WDec7tyv', 'Lucho', 'Velez', 'luch@gmail.com', 'MOZO', '', '', '27949774', '2516473832', true);
 INSERT INTO users(user_id, user_name, user_last_name, user_mail, user_role, user_image_route, user_image_name, user_password, user_phone, user_active)
 	VALUES('WDeu7tpv', 'Abi', 'Fritz', 'abi@gmail.com', 'MOZO', '', '', '27944574', '2614733546', true);
@@ -377,3 +379,20 @@ INSERT INTO itemcards(itemcard_code, itemcard_name, itemcard_category, itemcard_
 
 INSERT INTO itemcards(itemcard_code, itemcard_name, itemcard_category, itemcard_description, itemcard_cost, itemcard_price, itemcard_stock, itemcard_date_creation, itemcard_tip, itemcard_active)
 	VALUES( 'P6','Pizza Napolitana','PLATOS','Pizza Muzzarella con aceitunas, tomate y pesto','1800.0','3500.0-0-','0','2023-03-12 18:05:57.279',true, true);
+
+INSERT INTO workshifts(workshift_open_shift, workshift_close_shift, workshift_state_shift, workshift_mount_cash, workshift_mount_electronic, workshift_error_mount, workshift_error_mount_real, workshift_total_mount, workshift_total_mount_real, workshift_cash_flow_cash, workshift_cash_flow_elec, workshift_comment, workshift_error, workshift_active) VALUES( '2024-06-24 15:19:25.031', null, true, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, '', false, true);
+INSERT INTO cashier_workshifts(cashier_workshift_active, cashier_id_fkey, workshift_id_fkey) VALUES( true, 'WDep7urk', 1);
+UPDATE config_actual SET config_open_ws = true;
+UPDATE config_actual SET config_open_ws_id = '1';
+UPDATE workshifts SET workshift_cash_flow_cash = 0.0 WHERE workshift_id = '1';
+INSERT INTO workshift_flows(workshift_flow_kind, workshift_flow_m_k, workshift_flow_amount, workshift_flow_comment, workshift_flow_time, workshift_id, workshift_flow_active)VALUES(true, true, 0.0, 'Dinero ingresado en caja inicial.', '2024-06-24 15:19:26.765', 1, true);
+INSERT INTO tabs(table_num, table_pos, table_open_time, table_close_time, table_id, table_open, table_bill, table_to_pay, table_discount, table_error, table_price_correction, table_amount_cash, table_amount_electronic, table_total, table_comments, table_active) VALUES( 7,'s','2024-06-24 15:19:31.444',null,'7s_2024-06-24_15:19:31.444',true, false, false, 0, 0.0,0.0, 0.0, 0.0, 0.0,'', true);
+INSERT INTO waiter_tabs(waiter_id_fkey, table_id_fkey) VALUES('WDec7tyv', '7s_2024-06-24_15:19:31.444');
+UPDATE tabs SET table_total = 4500.0 WHERE table_id = '7s_2024-06-24_15:19:31.444';
+INSERT INTO itemcard_order_tabs( itemcard_order_tabs_active, itemcard_order_id_fkey, table_id_fkey) VALUES(true, 7, '7s_2024-06-24_15:19:31.444');
+INSERT INTO item_monits(item_monit_id, item_monit_table_id, item_monit_item_id, item_monit_tipe, item_monit_init_bool, item_monit_init_date, item_monit_cook_bool, item_monit_cook_date, item_monit_ready_bool, item_monit_ready_date, item_monit_otw_bool, item_monit_otw_date, item_monit_open, item_monit_active, item_monit_indications) VALUES( '7s_2024-06-24_15:19:31.444_7', '7s_2024-06-24_15:19:31.444', 7, 'mesa', true, '2024-06-24 15:19:37.605', false, null, false, null, false, null, true, true, '');
+INSERT INTO tabs(table_num, table_pos, table_open_time, table_close_time, table_id, table_open, table_bill, table_to_pay, table_discount, table_error, table_price_correction, table_amount_cash, table_amount_electronic, table_total, table_comments, table_active) VALUES( 31,'s','2024-06-24 15:19:43.179',null,'31s_2024-06-24_15:19:43.179',true, false, false, 0, 0.0,0.0, 0.0, 0.0, 0.0,'', true);
+INSERT INTO waiter_tabs(waiter_id_fkey, table_id_fkey) VALUES('WDec7tyv', '31s_2024-06-24_15:19:43.179');
+UPDATE tabs SET table_total = 3500.0 WHERE table_id = '31s_2024-06-24_15:19:43.179';
+INSERT INTO itemcard_order_tabs( itemcard_order_tabs_active, itemcard_order_id_fkey, table_id_fkey) VALUES(true, 8, '31s_2024-06-24_15:19:43.179');
+INSERT INTO item_monits(item_monit_id, item_monit_table_id, item_monit_item_id, item_monit_tipe, item_monit_init_bool, item_monit_init_date, item_monit_cook_bool, item_monit_cook_date, item_monit_ready_bool, item_monit_ready_date, item_monit_otw_bool, item_monit_otw_date, item_monit_open, item_monit_active, item_monit_indications) VALUES( '31s_2024-06-24_15:19:43.179_8', '31s_2024-06-24_15:19:43.179', 8, 'mesa', true, '2024-06-24 15:19:53.933', false, null, false, null, false, null, true, true, '');
