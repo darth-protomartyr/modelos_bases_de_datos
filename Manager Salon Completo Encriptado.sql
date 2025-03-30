@@ -1,5 +1,5 @@
 CREATE DATABASE salonmanager;
-use salonmanager;
+USE salonmanager;
 
 CREATE TABLE config_general(
 	config_table_total VARCHAR(100), /*nro total de tabs*/
@@ -124,7 +124,7 @@ CREATE TABLE delivery_clients (
     delivery_client_area VARCHAR(100),
     delivery_client_details VARCHAR(5000),
     delivery_client_name VARCHAR(100),
-    delivery_client_phone VARCHAR(35),
+    delivery_client_phone VARCHAR(100),
     delivery_client_social_network VARCHAR(100),
     delivery_client_active VARCHAR(100)
 );
@@ -223,7 +223,6 @@ CREATE TABLE waiter_tabs(
     FOREIGN KEY (table_id_fkey) REFERENCES tabs(table_id)
 );
 
-
 CREATE TABLE cashier_workshifts(
     cashier_workshift_id INT PRIMARY KEY AUTO_INCREMENT,
     cashier_workshift_active VARCHAR(100),
@@ -232,7 +231,6 @@ CREATE TABLE cashier_workshifts(
     FOREIGN KEY (cashier_id_fkey) REFERENCES users(user_id),
     FOREIGN KEY (workshift_id_fkey) REFERENCES workshifts(workshift_id)
 );
-
 
 CREATE TABLE registers(
 	register_id INT AUTO_INCREMENT PRIMARY KEY,
@@ -243,7 +241,6 @@ CREATE TABLE registers(
     register_object VARCHAR(100),
     register_modification VARCHAR(2000)
 );
-
 
 UPDATE config_general SET config_active = 'K992SZTEVF57Ki/fu/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u';
 
@@ -260,8 +257,17 @@ INSERT INTO users(user_id, user_name, user_last_name, user_mail, user_role, user
 UPDATE users SET user_active = 'K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u' WHERE user_id = 'K0hLKXQPl8wnur/1a3hydA==';
 UPDATE users SET user_role = 'bv2ha6jljpAl7dOl6aOVYg==' WHERE user_id = 'K0hLKXQPl8wnur/1a3hydA==';
 
+INSERT INTO users(user_id, user_name, user_last_name, user_mail, user_role, user_image_route, user_image_name, user_password, user_phone, user_active)VALUES('AXCN9bSSGikZtQo2vxsepQ==', 'uBIO47NCLKppSWpS9papig==', 'QPSKtQXU0iqfrsCoFLYpaw==', '0deZa0hq3gro/Q3U32b7Fw==', 'INIKjDsbEsznKLwFmrgNAw==', 'CtarrfvT/WbyQwRI4y+J7ZxL3mwfw49jKVkGIX6LMVbnHbXQ/sEcQvTwCi+undDi7qqcr9bQj+WqoYWWXlInlx+aRV6D1ENTSIOEEnTf1r7NNuwoYVKrY2+0+z5Su9Zu', 'EJl5Rx42MVsOtfOvn7JcRA==', 'Cwshhq0bCO0DfChF6YX97g==', 'vPRLIg7odM0TppoxfAyfyA==', 'K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u');
+
 /*Itemcards*/
 INSERT INTO item_cards(item_card_id, item_card_code, item_card_name, item_card_category, item_card_description, item_card_cost, item_card_price,  item_card_stock, item_card_date_creation, item_card_tip, item_card_active) VALUES( '2', 't9aQ9FmDqSugvBL4bZpB2g==', 'H9nxzKSUZp4yJ2SMWm6K3g==', 'vJE0iCtYQQkdgPmO1UHFrw==','l5P8mY7HqphqYPRm0tu/IGj00uvJ8U9GLsrSerZLlmL1bDvqGDT6DY2mdA/nJy3z/C9+YFiRbRTGZd+xw4yW2A==','5:11/1','MeNR7CLAjL1EwHjdysz5kNaSwWxOe8gK76eQEl4xcmE=', '1', '2024-07-23 08:52:13.929', 'K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u', 'K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u');
 INSERT INTO item_cards(item_card_id, item_card_code, item_card_name, item_card_category, item_card_description, item_card_cost, item_card_price,  item_card_stock, item_card_date_creation, item_card_tip, item_card_active) VALUES( '3', '8G+77TicvtTcmbpyVzXr5g==', 'GQAmNfW/AnxBpnhyk1xyZwsLIYatGwjtA3woRemF/e4=', 'vJE0iCtYQQkdgPmO1UHFrw==','GQAmNfW/AnxBpnhyk1xyZwYyn3nenQkYpvT+21/G3pULCyGGrRsI7QN8KEXphf3u','5611/1','c6d6hIuzHCMHUPEfLoGVO9aSwWxOe8gK76eQEl4xcmE=', '1', '2024-07-23 09:01:50.611', 'K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u', 'K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u');
 INSERT INTO item_cards(item_card_id, item_card_code, item_card_name, item_card_category, item_card_description, item_card_cost, item_card_price,  item_card_stock, item_card_date_creation, item_card_tip, item_card_active) VALUES( '4', 'y3PGsd8HnJxFBx/C2pqCaA==', 'TAOIo5BXifN2Qa3p7LkOsnUCKYlfzkBp2no/TZaR1Kg=', 'oq+ndGGeFoWVRa7z+jTQTg==','2q4Q7ZUWSzfRyhcxBrMIxU4SnvdqNJhJLEulzwXLPWNiD1zCMlj/ALtgxrUbLqfFCwshhq0bCO0DfChF6YX97g==','811/1','48+qcX1tPL/1FORBb9VQoOEpL5+PWR+jV+wNxR0MOIE=', '23', '2024-07-23 09:17:52.86', 'K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u', 'K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u');
 INSERT INTO item_cards(item_card_id, item_card_code, item_card_name, item_card_category, item_card_description, item_card_cost, item_card_price,  item_card_stock, item_card_date_creation, item_card_tip, item_card_active) VALUES( '5', 'iDom2cUYpxBhZih6kwNJcg==', 'XpucmJPsrBx4+8Jxp5mo/q0Jx8tfKZykJg/cyvIo3bk=', 'oq+ndGGeFoWVRa7z+jTQTg==','XpucmJPsrBx4+8Jxp5mo/g0nsAyWbSkVnIH4w9IO8s0hLnmxsqao/CY1A10qRlYFl+tF6wgTGgJ7CBymChjL9w==','5:11/1','c6d6hIuzHCMHUPEfLoGVO9aSwWxOe8gK76eQEl4xcmE=', '7', '2024-07-23 09:19:41.525', 'K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u', 'K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u');
+INSERT INTO item_cards(item_card_id, item_card_code, item_card_name, item_card_category, item_card_description, item_card_cost, item_card_price,  item_card_stock, item_card_date_creation, item_card_tip, item_card_active) VALUES( '6', 'NrvATbrJT1n2JF6DGICRHQ==', 'RjfMlbTvGvMxKaklofhsWw==', 'BsOSSiksfXMpJ2bjNzRm6A==','RjfMlbTvGvMxKaklofhsWw==','1/1','/YGzaqGrJRy58wqnxsKxYuEpL5+PWR+jV+wNxR0MOIE=', '1', '2024-07-25 01:44:30.268', 'K992SZTEVF57Ki/fu/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u', 'K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u');
+INSERT INTO item_cards(item_card_id, item_card_code, item_card_name, item_card_category, item_card_description, item_card_cost, item_card_price,  item_card_stock, item_card_date_creation, item_card_tip, item_card_active) VALUES( '7', 'Wp+niVwi6v6LzKJbRjOudA==', 'dObOQEquPeMSJWtlChQcOw==', 'vJE0iCtYQQkdgPmO1UHFrw==','GSN118bs2oE9anxftZczPnZudd5X9h/IPE79oMlCY836w9Z1H2QvfXk6QV0M/4DDRDmPdUp+klx48maA06fDcw==','8111/1','3FJ2ho6v7VzGHE58acnlW9aSwWxOe8gK76eQEl4xcmE=', '23', '2024-07-27 19:44:39.947', 'K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u', 'K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u');
+
+
+/*Cliente*/
+INSERT INTO delivery_clients(delivery_client_id, delivery_client_street, delivery_client_street_num, delivery_client_dept_floor, delivery_client_dept_num, delivery_client_district, delivery_client_area, delivery_client_details, delivery_client_name, delivery_client_phone, delivery_client_social_network, delivery_client_active)VALUES('1', 'Q3iinDDrdJpfO8MAgHAJ9Q==', 'PX2+Kjm0q1aMcjmlqNRTVw==', 'MxyuI1iRndQg8r3ImtVuOA==', 'MxyuI1iRndQg8r3ImtVuOA==', 'mzMfjIUTuzi+tqrPTe+G+Q==', 'ZFROSOEPeHK9R1usUwTb5w==', 'g45j7gsu0OstU9dKrtat7D30yF6jTQUbcPUhL7szOZHmHDy0/G57P/XP2kmDuRtb', 'GK4Dveqs+2UW0sqR0m6gXTtialfy71JALCWo7NgwHbs=', 'VJRRaWU1dtj0N+jOWgENqw==', 'tIss+UoHUbW3gZu5sCkgZw==', 'K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u');
+INSERT INTO delivery_clients(delivery_client_id, delivery_client_street, delivery_client_street_num, delivery_client_dept_floor, delivery_client_dept_num, delivery_client_district, delivery_client_area, delivery_client_details, delivery_client_name, delivery_client_phone, delivery_client_social_network, delivery_client_active)VALUES('2', 'glWeQn7ea8XcPN5JzB5zFw==', 'PX2+Kjm0q1aMcjmlqNRTVw==', 'MxyuI1iRndQg8r3ImtVuOA==', 'MxyuI1iRndQg8r3ImtVuOA==', 'y4qB51ULgLI8BwZ+gXcGuQ==', 'dlvu0iZXjbzhBC6WAGDQeg==', 'AlvbnH4CufZgv3Bygx77/+AxhBpt/NI9b3qkWhEptFw=', 'nxuJ7v9T6d0kJbXi+ue366nTgTEI3Prk5drDuzKgQnc=', 'oNKgxXnMf+ti2D5L13gsAw==', 'K3POuWqlNOYryWuXtsr1kQ==', 'K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u');
