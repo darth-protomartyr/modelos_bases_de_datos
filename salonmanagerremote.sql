@@ -113,20 +113,20 @@ CREATE TABLE IF NOT EXISTS deliverys(
     delivery_active VARCHAR(100)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-CREATE TABLE IF NOT EXISTS delivery_clients (
-	delivery_client_id VARCHAR(100) PRIMARY KEY,
-    delivery_client_street VARCHAR(100),
-    delivery_client_street_num VARCHAR(100),
-    delivery_client_dept_floor VARCHAR(100),
-    delivery_client_dept_num VARCHAR(100),
-    delivery_client_district VARCHAR(100),
-    delivery_client_area VARCHAR(100),
-    delivery_client_details VARCHAR(5000),
-    delivery_client_name VARCHAR(100),
-    delivery_client_lastname VARCHAR(100),
-    delivery_client_phone VARCHAR(100),
-    delivery_client_social_network VARCHAR(100),
-    delivery_client_active VARCHAR(100)
+CREATE TABLE IF NOT EXISTS consumers (
+	consumer_id VARCHAR(100) PRIMARY KEY,
+    consumer_street VARCHAR(100),
+    consumer_street_num VARCHAR(100),
+    consumer_dept_floor VARCHAR(100),
+    consumer_dept_num VARCHAR(100),
+    consumer_district VARCHAR(100),
+    consumer_area VARCHAR(100),
+    consumer_details VARCHAR(5000),
+    consumer_name VARCHAR(100),
+    consumer_lastname VARCHAR(100),
+    consumer_phone VARCHAR(100),
+    consumer_social_network VARCHAR(100),
+    consumer_active VARCHAR(100)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 CREATE TABLE IF NOT EXISTS item_card_order_tabs(
@@ -175,6 +175,7 @@ CREATE TABLE IF NOT EXISTS item_monits(
 	item_monit_id VARCHAR(100) PRIMARY KEY,
     item_monit_table_id VARCHAR(100),
     item_monit_item_id VARCHAR(100),
+    item_monit_ws_id VARCHAR(100),
     item_monit_tipe VARCHAR(100),
     item_monit_init_bool VARCHAR(100),
     item_monit_init_date VARCHAR(100),
@@ -186,7 +187,9 @@ CREATE TABLE IF NOT EXISTS item_monits(
     item_monit_otw_date VARCHAR(100),
     item_monit_open VARCHAR(100),
     item_monit_active VARCHAR(100),
-    item_monit_indications VARCHAR(5000)
+    item_monit_indications VARCHAR(5000),
+    item_monit_to_watch VARCHAR(100),
+    item_monit_new_data VARCHAR(100)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
  
  CREATE TABLE IF NOT EXISTS item_sales_statics(
@@ -229,6 +232,24 @@ CREATE TABLE IF NOT EXISTS cashier_workshifts(
     cashier_id_fkey VARCHAR(200),
     workshift_id_fkey VARCHAR(100),
     FOREIGN KEY (cashier_id_fkey) REFERENCES users(user_id),
+    FOREIGN KEY (workshift_id_fkey) REFERENCES workshifts(workshift_id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+CREATE TABLE IF NOT EXISTS waiter_workshifts(
+	waiter_workshift_id VARCHAR(100) PRIMARY KEY,
+    waiter_workshift_active VARCHAR(100),
+    waiter_id_fkey VARCHAR(200),
+    workshift_id_fkey VARCHAR(100),
+    FOREIGN KEY (waiter_id_fkey) REFERENCES users(user_id),
+    FOREIGN KEY (workshift_id_fkey) REFERENCES workshifts(workshift_id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+CREATE TABLE IF NOT EXISTS chef_workshifts(
+	chef_workshift_id VARCHAR(100) PRIMARY KEY,
+    chef_workshift_active VARCHAR(100),
+    chef_id_fkey VARCHAR(200),
+    workshift_id_fkey VARCHAR(100),
+    FOREIGN KEY (chef_id_fkey) REFERENCES users(user_id),
     FOREIGN KEY (workshift_id_fkey) REFERENCES workshifts(workshift_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -279,8 +300,6 @@ VALUES('c2OuJxQqABPRxKy/kPXW2A==', 'K992SZTEVF57Ki/fu/UUXu/Y1r6cqpvxCcVQRsD/kqML
 INSERT IGNORE INTO config_general(config_table_total, config_table_num_panes, config_table_name_panes, config_table_chart_panes, config_table_name_categories, config_table_tip , config_modkey, config_active)VALUES('229', 'Kh69/u/QInaNFVqhgbs33Q==', 'o9Nsq2IO3JttCN1UyPjxDQhzspSwR6f1vYbyJLcnx7I=', '3f652EZDFac1av7SuYw/BA==', 'yALOUvaDGUFzi3yAgbq1nlnK1A/gjKmVg98NNj/YLtc2Uj6qkgmq79G1ApHAYROiCwshhq0bCO0DfChF6YX97g==', '21', 'dthhQYITGuY/5I6/tcf01g==', 'K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u');
 INSERT IGNORE INTO config_actual(config_open_ws, config_open_ws_id, config_indexes_buttons)VALUES('K992SZTEVF57Ki/fu/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u', '1', 'x7bka9p5GM+yFNNZ6/H22g==');
 
-
-
 INSERT IGNORE INTO categories(category_name)VALUES('vJE0iCtYQQkdgPmO1UHFrw==');
 INSERT IGNORE INTO categories(category_name)VALUES('oq+ndGGeFoWVRa7z+jTQTg==');
 INSERT IGNORE INTO categories(category_name)VALUES('QvhC0YyKkb+kHspXS3N7ug==');
@@ -319,6 +338,9 @@ INSERT IGNORE INTO chars(char_name)VALUES('tsoCPT0IQgTiDC6YA1WGaQ==');
 INSERT IGNORE INTO spaces(space_name)VALUES('xCos15Avkq9RZALZTaBVJw==');
 INSERT IGNORE INTO chars(char_name)VALUES('3Gt04JXQbjBdecdaxf0CGw==');
 
+INSERT IGNORE INTO consumers(consumer_id, consumer_street, consumer_street_num, consumer_dept_floor, consumer_dept_num, consumer_district, consumer_area, consumer_details, consumer_name, consumer_lastname, consumer_phone, consumer_social_network, consumer_active)VALUES('2', 'a8dssl4DwaUBZEVkOZ4l8w==', '42di7RLCcJPHB4gxbrDoHQ==', 'MxyuI1iRndQg8r3ImtVuOA==', 'MxyuI1iRndQg8r3ImtVuOA==', 'xXYXf0+U+SRf5fFDYlin6w==', 'B+L83g+pb/bsT42oYrcItw==', 'g7pvkdEIWypwFeABOAFStA==', 'pI31lVQTA+ve9VBfyH/MaA==', 'JWOaojhyt9t8JsYUUCj4zw==', 'MHAfUtazhe8lzBp51ye08A==', 'yKQWXd2W9asS7zSZYFf2dc6MJgm7FH4QPxod2YDtRWc=', 'K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u');
+INSERT IGNORE INTO consumers(consumer_id, consumer_street, consumer_street_num, consumer_dept_floor, consumer_dept_num, consumer_district, consumer_area, consumer_details, consumer_name, consumer_lastname, consumer_phone, consumer_social_network, consumer_active)VALUES('3', 'GlbjJioajyGW2QlJPAENolVaCre9Ird8JN47NjIrVHA=', 'wBHGlDusfSwPGfLCQj6heg==', 'MxyuI1iRndQg8r3ImtVuOA==', 'MxyuI1iRndQg8r3ImtVuOA==', 'BZZ72d2fh/olRRdPx2/iKQ==', 'kgDLXunllYyQw6VEjVkCZw==', 'WdEPWmTMFV8mCRxViufTpqfukJ0D4vyulgsEfunPC3Q=', '+A8S6bLjh991D3bHASzdHQ==', '4kPhtgfIwyHiussm3r2BzQ==', 'w3sn15pDmJJUJAQRazjYJA==', 'daEtqIb/iYeDgmNIji/Iba//to0rc5groyi2BksI9+c=', 'K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u');
+
 INSERT IGNORE INTO users(user_id, user_name, user_last_name, user_mail, user_role, user_image_route, user_image_name, user_password, user_phone, user_active)VALUES('uJC6Kf14A5dHMp+lHTjiZg==', 'q/vjhIIdVCNUxcdb/mkHFQ==', '24wt53kpAa7qb6njcPoVvA==', 'nRBR0CPOQaoShhtEN1hgUg==', 'DADiihVREcn88R30VPihog==', 'CtarrfvT/WbyQwRI4y+J7ZxL3mwfw49jKVkGIX6LMVbnHbXQ/sEcQvTwCi+undDii4eUS9Zkgo93svn72ZXyX2r61k8ydfmPyOR1FhTHWuLmxVlzHSrQCRLmIortSRA5', 'EJl5Rx42MVsOtfOvn7JcRA==', 'cYEMsnfQAYk72uLgPNQ7pg==', 'lrhireJqxi+pe9giEUTBow==', 'K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u');
 UPDATE users SET user_role = 'bv2ha6jljpAl7dOl6aOVYg==' WHERE user_id = 'uJC6Kf14A5dHMp+lHTjiZg==';
 INSERT IGNORE INTO users_block_status(block_status_user_id, block_status, block_status_attempt_count, block_status_end, block_status_first_try) VALUES('uJC6Kf14A5dHMp+lHTjiZg==', 'K992SZTEVF57Ki/fu/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u','1', null, null);
@@ -328,51 +350,28 @@ UPDATE users SET user_role = 'bv2ha6jljpAl7dOl6aOVYg==' WHERE user_id = 'dKRG0//
 INSERT IGNORE INTO users_block_status(block_status_user_id, block_status, block_status_attempt_count, block_status_end, block_status_first_try) VALUES('dKRG0//TWJ8BosoNSLVwDA==', 'K992SZTEVF57Ki/fu/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u','1', null, null);
 
 INSERT IGNORE INTO users(user_id, user_name, user_last_name, user_mail, user_role, user_image_route, user_image_name, user_password, user_phone, user_active)VALUES('RuJNDtd0B9OH2Z0fSUwr3Q==', 'fBn7gZUuGCPgdYDZSAzx7g==', '+gO7INot4KCbb1IbKMcgoA==', 'H0Ps07DvcLPoi1OBcunz6Q==', 'INIKjDsbEsznKLwFmrgNAw==', 'CtarrfvT/WbyQwRI4y+J7ZxL3mwfw49jKVkGIX6LMVbnHbXQ/sEcQvTwCi+undDi7qqcr9bQj+WqoYWWXlInlx+aRV6D1ENTSIOEEnTf1r7NNuwoYVKrY2+0+z5Su9Zu', 'EJl5Rx42MVsOtfOvn7JcRA==', 'Cwshhq0bCO0DfChF6YX97g==', 'Dr6uuNNJpNJFXCmBIFGeAQ==', 'K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u');
+INSERT IGNORE INTO users_block_status(block_status_user_id, block_status, block_status_attempt_count, block_status_end, block_status_first_try) VALUES('RuJNDtd0B9OH2Z0fSUwr3Q==', 'K992SZTEVF57Ki/fu/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u','1', null, null);
 
-INSERT IGNORE INTO delivery_clients(delivery_client_id, delivery_client_street, delivery_client_street_num, delivery_client_dept_floor, delivery_client_dept_num, delivery_client_district, delivery_client_area, delivery_client_details, delivery_client_name, delivery_client_lastname, delivery_client_phone, delivery_client_social_network, delivery_client_active)VALUES('2', 'a8dssl4DwaUBZEVkOZ4l8w==', '42di7RLCcJPHB4gxbrDoHQ==', 'MxyuI1iRndQg8r3ImtVuOA==', 'MxyuI1iRndQg8r3ImtVuOA==', 'xXYXf0+U+SRf5fFDYlin6w==', 'B+L83g+pb/bsT42oYrcItw==', 'g7pvkdEIWypwFeABOAFStA==', 'pI31lVQTA+ve9VBfyH/MaA==', 'JWOaojhyt9t8JsYUUCj4zw==', 'MHAfUtazhe8lzBp51ye08A==', 'yKQWXd2W9asS7zSZYFf2dc6MJgm7FH4QPxod2YDtRWc=', 'K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u');
-INSERT IGNORE INTO delivery_clients(delivery_client_id, delivery_client_street, delivery_client_street_num, delivery_client_dept_floor, delivery_client_dept_num, delivery_client_district, delivery_client_area, delivery_client_details, delivery_client_name, delivery_client_lastname, delivery_client_phone, delivery_client_social_network, delivery_client_active)VALUES('3', 'GlbjJioajyGW2QlJPAENolVaCre9Ird8JN47NjIrVHA=', 'wBHGlDusfSwPGfLCQj6heg==', 'MxyuI1iRndQg8r3ImtVuOA==', 'MxyuI1iRndQg8r3ImtVuOA==', 'BZZ72d2fh/olRRdPx2/iKQ==', 'kgDLXunllYyQw6VEjVkCZw==', 'WdEPWmTMFV8mCRxViufTpqfukJ0D4vyulgsEfunPC3Q=', '+A8S6bLjh991D3bHASzdHQ==', '4kPhtgfIwyHiussm3r2BzQ==', 'w3sn15pDmJJUJAQRazjYJA==', 'daEtqIb/iYeDgmNIji/Iba//to0rc5groyi2BksI9+c=', 'K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u');
+INSERT IGNORE INTO `users` VALUES ('9s1kkkKyIOLk3vMB7YpZ7w==','5MOOxvi8bhJUjrdNvjNDNQ==','Vi/5CC/hilask9jKpYZrFA==','SdLA8CDpMed+/LKgz/bLtx3YZ3IZvMYoLPcfkhIB6gg=','bv2ha6jljpAl7dOl6aOVYg==','UDxj6tOzyCbCCzCK+o8OWU6VXd33Ja4ql1yGC9Leufg=','EJl5Rx42MVsOtfOvn7JcRA==','doz4iWV1ZqHRiFV+vzr7uQ==','BIfCc63b0mGgeFhdH5vbOA==','K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u');
+INSERT IGNORE INTO users_block_status(block_status_user_id, block_status, block_status_attempt_count, block_status_end, block_status_first_try) VALUES('9s1kkkKyIOLk3vMB7YpZ7w==', 'K992SZTEVF57Ki/fu/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u','1', null, null);
 
-INSERT INTO item_cards(item_card_id, item_card_code, item_card_name, item_card_category, item_card_description, item_card_cost, item_card_price,  item_card_stock, item_card_date_creation, item_card_tip, item_card_active) VALUES( '2', 't9aQ9FmDqSugvBL4bZpB2g==', 'bq+DU4sBZT/kX3Qdyvxj3w==', 'vJE0iCtYQQkdgPmO1UHFrw==','poerm5eIaZkCs9dYxeqjI+Hbz1GisPw1gbrFgIs9VqlN+dNg7LQH4XRoY5/YKwKNGogsr7T797DSK0stQ+XtlQ==','5611/1','UO4oUroCGzkvoQSjpoSJCeEpL5+PWR+jV+wNxR0MOIE=', '23', '27JXL7Ej20vC1+grZ+umUg==', 'K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u', 'K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u');
-INSERT INTO item_cards(item_card_id, item_card_code, item_card_name, item_card_category, item_card_description, item_card_cost, item_card_price,  item_card_stock, item_card_date_creation, item_card_tip, item_card_active) VALUES( '3', 'y3PGsd8HnJxFBx/C2pqCaA==', 'OVBT0qbXQN8kqR2Ellujng==', 'oq+ndGGeFoWVRa7z+jTQTg==','FJ2wr4H6At55DBm/9zwEZyyraaJxtmiwSRoaYGXPuq8=',':11/1','lnug34IzEKzvPAEBMYDBLOEpL5+PWR+jV+wNxR0MOIE=', '35', 'YIowkPNeDYiS/h4B9wOi0w==', 'K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u', 'K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u');
-INSERT INTO item_cards(item_card_id, item_card_code, item_card_name, item_card_category, item_card_description, item_card_cost, item_card_price,  item_card_stock, item_card_date_creation, item_card_tip, item_card_active) VALUES(?,?,?,?,?,?,?,?,?,?,?);
-INSERT INTO item_cards(item_card_id, item_card_code, item_card_name, item_card_category, item_card_description, item_card_cost, item_card_price,  item_card_stock, item_card_date_creation, item_card_tip, item_card_active) VALUES(?,?,?,?,?,?,?,?,?,?,?);
-INSERT INTO item_cards(item_card_id, item_card_code, item_card_name, item_card_category, item_card_description, item_card_cost, item_card_price,  item_card_stock, item_card_date_creation, item_card_tip, item_card_active) VALUES(?,?,?,?,?,?,?,?,?,?,?);
+INSERT IGNORE INTO `users` VALUES ('bjuQM48aNx9CJbHex8Xzsw==','4JFYkSuzyGfogjMZMAra+Q==','24wt53kpAa7qb6njcPoVvA==','sohkCJwCrsYAjPCv0D7rVSQ63zseWMKLT6OA6HAHPgY=','bv2ha6jljpAl7dOl6aOVYg==','UDxj6tOzyCbCCzCK+o8OWU6VXd33Ja4ql1yGC9Leufg=','EJl5Rx42MVsOtfOvn7JcRA==','doz4iWV1ZqHRiFV+vzr7uQ==','bM9/3eZmDZlAFTaxGhpm5g==','K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u');
+INSERT IGNORE INTO users_block_status(block_status_user_id, block_status, block_status_attempt_count, block_status_end, block_status_first_try) VALUES('bjuQM48aNx9CJbHex8Xzsw==', 'K992SZTEVF57Ki/fu/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u','1', null, null);
 
+INSERT IGNORE INTO `users` VALUES ('r9tXUZi7LVb9FV9l+SgNBQ==','F0fzwNSSmea71rs47a1RSA==','ah/h30vC7RPXO6+dzSvnUg==','oQR96+M3vGVjeIKJuTDib7SCY4uIq8oA8PG4e754zm8=','bv2ha6jljpAl7dOl6aOVYg==','UDxj6tOzyCbCCzCK+o8OWU6VXd33Ja4ql1yGC9Leufg=','EJl5Rx42MVsOtfOvn7JcRA==','doz4iWV1ZqHRiFV+vzr7uQ==','4Wy+Lj05cM81tDaGO+xWQQ==','K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u');
+INSERT IGNORE INTO users_block_status(block_status_user_id, block_status, block_status_attempt_count, block_status_end, block_status_first_try) VALUES('r9tXUZi7LVb9FV9l+SgNBQ==', 'K992SZTEVF57Ki/fu/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u','1', null, null);
 
-
-/*
-
-
-
-
-
-/*
-INSERT INTO tabs(table_num, table_pos, table_open_time, table_close_time, table_id, table_open, table_bill, table_to_pay, table_discount, table_error, table_price_correction, table_amount_cash, table_amount_electronic, table_total, table_comments, table_active) VALUES( '21', '4DGEGm380j1veqRaESm0XA==', '2024-11-07 16:03:46.053', null, 'vYE4HSBqPWILbEKhzh4yoHKRWvnrQEw0E5N1bWPPmDo=', 'K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u', 'K992SZTEVF57Ki/fu/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u', 'K992SZTEVF57Ki/fu/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u', '1', '1/1', '1/1', '1/1', '1/1', '1/1', 'Cwshhq0bCO0DfChF6YX97g==', 'K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u');
-INSERT INTO registers(register_id, register_ejecution, register_userId, register_object_kind, register_object_id, register_operation)VALUES('4', '2024-11-07 16:03:54.004', 'c2OuJxQqABPRxKy/kPXW2A==', 'usn2bdx2tF/GEbUsY068Vw==', 'vYE4HSBqPWILbEKhzh4yoHKRWvnrQEw0E5N1bWPPmDo=', 'IIczSIO0POrnPOR+xaKLotoieyeI4b0CFIlosE31qcuDm1BzQOnAHwx4JoCc11jA');
-INSERT INTO waiter_tabs(waiter_id_fkey, table_id_fkey) VALUES('dKRG0//TWJ8BosoNSLVwDA==', 'vYE4HSBqPWILbEKhzh4yoHKRWvnrQEw0E5N1bWPPmDo=');
-UPDATE tabs SET table_total = '5611/1' WHERE table_id = 'vYE4HSBqPWILbEKhzh4yoHKRWvnrQEw0E5N1bWPPmDo=';
-INSERT INTO item_card_order_tabs( item_card_order_tab_active, item_card_order_id_fkey, table_id_fkey) VALUES('K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u', '7', 'vYE4HSBqPWILbEKhzh4yoHKRWvnrQEw0E5N1bWPPmDo=');
-UPDATE item_cards SET item_card_stock = '34' WHERE item_card_id = '7';
-INSERT INTO item_monits(item_monit_id, item_monit_table_id, item_monit_item_id, item_monit_tipe, item_monit_init_bool, item_monit_init_date, item_monit_cook_bool, item_monit_cook_date, item_monit_ready_bool, item_monit_ready_date, item_monit_otw_bool, item_monit_otw_date, item_monit_open, item_monit_active, item_monit_indications) VALUES( 'vYE4HSBqPWILbEKhzh4yoAEue1vEIqQcqC5NewRkJzw=', 'vYE4HSBqPWILbEKhzh4yoHKRWvnrQEw0E5N1bWPPmDo=', '7', '1ckgTmMrzojTbX3xAwBcQw==', 'K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u', '2024-11-07 16:03:54.04', 'K992SZTEVF57Ki/fu/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u', null, 'K992SZTEVF57Ki/fu/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u', null, 'K992SZTEVF57Ki/fu/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u', null, 'K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u', 'K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u', 'Cwshhq0bCO0DfChF6YX97g==');
-UPDATE workshifts SET workshift_mount_cash = '1/1' WHERE workshift_id = '2';
-UPDATE workshifts SET workshift_mount_electronic = ':111/1' WHERE workshift_id = '2';
-UPDATE workshifts SET workshift_total_mount_tabs = ':111/1' WHERE workshift_id = '2';
-UPDATE workshifts SET workshift_total_mount_ws = ':111/1' WHERE workshift_id = '2';
-UPDATE workshifts SET workshift_error = 'K992SZTEVF57Ki/fu/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u' WHERE workshift_id = '2';
-UPDATE workshifts SET workshift_error_mount_ws = '1/1' WHERE workshift_id = '2';
-UPDATE workshifts SET workshift_close_time_shift = '2024-11-07 16:04:01.34' WHERE workshift_id = '2';
-INSERT INTO registers(register_id, register_ejecution, register_userId, register_object_kind, register_object_id, register_operation)VALUES('5', '2024-11-07 16:04:08.691', 'c2OuJxQqABPRxKy/kPXW2A==', 'OGcZWWuU5x4c90iZf9V0IQ==', 'blLvUsU8V7dogEDDLrtoQA==', 'q5fm+pwlyiIa2VGD8KyiLA==');
-UPDATE workshifts SET workshift_state_shift = 'K992SZTEVF57Ki/fu/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u' WHERE workshift_id = '2';
-UPDATE workshifts SET workshift_comment = 'Cwshhq0bCO0DfChF6YX97g==' WHERE workshift_id = '2';
-UPDATE config_actual SET config_open_ws = 'K992SZTEVF57Ki/fu/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u';
-UPDATE config_actual SET config_open_ws_id = '1';
-UPDATE config_actual SET config_unmod_tabs = 'Cwshhq0bCO0DfChF6YX97g==';
-UPDATE config_actual SET config_indexes_buttons = 'x7bka9p5GM+yFNNZ6/H22g==';
-INSERT INTO workshifts(workshift_id, workshift_open_time_shift, workshift_close_time_shift, workshift_state_shift, workshift_mount_cash, workshift_mount_electronic, workshift_error_mount_tabs, workshift_error_mount_ws, workshift_total_mount_tabs, workshift_total_mount_ws, workshift_cash_flow_cash, workshift_cash_flow_elec, workshift_comment, workshift_error, workshift_active) VALUES( '3', '2024-11-07 16:04:01.534', null, 'K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u', '1/1', '1/1', '1/1', '1/1', '1/1', '1/1', '1/1', '1/1', 'Ll1PzMOIzVLnRHvXOfwjA0FW0sHVFjDibRbaZhEWuRneCzzvRcTvCrwQs5T4SUBSBqdXHLQMUr43zPLkgxMzRVRTaKiWqipwkYmvb4/bOwk=', 'K992SZTEVF57Ki/fu/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u', 'K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u');
-INSERT INTO registers(register_id, register_ejecution, register_userId, register_object_kind, register_object_id, register_operation)VALUES('6', '2024-11-07 16:04:08.755', 'c2OuJxQqABPRxKy/kPXW2A==', 'OGcZWWuU5x4c90iZf9V0IQ==', 'QPlleEVL2EJfp1T/F/vqCQ==', 'QIWbb3+El2V3/jk7xfU55w==');
-UPDATE config_actual SET config_open_ws = 'K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u';
-UPDATE config_actual SET config_open_ws_id = '3';
-UPDATE item_card_order_tabs SET item_card_order_tab_active = 'K992SZTEVF57Ki/fu/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u' WHERE table_id_fkey = 'vYE4HSBqPWILbEKhzh4yoHKRWvnrQEw0E5N1bWPPmDo=';
-UPDATE tabs SET table_active = 'K992SZTEVF57Ki/fu/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u' WHERE table_id = 'vYE4HSBqPWILbEKhzh4yoHKRWvnrQEw0E5N1bWPPmDo=';
-
-
+INSERT IGNORE INTO `item_cards` VALUES ('21','sXv9vBIoBOWsupafyn8taw==','/1GcI9xwraDwQqNMnn017nasNiFERFuQ+dMt3h08asA=','vJE0iCtYQQkdgPmO1UHFrw==','8BbRvt87p+kLBv+KKkzAvgBCiv8jQsdtK3uOAHiMMdOXQeuwOjj7N8zGNVZKbseDYZEDZBdmlYjeCNjcb/bDIlveTBtg53gTDRX1jdK+Y1M=','8111/1','yeW2K5bT0Z3EFnggMr9R59aSwWxOe8gK76eQEl4xcmE=','23','SuTQlOQ/N5iYiJon8Emiyg==',NULL,'K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u','K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u');
+INSERT IGNORE INTO `item_cards` VALUES ('22','NrvATbrJT1n2JF6DGICRHQ==','xBxCceYbODV56Nn8RBnqHg==','cHJ6Jv8NGi+AtZJa4SPWZQ==','ALcL+iUk2pSFsfJiMLSwZMCxWa6ZzZLjD3eIZi3UZn235HVvz9rij0HcXqU2xfftMYiVLGipFHYSrijIyC8dEJEf0TG+yXBEKbY8VEUtFgVMkLxwv5m6WRt+DqYAN9wY1zvcjMYyzoKZ5ThKd4lbgtjYSU58MlULcV1pTdTT5Nrh0XgnNTZSCNbTy2olqWei','4611/1','tFG1DInYbKP1erhKB2NJouEpL5+PWR+jV+wNxR0MOIE=','23','6l0SYLZviVo9sqjI/Eha5A==',NULL,'K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u','K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u');
+INSERT IGNORE INTO `item_cards` VALUES ('23','+4UbnH/QUgkXBfXMR199mg==','wwzMdVkgv3dM5lMxpmKAmryZHwOkYIXJcYzKvqgAgvI=','cHJ6Jv8NGi+AtZJa4SPWZQ==','CsAjjwnHX8fasOfY1RGnYxHAjaWWNAGLCItoCnDSi+aJxON/00BFfb91ykCT1hvxguMrKBsyYHczlkvkkRcnjXIhROEuG0R7TBUpkMOWFf0xcdRDW8Ncjrq6VPgoCntweaucS1V3VdCtyAzJICSK+VNNjLmHrcKb9sDy4IcnPkhnL3rfbKyDG0o3INpNyr3c','3111/1','/YGzaqGrJRy58wqnxsKxYuEpL5+PWR+jV+wNxR0MOIE=','23','BPHznfn5heov0Tv5JwqMDg==',NULL,'K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u','K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u');
+INSERT IGNORE INTO `item_cards` VALUES ('24','7drx+GveifhqYjceOq38qA==','mc1OXxAQI/eUcHBPBNqX4wsLIYatGwjtA3woRemF/e4=','cHJ6Jv8NGi+AtZJa4SPWZQ==','kgh4zGO1W65Hc5RDKGCd+5zMTlIjhlCeUFRki70vgSMxiJUsaKkUdhKuKMjILx0QZnHANwOWWgrRvP9oGYkDcl+I7Saqaoyc9NuvuyzXaSeqrKfhg3l/QGOqS9v2UvR6irEB6TidsZZka1a4/YSRdc9WkawGELHCjkOi0G8kV+CJXofJG2esNBOO1+3/AkOM','4111/1','rGZUQiZ81OMhjf2wZlzZnOEpL5+PWR+jV+wNxR0MOIE=','23','V4vBtE+b7ihQY9VHrCx1ZA==',NULL,'K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u','K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u');
+INSERT IGNORE INTO `item_cards` VALUES ('25','R64UrEX/JScqBMcUC0dUiA==','gKsifiP31rvqc/1HpL8RtQ==','cHJ6Jv8NGi+AtZJa4SPWZQ==','mahSDPfS6j7qEDHy5vJqGbD7hO47uLAVCdpCxAfZFbFgtxRdZTYg0Bu1fGoJ+6U5SWOdbPkvohDqXZ33JM2VJHnBYLCDp0TM5a5l5I0yLjIkQXBNbqtx25OUKvw9ijg9RzeTytdnIZu5tJ4+DKJhjlVrrtR1VDo8zs2iVPreMLRdBA6YglnWKs4SIe8uIeTOCwshhq0bCO0DfChF6YX97g==','5111/1','/w7q9FIOfmv9pLEeh9I4UeEpL5+PWR+jV+wNxR0MOIE=','23','GZJoo6Emhv+y2utrHaUVdQ==',NULL,'K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u','K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u');
+INSERT IGNORE INTO `item_cards` VALUES ('26','mfmxdlChCf5QrujuA4TFFg==','AHRQi8+/keQc4p/ovyCmqA==','cHJ6Jv8NGi+AtZJa4SPWZQ==','RY7EuAwrqzX9prseiI9XxbpBxFXpPf6v9eBSy8Thzc1NlVSOj0dBpdrIwQwQGybrKIwb2/lXpUN7IND6U8COWpvqZZacqbKv2yFyiP8sq60Uc0vIYbhfPFNA5MEPJ4o4tZWodELuoSbt8gql6toSMbZGDmsXn6R4TkcsFWhV/CoydNPNOIPBkqCE1hTVcihL','5111/1','/w7q9FIOfmv9pLEeh9I4UeEpL5+PWR+jV+wNxR0MOIE=','23','zNm+cg9XCHp66M9pDfSouQ==',NULL,'K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u','K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u');
+INSERT IGNORE INTO `item_cards` VALUES ('3','y3PGsd8HnJxFBx/C2pqCaA==','OVBT0qbXQN8kqR2Ellujng==','oq+ndGGeFoWVRa7z+jTQTg==','FJ2wr4H6At55DBm/9zwEZyyraaJxtmiwSRoaYGXPuq8=',':11/1','lnug34IzEKzvPAEBMYDBLOEpL5+PWR+jV+wNxR0MOIE=','35','YIowkPNeDYiS/h4B9wOi0w==',NULL,'K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u','K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u');
+INSERT IGNORE INTO `item_cards` VALUES ('4','8G+77TicvtTcmbpyVzXr5g==','DaL4r5my318qVoC9/DAzKQ==','vJE0iCtYQQkdgPmO1UHFrw==','9zBF3Gug15j/31ixbPqHnO2NTY513eIuFoDqVFlYiQYnER8+ZT8jz17iwh8AZhMPnIaTMW1cjxIirTUjSHnsv27OJbSA7zOhbKFvXAqBTJY=','5611/1','UO4oUroCGzkvoQSjpoSJCeEpL5+PWR+jV+wNxR0MOIE=','23','yYf34eImWvBvhL9gdFk80g==',NULL,'K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u','K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u');
+INSERT IGNORE INTO `item_cards` VALUES ('5','Wp+niVwi6v6LzKJbRjOudA==','6B54uSV9ZLxd3TbvVSD92gsLIYatGwjtA3woRemF/e4=','vJE0iCtYQQkdgPmO1UHFrw==','+scnP2qNMDw/m4UZWrgypyP4cef/g8F7wU0q8DbI2g8sDGG3LUSe+bAyWAwW2JvmTkH4ZzxfFl+nQCqf/NSi3e0u3RzeEaJ5rASg9yVzG0tmLSLVMY0mb52G3wamg3Um','6111/1','25iBUvKYbR/wX2dbqVvPkNaSwWxOe8gK76eQEl4xcmE=','23','m5AFzEh6TnhE2znoUOH4Qg==',NULL,'K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u','K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u');
+INSERT IGNORE INTO `item_cards` VALUES ('6','xiRKQWM7XC8mXJpXqbx70Q==','mL+MgchAmPqFGi9b/nU6eg==','vJE0iCtYQQkdgPmO1UHFrw==','atAt+5SVedUUav6rALxvUaAlHx6SNheaGaz3p+wn+hdgBzOX+ScztZxR8btKP9VyZFgSdWnRlPQw4UDfg2kgHE3tDUhS1QlOsVdyjWYefTK1aukQNvPFEssitB+28N13','7111/1','c6d6hIuzHCMHUPEfLoGVO9aSwWxOe8gK76eQEl4xcmE=','23','1UN/yMw1vStYVFYJ6ZVing==',NULL,'K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u','K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u');
+INSERT IGNORE INTO `item_cards` VALUES ('7','apu3jEYWzkJ2HraOmy3zaA==','Tr5ylQOddEl/pvCgcoHrsw==','vJE0iCtYQQkdgPmO1UHFrw==','enz3ZXgkLdxQ7gq9lvaj7JebByk+huRKsc82YnmnmgoQT7xA30K3iXNhXZ9R58sVOVbqKrnTsFxfZVn8FVIvo62p/GgamEZYbZAFGSRuDErVCvpuT1ZRXEDsQFTt4uLd','6111/1','25iBUvKYbR/wX2dbqVvPkNaSwWxOe8gK76eQEl4xcmE=','23','3lqkArUua1V//mG0nYxzvA==',NULL,'K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u','K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u');
+INSERT IGNORE INTO `item_cards` VALUES ('8','EXzNdTx1FpLoeEBBSYxZmg==','dsRdqSBQqcagj715QzQbZA==','vJE0iCtYQQkdgPmO1UHFrw==','yqpLFtloQN1z/mDIGWVJfQklgz86W5vYAhtgOmOn3VYYMXpCYMu0USKvngYHTzlyJibis4aiqL3oFjgDOr1NtIhmhmpdcW3S6IVXl7kxzRo=','7111/1','c6d6hIuzHCMHUPEfLoGVO9aSwWxOe8gK76eQEl4xcmE=','23','pw8FV2OoPv5sIGp7RKLIXg==',NULL,'K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u','K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u');
+INSERT IGNORE INTO `item_cards` VALUES ('9','dthUIxK1m3JpuZG/q1NV/g==','bq+DU4sBZT/kX3Qdyvxj3w==','vJE0iCtYQQkdgPmO1UHFrw==','mwZdt0co4efeP5ZE4EX0JJAkQgF61cys66gCrQ+yStpZN3VgMZLNcFUhJg6tp6wDy/AixqOuLK2qbgoNU5MklJFeCESKY5UcHjlJ/9ALbKM=','7111/1','c6d6hIuzHCMHUPEfLoGVO9aSwWxOe8gK76eQEl4xcmE=','23','3AmwPm8h/nPFZWrvTXH3sg==',NULL,'K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u','K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u');
+INSERT IGNORE INTO `item_cards` VALUES (':','BLCYxlw97rL6S2VYTJXTgg==','Jpw4kYPoESltLXBzugdCVg==','vJE0iCtYQQkdgPmO1UHFrw==','eYt4bJSTCyOG3gXkr0TUfyudlA5ozByahaQLtQtouUkgf62apFSdkDBd/Xm6gf595D9VWZm9qi2Bzs6cIu8cqhZ8oZcvx1EoZZixikPEeF8=','8111/1','yeW2K5bT0Z3EFnggMr9R59aSwWxOe8gK76eQEl4xcmE=','23','Kuf4RQecGYf495aZe+y7iw==',NULL,'K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u','K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u');
