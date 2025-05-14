@@ -21,8 +21,10 @@ CREATE TABLE IF NOT EXISTS config_actual(
     config_open_ws VARCHAR(100),/*turno actual abierto*/
     config_open_ws_id VARCHAR(100), /*openWsId*/
 	config_indexes_buttons VARCHAR (5000),
-    config_tokken VARCHAR(100)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+    config_tokken VARCHAR(100),
+    config_update_tables VARCHAR(100),
+    config_update_monitor VARCHAR(100)    
+)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 CREATE TABLE config_defer_close_tabs (
 	config_defer_close_tab_id VARCHAR(100) PRIMARY KEY,
@@ -273,11 +275,17 @@ CREATE TABLE IF NOT EXISTS error_stacks(
 
 
 CREATE TABLE IF NOT EXISTS failed_attempts (
-    attemp_user_id VARCHAR(100) PRIMARY KEY,
-    attemp_ip_address VARCHAR(100),
-    attemp_time VARCHAR(100),
+    attempt_user_id VARCHAR(100) PRIMARY KEY,
+    attempt_ip_address VARCHAR(100),
+    attempt_time VARCHAR(100),
     attempt_count VARCHAR(20),
-    attemp_is_blocked VARCHAR(100)
+    attempt_is_blocked VARCHAR(100)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+CREATE TABLE IF NOT EXISTS failed_attempts_tokken (
+    attempt_tokken_time VARCHAR(100),
+    attempt_tokken_count VARCHAR(20),
+    attempt_tokken_is_blocked VARCHAR(100)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 CREATE TABLE IF NOT EXISTS users_block_status (
@@ -287,14 +295,12 @@ CREATE TABLE IF NOT EXISTS users_block_status (
     block_status_end VARCHAR(100),
 	block_status_first_try VARCHAR(100)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
+ 
 /*ENTRADAS*/
 /*ENTRADAS*/
 /*ENTRADAS*/
 /*ENTRADAS*/
 /*USER*/
-
-
 
 /*ADMIN*/
 INSERT IGNORE INTO users(user_id, user_name, user_last_name, user_mail, user_role, user_image_route, user_image_name, user_password, user_phone, user_active)
@@ -319,9 +325,12 @@ VALUES('Sj/an1ATwGJMnFdlYALugg==', 'K992SZTEVF57Ki/fu/UUXu/Y1r6cqpvxCcVQRsD/kqML
 INSERT IGNORE INTO config_general(config_table_total, config_table_num_panes, config_table_name_panes, config_table_chart_panes, config_table_name_categories, config_table_tip, config_modkey, config_active, config_terminal_kitchen, config_terminal_waiter)
 VALUES('6:', 'G2H3a8RgTJzktiQ28nKaEg==', 'HvAr7HMgFxu3jaxIMKfejQ==', 'CJhWHxf5rgNRsIvW1vwccA==', 'yALOUvaDGUFzi3yAgbq1nlnK1A/gjKmVg98NNj/YLtc2Uj6qkgmq79G1ApHAYROiCwshhq0bCO0DfChF6YX97g==', '21', 'dthhQYITGuY/5I6/tcf01g==', 'K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u', 'K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u', 'K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u');
 
-INSERT IGNORE INTO config_actual(config_open_ws, config_open_ws_id, config_indexes_buttons, config_tokken)
-VALUES('K992SZTEVF57Ki/fu/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u', '1', 'x7bka9p5GM+yFNNZ6/H22g==', 'Zg1TI/3yh5v12hteBV/GZQ==');
+INSERT IGNORE INTO config_actual(config_open_ws, config_open_ws_id, config_indexes_buttons, config_tokken, config_update_tables, config_update_monitor)
+VALUES('K992SZTEVF57Ki/fu/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u', '1', 'x7bka9p5GM+yFNNZ6/H22g==', 'Zg1TI/3yh5v12hteBV/GZQ==', "qyppwtmn9bOs4923I9O6dw==", "qyppwtmn9bOs4923I9O6dw==");
 
+/*Tokken fail*/
+INSERT INTO failed_attempts_tokken(attempt_tokken_time, attempt_tokken_count, attempt_tokken_is_blocked)
+VALUES("zRxkWw+Dyx6M+gv0zqO79A==", "1", "K992SZTEVF57Ki/fu/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u");
 
 INSERT IGNORE INTO categories(category_name)VALUES('vJE0iCtYQQkdgPmO1UHFrw==');
 INSERT IGNORE INTO categories(category_name)VALUES('oq+ndGGeFoWVRa7z+jTQTg==');
