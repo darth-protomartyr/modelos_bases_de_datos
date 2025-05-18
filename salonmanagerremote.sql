@@ -22,8 +22,7 @@ CREATE TABLE IF NOT EXISTS config_actual(
     config_open_ws_id VARCHAR(100), /*openWsId*/
 	config_indexes_buttons VARCHAR (5000),
     config_tokken VARCHAR(100),
-    config_update_tables VARCHAR(100),
-    config_update_monitor VARCHAR(100)    
+    config_update_tables VARCHAR(100)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 CREATE TABLE config_defer_close_tabs (
@@ -325,8 +324,8 @@ VALUES('Sj/an1ATwGJMnFdlYALugg==', 'K992SZTEVF57Ki/fu/UUXu/Y1r6cqpvxCcVQRsD/kqML
 INSERT IGNORE INTO config_general(config_table_total, config_table_num_panes, config_table_name_panes, config_table_chart_panes, config_table_name_categories, config_table_tip, config_modkey, config_active, config_terminal_kitchen, config_terminal_waiter)
 VALUES('6:', 'G2H3a8RgTJzktiQ28nKaEg==', 'HvAr7HMgFxu3jaxIMKfejQ==', 'CJhWHxf5rgNRsIvW1vwccA==', 'yALOUvaDGUFzi3yAgbq1nlnK1A/gjKmVg98NNj/YLtc2Uj6qkgmq79G1ApHAYROiCwshhq0bCO0DfChF6YX97g==', '21', 'dthhQYITGuY/5I6/tcf01g==', 'K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u', 'K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u', 'K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u');
 
-INSERT IGNORE INTO config_actual(config_open_ws, config_open_ws_id, config_indexes_buttons, config_tokken, config_update_tables, config_update_monitor)
-VALUES('K992SZTEVF57Ki/fu/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u', '1', 'x7bka9p5GM+yFNNZ6/H22g==', 'Zg1TI/3yh5v12hteBV/GZQ==', "qyppwtmn9bOs4923I9O6dw==", "qyppwtmn9bOs4923I9O6dw==");
+INSERT IGNORE INTO config_actual(config_open_ws, config_open_ws_id, config_indexes_buttons, config_tokken, config_update_tables)
+VALUES('K992SZTEVF57Ki/fu/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u', '1', 'x7bka9p5GM+yFNNZ6/H22g==', 'Zg1TI/3yh5v12hteBV/GZQ==', "qyppwtmn9bOs4923I9O6dw==");
 
 /*Tokken fail*/
 INSERT INTO failed_attempts_tokken(attempt_tokken_time, attempt_tokken_count, attempt_tokken_is_blocked)
