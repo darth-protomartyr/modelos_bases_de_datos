@@ -24,13 +24,15 @@ CREATE TABLE IF NOT EXISTS config_actual(
     config_tokken VARCHAR(100),
     config_update_cashier VARCHAR(100),
     config_update_waiter VARCHAR(100),
-    config_update_chef VARCHAR(100)
-)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+    config_update_chef VARCHAR(100),
+    config_update_map_tables TEXT,
+    config_update_map_item_monits TEXT
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 CREATE TABLE config_defer_close_tabs (
 	config_defer_close_tab_id VARCHAR(100) PRIMARY KEY,
     config_defer_close_tab_active VARCHAR(100)
-)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 CREATE TABLE IF NOT EXISTS item_cards(
     item_card_id VARCHAR(100) PRIMARY KEY,
@@ -310,6 +312,14 @@ VALUES('c2OuJxQqABPRxKy/kPXW2A==', '5FB3bF4LheVY0H6KFiHt/g==', '+RzQUjtQ3UxomiHS
 INSERT IGNORE INTO users_block_status(block_status_user_id, block_status, block_status_attempt_count, block_status_end, block_status_first_try) 
 VALUES('c2OuJxQqABPRxKy/kPXW2A==', 'K992SZTEVF57Ki/fu/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u','1', null, null);
 
+INSERT INTO users(user_id, user_name, user_last_name, user_mail, user_role, user_image_route, user_image_name, user_password, user_phone, user_active)
+VALUES('CCEpngEGfhLKMstgG81ELQ==', '/yr270qn8LzgLsh8bFQSOw==', '83hg9YUAVATXP1jly5rY5g==', 'n8X9y4/ki7ZrWXPr4J5suA==', 'M88re0RIWY4NF0w7/z6VRg==', 'UDxj6tOzyCbCCzCK+o8OWU6VXd33Ja4ql1yGC9Leufg=', 'EJl5Rx42MVsOtfOvn7JcRA==', 'mfaEjOqNlJsxISmRZ33MdQ==', 'n5lKOAAxYzcV8wg8Ty/wWA==', 'K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u');
+
+INSERT IGNORE INTO users_block_status(block_status_user_id, block_status, block_status_attempt_count, block_status_end, block_status_first_try) 
+VALUES('TDynq6oCQ/QJKl5gI3x/Yw==', 'K992SZTEVF57Ki/fu/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u','1', null, null);
+
+
+
 /*WAITER*/
 INSERT IGNORE INTO users(user_id, user_name, user_last_name, user_mail, user_role, user_image_route, user_image_name, user_password, user_phone, user_active)
 VALUES ('2vvta/FxVZrx0LnHV1o1hQ==', 'QRCsHA2XcWk4Ac701foTQw==', 'sAO9BHdAVjaRXiIsWwilwQ==', 'hVFgEuga1V9Q3mPemVSRWQ==', 'bv2ha6jljpAl7dOl6aOVYg==', 'UDxj6tOzyCbCCzCK+o8OWU6VXd33Ja4ql1yGC9Leufg=', 'EJl5Rx42MVsOtfOvn7JcRA==', 'bksAKCCiy+276R0setIqgA==', 'A0qPUcwXR5TCVcPFTmhJvQ==', 'K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u');
@@ -343,7 +353,8 @@ VALUES('obZQObtlJpAhIUIIPLOHCA==', 'K992SZTEVF57Ki/fu/UUXu/Y1r6cqpvxCcVQRsD/kqML
 INSERT IGNORE INTO config_general(config_table_total, config_table_num_panes, config_table_name_panes, config_table_chart_panes, config_table_name_categories, config_table_tip, config_modkey, config_active, config_terminal_kitchen, config_terminal_waiter)
 VALUES('6:', 'G2H3a8RgTJzktiQ28nKaEg==', 'HvAr7HMgFxu3jaxIMKfejQ==', 'CJhWHxf5rgNRsIvW1vwccA==', 'yALOUvaDGUFzi3yAgbq1nlnK1A/gjKmVg98NNj/YLtc2Uj6qkgmq79G1ApHAYROiCwshhq0bCO0DfChF6YX97g==', '21', 'dthhQYITGuY/5I6/tcf01g==', 'K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u', 'K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u', 'K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u');
 
-INSERT INTO config_actual(config_open_ws, config_open_ws_id, config_indexes_buttons, config_tokken, config_update_cashier, config_update_waiter, config_update_chef)VALUES('K992SZTEVF57Ki/fu/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u', '1', 'x7bka9p5GM+yFNNZ6/H22g==', 'Zg1TI/3yh5v12hteBV/GZQ==', 'GAZ7H8bRLXtDTHXPZKKtXA==', 'GAZ7H8bRLXtDTHXPZKKtXA==', 'GAZ7H8bRLXtDTHXPZKKtXA==');
+INSERT INTO config_actual(config_open_ws, config_open_ws_id, config_indexes_buttons, config_tokken, config_update_cashier, config_update_waiter, config_update_chef, config_update_map_tables, config_update_map_item_monits)
+VALUES('K992SZTEVF57Ki/fu/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u', '1', 'x7bka9p5GM+yFNNZ6/H22g==', 'Zg1TI/3yh5v12hteBV/GZQ==', 'GAZ7H8bRLXtDTHXPZKKtXA==', 'GAZ7H8bRLXtDTHXPZKKtXA==', 'GAZ7H8bRLXtDTHXPZKKtXA==', 'm+BC/x9C8dzscCrNe6AKnA==', 'm+BC/x9C8dzscCrNe6AKnA==');
 
 /*Tokken fail*/
 INSERT INTO failed_attempts_tokken(attempt_tokken_time, attempt_tokken_count, attempt_tokken_is_blocked)
