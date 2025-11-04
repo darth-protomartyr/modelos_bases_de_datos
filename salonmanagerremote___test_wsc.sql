@@ -117,7 +117,7 @@ CREATE TABLE `chef_workshifts` (
 
 LOCK TABLES `chef_workshifts` WRITE;
 /*!40000 ALTER TABLE `chef_workshifts` DISABLE KEYS */;
-INSERT INTO `chef_workshifts` VALUES ('2','K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u','vSk6aw1v8x4Z7EMKHqYojA==','2'),('3','K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u','Yo1RbqTcPvBF2q3UkmIAfg==','2');
+INSERT INTO `chef_workshifts` VALUES ('2','K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u','Yo1RbqTcPvBF2q3UkmIAfg==','2'),('3','K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u','vSk6aw1v8x4Z7EMKHqYojA==','2');
 /*!40000 ALTER TABLE `chef_workshifts` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -147,7 +147,7 @@ CREATE TABLE `config_actual` (
 
 LOCK TABLES `config_actual` WRITE;
 /*!40000 ALTER TABLE `config_actual` DISABLE KEYS */;
-INSERT INTO `config_actual` VALUES ('K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u','2','x7bka9p5GM+yFNNZ6/H22g==','8XM1wkKvc0Sb8jwALtzBvg==','RuHeKl5UkOBScqQ4/r13GQ==','RuHeKl5UkOBScqQ4/r13GQ==','RuHeKl5UkOBScqQ4/r13GQ==','m+BC/x9C8dzscCrNe6AKnA==','m+BC/x9C8dzscCrNe6AKnA==');
+INSERT INTO `config_actual` VALUES ('K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u','2','x7bka9p5GM+yFNNZ6/H22g==','eH7zLrCVNDYRtF0fREidvQ==','gCwcTFRB5SAMUYO52Wl2sQ==','gCwcTFRB5SAMUYO52Wl2sQ==','gCwcTFRB5SAMUYO52Wl2sQ==','m+BC/x9C8dzscCrNe6AKnA==','m+BC/x9C8dzscCrNe6AKnA==');
 /*!40000 ALTER TABLE `config_actual` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -190,8 +190,8 @@ CREATE TABLE `config_general` (
   `config_table_tip` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `config_modkey` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `config_active` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `config_terminal_kitchen` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `config_terminal_waiter` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL
+  `config_terminal_kitchen_1` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `config_terminal_waiter_1` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -318,13 +318,13 @@ LOCK TABLES `failed_attempts` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `failed_attempts_tokken_c1`
+-- Table structure for table `failed_attempts_tokken_k1`
 --
 
-DROP TABLE IF EXISTS `failed_attempts_tokken_c1`;
+DROP TABLE IF EXISTS `failed_attempts_tokken_k1`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `failed_attempts_tokken_c1` (
+CREATE TABLE `failed_attempts_tokken_k1` (
   `attempt_tokken_time` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `attempt_tokken_count` varchar(20) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `attempt_tokken_is_blocked` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL
@@ -332,13 +332,13 @@ CREATE TABLE `failed_attempts_tokken_c1` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `failed_attempts_tokken_c1`
+-- Dumping data for table `failed_attempts_tokken_k1`
 --
 
-LOCK TABLES `failed_attempts_tokken_c1` WRITE;
-/*!40000 ALTER TABLE `failed_attempts_tokken_c1` DISABLE KEYS */;
-INSERT INTO `failed_attempts_tokken_c1` VALUES ('zRxkWw+Dyx6M+gv0zqO79A==','1','K992SZTEVF57Ki/fu/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u');
-/*!40000 ALTER TABLE `failed_attempts_tokken_c1` ENABLE KEYS */;
+LOCK TABLES `failed_attempts_tokken_k1` WRITE;
+/*!40000 ALTER TABLE `failed_attempts_tokken_k1` DISABLE KEYS */;
+INSERT INTO `failed_attempts_tokken_k1` VALUES ('zRxkWw+Dyx6M+gv0zqO79A==','1','K992SZTEVF57Ki/fu/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u');
+/*!40000 ALTER TABLE `failed_attempts_tokken_k1` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -640,7 +640,7 @@ CREATE TABLE `registers` (
 
 LOCK TABLES `registers` WRITE;
 /*!40000 ALTER TABLE `registers` DISABLE KEYS */;
-INSERT INTO `registers` VALUES ('KpUQSdiL03IHRkKvBN5vAA==','KhgF0djxxNkXZxzFuEMwRA==','CCEpngEGfhLKMstgG81ELQ==','OGcZWWuU5x4c90iZf9V0IQ==','blLvUsU8V7dogEDDLrtoQA==','QIWbb3+El2V3/jk7xfU55w==');
+INSERT INTO `registers` VALUES ('RvWhpEOjloiaN+VvOPSq2A==','Qbkv/VUZgrsW414Ehe9zcQ==','CCEpngEGfhLKMstgG81ELQ==','OGcZWWuU5x4c90iZf9V0IQ==','blLvUsU8V7dogEDDLrtoQA==','QIWbb3+El2V3/jk7xfU55w==');
 /*!40000 ALTER TABLE `registers` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -822,7 +822,7 @@ CREATE TABLE `waiter_workshifts` (
 
 LOCK TABLES `waiter_workshifts` WRITE;
 /*!40000 ALTER TABLE `waiter_workshifts` DISABLE KEYS */;
-INSERT INTO `waiter_workshifts` VALUES ('2','K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u','Sj/an1ATwGJMnFdlYALugg==','2'),('3','K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u','2vvta/FxVZrx0LnHV1o1hQ==','2');
+INSERT INTO `waiter_workshifts` VALUES ('2','K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u','2vvta/FxVZrx0LnHV1o1hQ==','2'),('3','K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u','Sj/an1ATwGJMnFdlYALugg==','2');
 /*!40000 ALTER TABLE `waiter_workshifts` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -883,9 +883,17 @@ CREATE TABLE `workshifts` (
 
 LOCK TABLES `workshifts` WRITE;
 /*!40000 ALTER TABLE `workshifts` DISABLE KEYS */;
-INSERT INTO `workshifts` VALUES ('2','+NC1xDBIy+0PzLAjRh29Ww==','V7kE0Mi4Ezf3r1tquZkRcA==','K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u','1/1','1/1','1/1','1/1','1/1','1/1','1/1','1/1','Cwshhq0bCO0DfChF6YX97g==','K992SZTEVF57Ki/fu/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u','K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u');
+INSERT INTO `workshifts` VALUES ('2','My8DDZAiH089FcEpBdx2/A==','V7kE0Mi4Ezf3r1tquZkRcA==','K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u','1/1','1/1','1/1','1/1','1/1','1/1','1/1','1/1','Cwshhq0bCO0DfChF6YX97g==','K992SZTEVF57Ki/fu/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u','K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u');
 /*!40000 ALTER TABLE `workshifts` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Dumping events for database 'salonmanager'
+--
+
+--
+-- Dumping routines for database 'salonmanager'
+--
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -896,4 +904,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-10-19 11:05:39
+-- Dump completed on 2025-10-23 10:59:24
