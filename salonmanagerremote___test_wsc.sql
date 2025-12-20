@@ -92,6 +92,31 @@ INSERT INTO `chars` VALUES ('4DGEGm380j1veqRaESm0XA=='),('mp5Dplj/sbi3D5XKdGSOqg
 UNLOCK TABLES;
 
 --
+-- Table structure for table `chats`
+--
+
+DROP TABLE IF EXISTS `chats`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `chats` (
+  `chat_id` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `chat_chaters` varchar(5000) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `chat_views` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `chat_pendant` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `chats`
+--
+
+LOCK TABLES `chats` WRITE;
+/*!40000 ALTER TABLE `chats` DISABLE KEYS */;
+INSERT INTO `chats` VALUES ('2','+/TLZWjLqFtcvuHNx/3Yi0JScIvE0MkKlXmze2gRsszoCq2JEJFkDyn5+A56PD0x','oUNzq7116/Ypf67HPbQiOw==','K992SZTEVF57Ki/fu/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u');
+/*!40000 ALTER TABLE `chats` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `chef_workshifts`
 --
 
@@ -117,7 +142,7 @@ CREATE TABLE `chef_workshifts` (
 
 LOCK TABLES `chef_workshifts` WRITE;
 /*!40000 ALTER TABLE `chef_workshifts` DISABLE KEYS */;
-INSERT INTO `chef_workshifts` VALUES ('2','K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u','Yo1RbqTcPvBF2q3UkmIAfg==','2'),('3','K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u','vSk6aw1v8x4Z7EMKHqYojA==','2');
+INSERT INTO `chef_workshifts` VALUES ('2','K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u','vSk6aw1v8x4Z7EMKHqYojA==','2'),('3','K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u','Yo1RbqTcPvBF2q3UkmIAfg==','2');
 /*!40000 ALTER TABLE `chef_workshifts` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -137,7 +162,9 @@ CREATE TABLE `config_actual` (
   `config_update_waiter` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `config_update_chef` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `config_update_map_tables` text COLLATE utf8mb4_general_ci,
-  `config_update_map_item_monits` text COLLATE utf8mb4_general_ci
+  `config_update_map_item_monits` text COLLATE utf8mb4_general_ci,
+  `config_itemcard_c` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `config_itemcard_w` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -147,7 +174,7 @@ CREATE TABLE `config_actual` (
 
 LOCK TABLES `config_actual` WRITE;
 /*!40000 ALTER TABLE `config_actual` DISABLE KEYS */;
-INSERT INTO `config_actual` VALUES ('K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u','2','x7bka9p5GM+yFNNZ6/H22g==','eH7zLrCVNDYRtF0fREidvQ==','gCwcTFRB5SAMUYO52Wl2sQ==','gCwcTFRB5SAMUYO52Wl2sQ==','gCwcTFRB5SAMUYO52Wl2sQ==','m+BC/x9C8dzscCrNe6AKnA==','m+BC/x9C8dzscCrNe6AKnA==');
+INSERT INTO `config_actual` VALUES ('K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u','2','x7bka9p5GM+yFNNZ6/H22g==','5/Q5Z3zUQcH0VUi1X0cpNw==','e6YbuQSrnAz1xrhdmuu0ZA==','e6YbuQSrnAz1xrhdmuu0ZA==','e6YbuQSrnAz1xrhdmuu0ZA==','m+BC/x9C8dzscCrNe6AKnA==','m+BC/x9C8dzscCrNe6AKnA==','V7kE0Mi4Ezf3r1tquZkRcA==','V7kE0Mi4Ezf3r1tquZkRcA==');
 /*!40000 ALTER TABLE `config_actual` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -238,6 +265,28 @@ LOCK TABLES `consumers` WRITE;
 /*!40000 ALTER TABLE `consumers` DISABLE KEYS */;
 INSERT INTO `consumers` VALUES ('2','a8dssl4DwaUBZEVkOZ4l8w==','42di7RLCcJPHB4gxbrDoHQ==','MxyuI1iRndQg8r3ImtVuOA==','MxyuI1iRndQg8r3ImtVuOA==','xXYXf0+U+SRf5fFDYlin6w==','B+L83g+pb/bsT42oYrcItw==','g7pvkdEIWypwFeABOAFStA==','pI31lVQTA+ve9VBfyH/MaA==','JWOaojhyt9t8JsYUUCj4zw==','MHAfUtazhe8lzBp51ye08A==','yKQWXd2W9asS7zSZYFf2dc6MJgm7FH4QPxod2YDtRWc=','K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u'),('3','GlbjJioajyGW2QlJPAENolVaCre9Ird8JN47NjIrVHA=','wBHGlDusfSwPGfLCQj6heg==','MxyuI1iRndQg8r3ImtVuOA==','MxyuI1iRndQg8r3ImtVuOA==','BZZ72d2fh/olRRdPx2/iKQ==','kgDLXunllYyQw6VEjVkCZw==','WdEPWmTMFV8mCRxViufTpqfukJ0D4vyulgsEfunPC3Q=','+A8S6bLjh991D3bHASzdHQ==','4kPhtgfIwyHiussm3r2BzQ==','w3sn15pDmJJUJAQRazjYJA==','daEtqIb/iYeDgmNIji/Iba//to0rc5groyi2BksI9+c=','K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u');
 /*!40000 ALTER TABLE `consumers` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `control_id_messages`
+--
+
+DROP TABLE IF EXISTS `control_id_messages`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `control_id_messages` (
+  `id` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `control_id_messages`
+--
+
+LOCK TABLES `control_id_messages` WRITE;
+/*!40000 ALTER TABLE `control_id_messages` DISABLE KEYS */;
+INSERT INTO `control_id_messages` VALUES (0);
+/*!40000 ALTER TABLE `control_id_messages` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -500,6 +549,7 @@ CREATE TABLE `item_cards` (
   `item_card_date_creation` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `item_card_date_update` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `item_card_tip` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `item_card_station` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `item_card_active` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
   PRIMARY KEY (`item_card_id`),
   UNIQUE KEY `item_card_code` (`item_card_code`)
@@ -512,7 +562,7 @@ CREATE TABLE `item_cards` (
 
 LOCK TABLES `item_cards` WRITE;
 /*!40000 ALTER TABLE `item_cards` DISABLE KEYS */;
-INSERT INTO `item_cards` VALUES ('21','sXv9vBIoBOWsupafyn8taw==','/1GcI9xwraDwQqNMnn017nasNiFERFuQ+dMt3h08asA=','vJE0iCtYQQkdgPmO1UHFrw==','8BbRvt87p+kLBv+KKkzAvgBCiv8jQsdtK3uOAHiMMdOXQeuwOjj7N8zGNVZKbseDYZEDZBdmlYjeCNjcb/bDIlveTBtg53gTDRX1jdK+Y1M=','8111/1','yeW2K5bT0Z3EFnggMr9R59aSwWxOe8gK76eQEl4xcmE=','23','SuTQlOQ/N5iYiJon8Emiyg==',NULL,'K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u','K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u'),('22','NrvATbrJT1n2JF6DGICRHQ==','xBxCceYbODV56Nn8RBnqHg==','cHJ6Jv8NGi+AtZJa4SPWZQ==','ALcL+iUk2pSFsfJiMLSwZMCxWa6ZzZLjD3eIZi3UZn235HVvz9rij0HcXqU2xfftMYiVLGipFHYSrijIyC8dEJEf0TG+yXBEKbY8VEUtFgVMkLxwv5m6WRt+DqYAN9wY1zvcjMYyzoKZ5ThKd4lbgtjYSU58MlULcV1pTdTT5Nrh0XgnNTZSCNbTy2olqWei','4611/1','tFG1DInYbKP1erhKB2NJouEpL5+PWR+jV+wNxR0MOIE=','23','6l0SYLZviVo9sqjI/Eha5A==',NULL,'K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u','K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u'),('23','+4UbnH/QUgkXBfXMR199mg==','wwzMdVkgv3dM5lMxpmKAmryZHwOkYIXJcYzKvqgAgvI=','cHJ6Jv8NGi+AtZJa4SPWZQ==','CsAjjwnHX8fasOfY1RGnYxHAjaWWNAGLCItoCnDSi+aJxON/00BFfb91ykCT1hvxguMrKBsyYHczlkvkkRcnjXIhROEuG0R7TBUpkMOWFf0xcdRDW8Ncjrq6VPgoCntweaucS1V3VdCtyAzJICSK+VNNjLmHrcKb9sDy4IcnPkhnL3rfbKyDG0o3INpNyr3c','3111/1','/YGzaqGrJRy58wqnxsKxYuEpL5+PWR+jV+wNxR0MOIE=','23','BPHznfn5heov0Tv5JwqMDg==',NULL,'K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u','K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u'),('24','7drx+GveifhqYjceOq38qA==','mc1OXxAQI/eUcHBPBNqX4wsLIYatGwjtA3woRemF/e4=','cHJ6Jv8NGi+AtZJa4SPWZQ==','kgh4zGO1W65Hc5RDKGCd+5zMTlIjhlCeUFRki70vgSMxiJUsaKkUdhKuKMjILx0QZnHANwOWWgrRvP9oGYkDcl+I7Saqaoyc9NuvuyzXaSeqrKfhg3l/QGOqS9v2UvR6irEB6TidsZZka1a4/YSRdc9WkawGELHCjkOi0G8kV+CJXofJG2esNBOO1+3/AkOM','4111/1','rGZUQiZ81OMhjf2wZlzZnOEpL5+PWR+jV+wNxR0MOIE=','23','V4vBtE+b7ihQY9VHrCx1ZA==',NULL,'K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u','K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u'),('25','R64UrEX/JScqBMcUC0dUiA==','gKsifiP31rvqc/1HpL8RtQ==','cHJ6Jv8NGi+AtZJa4SPWZQ==','mahSDPfS6j7qEDHy5vJqGbD7hO47uLAVCdpCxAfZFbFgtxRdZTYg0Bu1fGoJ+6U5SWOdbPkvohDqXZ33JM2VJHnBYLCDp0TM5a5l5I0yLjIkQXBNbqtx25OUKvw9ijg9RzeTytdnIZu5tJ4+DKJhjlVrrtR1VDo8zs2iVPreMLRdBA6YglnWKs4SIe8uIeTOCwshhq0bCO0DfChF6YX97g==','5111/1','/w7q9FIOfmv9pLEeh9I4UeEpL5+PWR+jV+wNxR0MOIE=','23','GZJoo6Emhv+y2utrHaUVdQ==',NULL,'K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u','K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u'),('26','mfmxdlChCf5QrujuA4TFFg==','AHRQi8+/keQc4p/ovyCmqA==','cHJ6Jv8NGi+AtZJa4SPWZQ==','RY7EuAwrqzX9prseiI9XxbpBxFXpPf6v9eBSy8Thzc1NlVSOj0dBpdrIwQwQGybrKIwb2/lXpUN7IND6U8COWpvqZZacqbKv2yFyiP8sq60Uc0vIYbhfPFNA5MEPJ4o4tZWodELuoSbt8gql6toSMbZGDmsXn6R4TkcsFWhV/CoydNPNOIPBkqCE1hTVcihL','5111/1','/w7q9FIOfmv9pLEeh9I4UeEpL5+PWR+jV+wNxR0MOIE=','23','zNm+cg9XCHp66M9pDfSouQ==',NULL,'K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u','K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u'),('3','y3PGsd8HnJxFBx/C2pqCaA==','OVBT0qbXQN8kqR2Ellujng==','oq+ndGGeFoWVRa7z+jTQTg==','FJ2wr4H6At55DBm/9zwEZyyraaJxtmiwSRoaYGXPuq8=',':11/1','lnug34IzEKzvPAEBMYDBLOEpL5+PWR+jV+wNxR0MOIE=','35','YIowkPNeDYiS/h4B9wOi0w==',NULL,'K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u','K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u'),('4','8G+77TicvtTcmbpyVzXr5g==','DaL4r5my318qVoC9/DAzKQ==','vJE0iCtYQQkdgPmO1UHFrw==','9zBF3Gug15j/31ixbPqHnO2NTY513eIuFoDqVFlYiQYnER8+ZT8jz17iwh8AZhMPnIaTMW1cjxIirTUjSHnsv27OJbSA7zOhbKFvXAqBTJY=','5611/1','UO4oUroCGzkvoQSjpoSJCeEpL5+PWR+jV+wNxR0MOIE=','23','yYf34eImWvBvhL9gdFk80g==',NULL,'K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u','K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u'),('5','Wp+niVwi6v6LzKJbRjOudA==','6B54uSV9ZLxd3TbvVSD92gsLIYatGwjtA3woRemF/e4=','vJE0iCtYQQkdgPmO1UHFrw==','+scnP2qNMDw/m4UZWrgypyP4cef/g8F7wU0q8DbI2g8sDGG3LUSe+bAyWAwW2JvmTkH4ZzxfFl+nQCqf/NSi3e0u3RzeEaJ5rASg9yVzG0tmLSLVMY0mb52G3wamg3Um','6111/1','25iBUvKYbR/wX2dbqVvPkNaSwWxOe8gK76eQEl4xcmE=','23','m5AFzEh6TnhE2znoUOH4Qg==',NULL,'K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u','K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u'),('6','xiRKQWM7XC8mXJpXqbx70Q==','mL+MgchAmPqFGi9b/nU6eg==','vJE0iCtYQQkdgPmO1UHFrw==','atAt+5SVedUUav6rALxvUaAlHx6SNheaGaz3p+wn+hdgBzOX+ScztZxR8btKP9VyZFgSdWnRlPQw4UDfg2kgHE3tDUhS1QlOsVdyjWYefTK1aukQNvPFEssitB+28N13','7111/1','c6d6hIuzHCMHUPEfLoGVO9aSwWxOe8gK76eQEl4xcmE=','23','1UN/yMw1vStYVFYJ6ZVing==',NULL,'K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u','K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u'),('7','apu3jEYWzkJ2HraOmy3zaA==','Tr5ylQOddEl/pvCgcoHrsw==','vJE0iCtYQQkdgPmO1UHFrw==','enz3ZXgkLdxQ7gq9lvaj7JebByk+huRKsc82YnmnmgoQT7xA30K3iXNhXZ9R58sVOVbqKrnTsFxfZVn8FVIvo62p/GgamEZYbZAFGSRuDErVCvpuT1ZRXEDsQFTt4uLd','6111/1','25iBUvKYbR/wX2dbqVvPkNaSwWxOe8gK76eQEl4xcmE=','23','3lqkArUua1V//mG0nYxzvA==',NULL,'K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u','K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u'),('8','EXzNdTx1FpLoeEBBSYxZmg==','dsRdqSBQqcagj715QzQbZA==','vJE0iCtYQQkdgPmO1UHFrw==','yqpLFtloQN1z/mDIGWVJfQklgz86W5vYAhtgOmOn3VYYMXpCYMu0USKvngYHTzlyJibis4aiqL3oFjgDOr1NtIhmhmpdcW3S6IVXl7kxzRo=','7111/1','c6d6hIuzHCMHUPEfLoGVO9aSwWxOe8gK76eQEl4xcmE=','23','pw8FV2OoPv5sIGp7RKLIXg==',NULL,'K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u','K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u'),('9','dthUIxK1m3JpuZG/q1NV/g==','bq+DU4sBZT/kX3Qdyvxj3w==','vJE0iCtYQQkdgPmO1UHFrw==','mwZdt0co4efeP5ZE4EX0JJAkQgF61cys66gCrQ+yStpZN3VgMZLNcFUhJg6tp6wDy/AixqOuLK2qbgoNU5MklJFeCESKY5UcHjlJ/9ALbKM=','7111/1','c6d6hIuzHCMHUPEfLoGVO9aSwWxOe8gK76eQEl4xcmE=','23','3AmwPm8h/nPFZWrvTXH3sg==',NULL,'K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u','K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u'),(':','BLCYxlw97rL6S2VYTJXTgg==','Jpw4kYPoESltLXBzugdCVg==','vJE0iCtYQQkdgPmO1UHFrw==','eYt4bJSTCyOG3gXkr0TUfyudlA5ozByahaQLtQtouUkgf62apFSdkDBd/Xm6gf595D9VWZm9qi2Bzs6cIu8cqhZ8oZcvx1EoZZixikPEeF8=','8111/1','yeW2K5bT0Z3EFnggMr9R59aSwWxOe8gK76eQEl4xcmE=','23','Kuf4RQecGYf495aZe+y7iw==',NULL,'K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u','K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u');
+INSERT INTO `item_cards` VALUES ('21','sXv9vBIoBOWsupafyn8taw==','/1GcI9xwraDwQqNMnn017nasNiFERFuQ+dMt3h08asA=','vJE0iCtYQQkdgPmO1UHFrw==','8BbRvt87p+kLBv+KKkzAvgBCiv8jQsdtK3uOAHiMMdOXQeuwOjj7N8zGNVZKbseDYZEDZBdmlYjeCNjcb/bDIlveTBtg53gTDRX1jdK+Y1M=','8111/1','yeW2K5bT0Z3EFnggMr9R59aSwWxOe8gK76eQEl4xcmE=','23','SuTQlOQ/N5iYiJon8Emiyg==',NULL,'K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u','I+GBDOmEEgSLHwF+UKx0Fg==','K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u'),('22','NrvATbrJT1n2JF6DGICRHQ==','xBxCceYbODV56Nn8RBnqHg==','cHJ6Jv8NGi+AtZJa4SPWZQ==','ALcL+iUk2pSFsfJiMLSwZMCxWa6ZzZLjD3eIZi3UZn235HVvz9rij0HcXqU2xfftMYiVLGipFHYSrijIyC8dEJEf0TG+yXBEKbY8VEUtFgVMkLxwv5m6WRt+DqYAN9wY1zvcjMYyzoKZ5ThKd4lbgtjYSU58MlULcV1pTdTT5Nrh0XgnNTZSCNbTy2olqWei','4611/1','tFG1DInYbKP1erhKB2NJouEpL5+PWR+jV+wNxR0MOIE=','23','6l0SYLZviVo9sqjI/Eha5A==',NULL,'K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u','I+GBDOmEEgSLHwF+UKx0Fg==','K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u'),('23','+4UbnH/QUgkXBfXMR199mg==','wwzMdVkgv3dM5lMxpmKAmryZHwOkYIXJcYzKvqgAgvI=','cHJ6Jv8NGi+AtZJa4SPWZQ==','CsAjjwnHX8fasOfY1RGnYxHAjaWWNAGLCItoCnDSi+aJxON/00BFfb91ykCT1hvxguMrKBsyYHczlkvkkRcnjXIhROEuG0R7TBUpkMOWFf0xcdRDW8Ncjrq6VPgoCntweaucS1V3VdCtyAzJICSK+VNNjLmHrcKb9sDy4IcnPkhnL3rfbKyDG0o3INpNyr3c','3111/1','/YGzaqGrJRy58wqnxsKxYuEpL5+PWR+jV+wNxR0MOIE=','23','BPHznfn5heov0Tv5JwqMDg==',NULL,'K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u','I+GBDOmEEgSLHwF+UKx0Fg==','K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u'),('24','7drx+GveifhqYjceOq38qA==','mc1OXxAQI/eUcHBPBNqX4wsLIYatGwjtA3woRemF/e4=','cHJ6Jv8NGi+AtZJa4SPWZQ==','kgh4zGO1W65Hc5RDKGCd+5zMTlIjhlCeUFRki70vgSMxiJUsaKkUdhKuKMjILx0QZnHANwOWWgrRvP9oGYkDcl+I7Saqaoyc9NuvuyzXaSeqrKfhg3l/QGOqS9v2UvR6irEB6TidsZZka1a4/YSRdc9WkawGELHCjkOi0G8kV+CJXofJG2esNBOO1+3/AkOM','4111/1','rGZUQiZ81OMhjf2wZlzZnOEpL5+PWR+jV+wNxR0MOIE=','23','V4vBtE+b7ihQY9VHrCx1ZA==',NULL,'K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u','I+GBDOmEEgSLHwF+UKx0Fg==','K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u'),('25','R64UrEX/JScqBMcUC0dUiA==','gKsifiP31rvqc/1HpL8RtQ==','cHJ6Jv8NGi+AtZJa4SPWZQ==','mahSDPfS6j7qEDHy5vJqGbD7hO47uLAVCdpCxAfZFbFgtxRdZTYg0Bu1fGoJ+6U5SWOdbPkvohDqXZ33JM2VJHnBYLCDp0TM5a5l5I0yLjIkQXBNbqtx25OUKvw9ijg9RzeTytdnIZu5tJ4+DKJhjlVrrtR1VDo8zs2iVPreMLRdBA6YglnWKs4SIe8uIeTOCwshhq0bCO0DfChF6YX97g==','5111/1','/w7q9FIOfmv9pLEeh9I4UeEpL5+PWR+jV+wNxR0MOIE=','23','GZJoo6Emhv+y2utrHaUVdQ==',NULL,'K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u','I+GBDOmEEgSLHwF+UKx0Fg==','K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u'),('26','mfmxdlChCf5QrujuA4TFFg==','AHRQi8+/keQc4p/ovyCmqA==','cHJ6Jv8NGi+AtZJa4SPWZQ==','RY7EuAwrqzX9prseiI9XxbpBxFXpPf6v9eBSy8Thzc1NlVSOj0dBpdrIwQwQGybrKIwb2/lXpUN7IND6U8COWpvqZZacqbKv2yFyiP8sq60Uc0vIYbhfPFNA5MEPJ4o4tZWodELuoSbt8gql6toSMbZGDmsXn6R4TkcsFWhV/CoydNPNOIPBkqCE1hTVcihL','5111/1','/w7q9FIOfmv9pLEeh9I4UeEpL5+PWR+jV+wNxR0MOIE=','23','zNm+cg9XCHp66M9pDfSouQ==',NULL,'K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u','I+GBDOmEEgSLHwF+UKx0Fg==','K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u'),('3','y3PGsd8HnJxFBx/C2pqCaA==','OVBT0qbXQN8kqR2Ellujng==','oq+ndGGeFoWVRa7z+jTQTg==','FJ2wr4H6At55DBm/9zwEZyyraaJxtmiwSRoaYGXPuq8=',':11/1','lnug34IzEKzvPAEBMYDBLOEpL5+PWR+jV+wNxR0MOIE=','35','YIowkPNeDYiS/h4B9wOi0w==',NULL,'K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u','I+GBDOmEEgSLHwF+UKx0Fg==','K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u'),('4','8G+77TicvtTcmbpyVzXr5g==','DaL4r5my318qVoC9/DAzKQ==','vJE0iCtYQQkdgPmO1UHFrw==','9zBF3Gug15j/31ixbPqHnO2NTY513eIuFoDqVFlYiQYnER8+ZT8jz17iwh8AZhMPnIaTMW1cjxIirTUjSHnsv27OJbSA7zOhbKFvXAqBTJY=','5611/1','UO4oUroCGzkvoQSjpoSJCeEpL5+PWR+jV+wNxR0MOIE=','23','yYf34eImWvBvhL9gdFk80g==',NULL,'K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u','I+GBDOmEEgSLHwF+UKx0Fg==','K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u'),('5','Wp+niVwi6v6LzKJbRjOudA==','6B54uSV9ZLxd3TbvVSD92gsLIYatGwjtA3woRemF/e4=','vJE0iCtYQQkdgPmO1UHFrw==','+scnP2qNMDw/m4UZWrgypyP4cef/g8F7wU0q8DbI2g8sDGG3LUSe+bAyWAwW2JvmTkH4ZzxfFl+nQCqf/NSi3e0u3RzeEaJ5rASg9yVzG0tmLSLVMY0mb52G3wamg3Um','6111/1','25iBUvKYbR/wX2dbqVvPkNaSwWxOe8gK76eQEl4xcmE=','23','m5AFzEh6TnhE2znoUOH4Qg==',NULL,'K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u','I+GBDOmEEgSLHwF+UKx0Fg==','K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u'),('6','xiRKQWM7XC8mXJpXqbx70Q==','mL+MgchAmPqFGi9b/nU6eg==','vJE0iCtYQQkdgPmO1UHFrw==','atAt+5SVedUUav6rALxvUaAlHx6SNheaGaz3p+wn+hdgBzOX+ScztZxR8btKP9VyZFgSdWnRlPQw4UDfg2kgHE3tDUhS1QlOsVdyjWYefTK1aukQNvPFEssitB+28N13','7111/1','c6d6hIuzHCMHUPEfLoGVO9aSwWxOe8gK76eQEl4xcmE=','23','1UN/yMw1vStYVFYJ6ZVing==',NULL,'K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u','I+GBDOmEEgSLHwF+UKx0Fg==','K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u'),('7','apu3jEYWzkJ2HraOmy3zaA==','Tr5ylQOddEl/pvCgcoHrsw==','vJE0iCtYQQkdgPmO1UHFrw==','enz3ZXgkLdxQ7gq9lvaj7JebByk+huRKsc82YnmnmgoQT7xA30K3iXNhXZ9R58sVOVbqKrnTsFxfZVn8FVIvo62p/GgamEZYbZAFGSRuDErVCvpuT1ZRXEDsQFTt4uLd','6111/1','25iBUvKYbR/wX2dbqVvPkNaSwWxOe8gK76eQEl4xcmE=','23','3lqkArUua1V//mG0nYxzvA==',NULL,'K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u','I+GBDOmEEgSLHwF+UKx0Fg==','K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u'),('8','EXzNdTx1FpLoeEBBSYxZmg==','dsRdqSBQqcagj715QzQbZA==','vJE0iCtYQQkdgPmO1UHFrw==','yqpLFtloQN1z/mDIGWVJfQklgz86W5vYAhtgOmOn3VYYMXpCYMu0USKvngYHTzlyJibis4aiqL3oFjgDOr1NtIhmhmpdcW3S6IVXl7kxzRo=','7111/1','c6d6hIuzHCMHUPEfLoGVO9aSwWxOe8gK76eQEl4xcmE=','23','pw8FV2OoPv5sIGp7RKLIXg==',NULL,'K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u','I+GBDOmEEgSLHwF+UKx0Fg==','K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u'),('9','dthUIxK1m3JpuZG/q1NV/g==','bq+DU4sBZT/kX3Qdyvxj3w==','vJE0iCtYQQkdgPmO1UHFrw==','mwZdt0co4efeP5ZE4EX0JJAkQgF61cys66gCrQ+yStpZN3VgMZLNcFUhJg6tp6wDy/AixqOuLK2qbgoNU5MklJFeCESKY5UcHjlJ/9ALbKM=','7111/1','c6d6hIuzHCMHUPEfLoGVO9aSwWxOe8gK76eQEl4xcmE=','23','3AmwPm8h/nPFZWrvTXH3sg==',NULL,'K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u','I+GBDOmEEgSLHwF+UKx0Fg==','K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u'),(':','BLCYxlw97rL6S2VYTJXTgg==','Jpw4kYPoESltLXBzugdCVg==','vJE0iCtYQQkdgPmO1UHFrw==','eYt4bJSTCyOG3gXkr0TUfyudlA5ozByahaQLtQtouUkgf62apFSdkDBd/Xm6gf595D9VWZm9qi2Bzs6cIu8cqhZ8oZcvx1EoZZixikPEeF8=','8111/1','yeW2K5bT0Z3EFnggMr9R59aSwWxOe8gK76eQEl4xcmE=','23','Kuf4RQecGYf495aZe+y7iw==',NULL,'K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u','I+GBDOmEEgSLHwF+UKx0Fg==','K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u');
 /*!40000 ALTER TABLE `item_cards` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -527,6 +577,7 @@ CREATE TABLE `item_monits` (
   `item_monit_id` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
   `item_monit_table_id` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `item_monit_item_id` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `item_monit_station` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `item_monit_ws_id` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `item_monit_tipe` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `item_monit_init_bool` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
@@ -563,7 +614,7 @@ DROP TABLE IF EXISTS `item_sales_statics`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `item_sales_statics` (
-  `item_sale_static_id` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
+  `item_sale_static_id` int NOT NULL AUTO_INCREMENT,
   `item_sale_id` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `item_sale_category` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `item_sale_tab_pos` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
@@ -585,6 +636,32 @@ CREATE TABLE `item_sales_statics` (
 LOCK TABLES `item_sales_statics` WRITE;
 /*!40000 ALTER TABLE `item_sales_statics` DISABLE KEYS */;
 /*!40000 ALTER TABLE `item_sales_statics` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `messages`
+--
+
+DROP TABLE IF EXISTS `messages`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `messages` (
+  `message_id` int NOT NULL,
+  `message_wsc_id` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `message_user_id` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `message_string` varchar(5000) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `message_timestamp` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  PRIMARY KEY (`message_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `messages`
+--
+
+LOCK TABLES `messages` WRITE;
+/*!40000 ALTER TABLE `messages` DISABLE KEYS */;
+/*!40000 ALTER TABLE `messages` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -640,7 +717,7 @@ CREATE TABLE `registers` (
 
 LOCK TABLES `registers` WRITE;
 /*!40000 ALTER TABLE `registers` DISABLE KEYS */;
-INSERT INTO `registers` VALUES ('RvWhpEOjloiaN+VvOPSq2A==','Qbkv/VUZgrsW414Ehe9zcQ==','CCEpngEGfhLKMstgG81ELQ==','OGcZWWuU5x4c90iZf9V0IQ==','blLvUsU8V7dogEDDLrtoQA==','QIWbb3+El2V3/jk7xfU55w==');
+INSERT INTO `registers` VALUES ('bA1rEB+Ir64SCz9tT+Pd3w==','fTjM3xYh0TFteO6+41umpw==','CCEpngEGfhLKMstgG81ELQ==','OGcZWWuU5x4c90iZf9V0IQ==','blLvUsU8V7dogEDDLrtoQA==','QIWbb3+El2V3/jk7xfU55w==');
 /*!40000 ALTER TABLE `registers` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -822,7 +899,7 @@ CREATE TABLE `waiter_workshifts` (
 
 LOCK TABLES `waiter_workshifts` WRITE;
 /*!40000 ALTER TABLE `waiter_workshifts` DISABLE KEYS */;
-INSERT INTO `waiter_workshifts` VALUES ('2','K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u','2vvta/FxVZrx0LnHV1o1hQ==','2'),('3','K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u','Sj/an1ATwGJMnFdlYALugg==','2');
+INSERT INTO `waiter_workshifts` VALUES ('2','K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u','Sj/an1ATwGJMnFdlYALugg==','2'),('3','K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u','2vvta/FxVZrx0LnHV1o1hQ==','2');
 /*!40000 ALTER TABLE `waiter_workshifts` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -883,7 +960,7 @@ CREATE TABLE `workshifts` (
 
 LOCK TABLES `workshifts` WRITE;
 /*!40000 ALTER TABLE `workshifts` DISABLE KEYS */;
-INSERT INTO `workshifts` VALUES ('2','My8DDZAiH089FcEpBdx2/A==','V7kE0Mi4Ezf3r1tquZkRcA==','K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u','1/1','1/1','1/1','1/1','1/1','1/1','1/1','1/1','Cwshhq0bCO0DfChF6YX97g==','K992SZTEVF57Ki/fu/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u','K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u');
+INSERT INTO `workshifts` VALUES ('2','XpgFOzNkVqkLVfMu/HpsjA==','V7kE0Mi4Ezf3r1tquZkRcA==','K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u','1/1','1/1','1/1','1/1','1/1','1/1','1/1','1/1','Cwshhq0bCO0DfChF6YX97g==','K992SZTEVF57Ki/fu/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u','K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u');
 /*!40000 ALTER TABLE `workshifts` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -904,4 +981,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-10-23 10:59:24
+-- Dump completed on 2025-12-19 20:56:01

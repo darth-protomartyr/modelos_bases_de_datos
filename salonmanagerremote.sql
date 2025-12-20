@@ -205,18 +205,19 @@ CREATE TABLE IF NOT EXISTS item_monits(
     item_monit_anuled VARCHAR(100)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
  
- CREATE TABLE IF NOT EXISTS item_sales_statics(
-	item_sale_static_id VARCHAR(100) PRIMARY KEY,
+CREATE TABLE IF NOT EXISTS item_sales_statics (
+    item_sale_static_id INT NOT NULL AUTO_INCREMENT,
     item_sale_id VARCHAR(100),
     item_sale_category VARCHAR(100),
     item_sale_tab_pos VARCHAR(100),
-	item_sale_waiter_id VARCHAR(100),
+    item_sale_waiter_id VARCHAR(100),
     item_sale_workshift_id VARCHAR(100),
     item_sale_cost VARCHAR(100),
     item_sale_price VARCHAR(100),
     item_sale_client_id VARCHAR(100),
     item_sale_date VARCHAR(100),
-    item_sale_active VARCHAR(100)
+    item_sale_active VARCHAR(100),
+    PRIMARY KEY (item_sale_static_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 CREATE TABLE IF NOT EXISTS money_flows(
@@ -280,7 +281,6 @@ CREATE TABLE IF NOT EXISTS error_stacks(
     error_stack_date VARCHAR(100),
     error_stack_text VARCHAR(5000)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
 
 CREATE TABLE IF NOT EXISTS failed_attempts (
     attempt_user_id VARCHAR(100) PRIMARY KEY,
@@ -397,7 +397,7 @@ INSERT IGNORE INTO config_actual(config_open_ws, config_open_ws_id, config_index
 VALUES('K992SZTEVF57Ki/fu/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u', '1', 'x7bka9p5GM+yFNNZ6/H22g==', 'Zg1TI/3yh5v12hteBV/GZQ==', 'GAZ7H8bRLXtDTHXPZKKtXA==', 'GAZ7H8bRLXtDTHXPZKKtXA==', 'GAZ7H8bRLXtDTHXPZKKtXA==', 'm+BC/x9C8dzscCrNe6AKnA==', 'm+BC/x9C8dzscCrNe6AKnA==' , 'V7kE0Mi4Ezf3r1tquZkRcA==', 'V7kE0Mi4Ezf3r1tquZkRcA==');
 
 /*CHAT*/
-INSERT INTO control_id_messages (id) VALUES (0);
+ INSERT INTO control_id_messages (id) VALUES (0);
 
 /*Tokken fail*/
 INSERT INTO failed_attempts_tokken_W1(attempt_tokken_time, attempt_tokken_count, attempt_tokken_is_blocked)
@@ -406,7 +406,6 @@ VALUES("zRxkWw+Dyx6M+gv0zqO79A==", "1", "K992SZTEVF57Ki/fu/UUXu/Y1r6cqpvxCcVQRsD
 /*Tokken fail*/
 INSERT INTO failed_attempts_tokken_K1(attempt_tokken_time, attempt_tokken_count, attempt_tokken_is_blocked)
 VALUES("zRxkWw+Dyx6M+gv0zqO79A==", "1", "K992SZTEVF57Ki/fu/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u");
-
 
 INSERT IGNORE INTO categories(category_name)VALUES('vJE0iCtYQQkdgPmO1UHFrw==');
 INSERT IGNORE INTO categories(category_name)VALUES('oq+ndGGeFoWVRa7z+jTQTg==');
