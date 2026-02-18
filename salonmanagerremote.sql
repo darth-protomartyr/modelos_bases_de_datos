@@ -81,6 +81,7 @@ CREATE TABLE IF NOT EXISTS workshifts(
     workshift_mount_electronic VARCHAR(100),
     workshift_total_mount_tabs VARCHAR(100),
     workshift_total_mount_ws VARCHAR(100),
+    workshift_error_count_tabs VARCHAR(100),
     workshift_error_mount_tabs VARCHAR(100),
     workshift_error_mount_ws VARCHAR(100),
     workshift_cash_flow_cash VARCHAR(100),
@@ -99,7 +100,6 @@ CREATE TABLE IF NOT EXISTS users(
     user_image_route VARCHAR(5000),
     user_image_name VARCHAR(100),
     user_password VARCHAR(100),
-    user_shortpass VARCHAR(100),
     user_phone VARCHAR(100) UNIQUE,
     user_active VARCHAR(100)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -335,57 +335,57 @@ CREATE TABLE IF NOT EXISTS control_id_messages (
 /*ENTRADAS*/
 /*USER*/
 
-/*ADMIN*/
-INSERT IGNORE INTO users(user_id, user_name, user_last_name, user_mail, user_role, user_image_route, user_image_name, user_password, user_shortpass, user_phone, user_active)
-VALUES('c2OuJxQqABPRxKy/kPXW2A==', '5FB3bF4LheVY0H6KFiHt/g==', '+RzQUjtQ3UxomiHSZ0fmuQ==', 'S9FqHlkcN9TEgUKgVz/iTA==', 'M88re0RIWY4NF0w7/z6VRg==', 'CtarrfvT/WbyQwRI4y+J7ZxL3mwfw49jKVkGIX6LMVbnHbXQ/sEcQvTwCi+undDii4eUS9Zkgo93svn72ZXyX2r61k8ydfmPyOR1FhTHWuLmxVlzHSrQCRLmIortSRA5', 'fJ5rBMyacmtSuKFHHH34nA==', 'mfaEjOqNlJsxISmRZ33MdQ==', '234', 'EtvVCnIlzRb1kVZUnbvHxg==', 'K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u');
-
-INSERT IGNORE INTO users_block_status(block_status_user_id, block_status, block_status_attempt_count, block_status_end, block_status_first_try) 
-VALUES('c2OuJxQqABPRxKy/kPXW2A==', 'K992SZTEVF57Ki/fu/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u','1', null, null);
-
-INSERT IGNORE INTO users(user_id, user_name, user_last_name, user_mail, user_role, user_image_route, user_image_name, user_password, user_shortpass, user_phone, user_active)
-VALUES('CCEpngEGfhLKMstgG81ELQ==', '/yr270qn8LzgLsh8bFQSOw==', '83hg9YUAVATXP1jly5rY5g==', 'n8X9y4/ki7ZrWXPr4J5suA==', 'M88re0RIWY4NF0w7/z6VRg==', 'UDxj6tOzyCbCCzCK+o8OWU6VXd33Ja4ql1yGC9Leufg=', 'EJl5Rx42MVsOtfOvn7JcRA==', 'mfaEjOqNlJsxISmRZ33MdQ==', '235' , 'n5lKOAAxYzcV8wg8Ty/wWA==', 'K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u');
+/* MASTER */
+INSERT IGNORE INTO users(user_id, user_name, user_last_name, user_mail, user_role, user_image_route, user_image_name, user_password, user_phone, user_active)
+VALUES('CCEpngEGfhLKMstgG81ELQ==', '/yr270qn8LzgLsh8bFQSOw==', '83hg9YUAVATXP1jly5rY5g==', 'n8X9y4/ki7ZrWXPr4J5suA==', 'hUJKM96htIhqE9Zm1yfc5A==', 'UDxj6tOzyCbCCzCK+o8OWU6VXd33Ja4ql1yGC9Leufg=', 'EJl5Rx42MVsOtfOvn7JcRA==', 'soCu+qQ/+BRNSynTbTCdcg==', 'n5lKOAAxYzcV8wg8Ty/wWA==', 'K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u');
 
 INSERT IGNORE INTO users_block_status(block_status_user_id, block_status, block_status_attempt_count, block_status_end, block_status_first_try) 
 VALUES('TDynq6oCQ/QJKl5gI3x/Yw==', 'K992SZTEVF57Ki/fu/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u','1', null, null);
 
+/*ADMIN*/
+INSERT IGNORE INTO users(user_id, user_name, user_last_name, user_mail, user_role, user_image_route, user_image_name, user_password, user_phone, user_active)
+VALUES('c2OuJxQqABPRxKy/kPXW2A==', '5FB3bF4LheVY0H6KFiHt/g==', '+RzQUjtQ3UxomiHSZ0fmuQ==', 'S9FqHlkcN9TEgUKgVz/iTA==', 'M88re0RIWY4NF0w7/z6VRg==', 'CtarrfvT/WbyQwRI4y+J7ZxL3mwfw49jKVkGIX6LMVbnHbXQ/sEcQvTwCi+undDii4eUS9Zkgo93svn72ZXyX2r61k8ydfmPyOR1FhTHWuLmxVlzHSrQCRLmIortSRA5', 'fJ5rBMyacmtSuKFHHH34nA==', 'FtQTVKWSz1xkndWtqwuxQQ==', 'EtvVCnIlzRb1kVZUnbvHxg==', 'K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u');
+
+INSERT IGNORE INTO users_block_status(block_status_user_id, block_status, block_status_attempt_count, block_status_end, block_status_first_try) 
+VALUES('c2OuJxQqABPRxKy/kPXW2A==', 'K992SZTEVF57Ki/fu/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u','1', null, null);
+
 /*WAITER*/
-INSERT IGNORE INTO users(user_id, user_name, user_last_name, user_mail, user_role, user_image_route, user_image_name, user_password, user_shortpass, user_phone, user_active)
-VALUES ('2vvta/FxVZrx0LnHV1o1hQ==', 'QRCsHA2XcWk4Ac701foTQw==', 'sAO9BHdAVjaRXiIsWwilwQ==', 'hVFgEuga1V9Q3mPemVSRWQ==', 'bv2ha6jljpAl7dOl6aOVYg==', 'UDxj6tOzyCbCCzCK+o8OWU6VXd33Ja4ql1yGC9Leufg=', 'EJl5Rx42MVsOtfOvn7JcRA==', 'bksAKCCiy+276R0setIqgA==', '236' , 'A0qPUcwXR5TCVcPFTmhJvQ==', 'K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u');
+INSERT IGNORE INTO users(user_id, user_name, user_last_name, user_mail, user_role, user_image_route, user_image_name, user_password, user_phone, user_active)
+VALUES ('2vvta/FxVZrx0LnHV1o1hQ==', 'QRCsHA2XcWk4Ac701foTQw==', 'sAO9BHdAVjaRXiIsWwilwQ==', 'hVFgEuga1V9Q3mPemVSRWQ==', 'bv2ha6jljpAl7dOl6aOVYg==', 'UDxj6tOzyCbCCzCK+o8OWU6VXd33Ja4ql1yGC9Leufg=', 'EJl5Rx42MVsOtfOvn7JcRA==', 'zTYtDrWavkAV7JB2zpvq8g==', 'A0qPUcwXR5TCVcPFTmhJvQ==', 'K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u');
 
 INSERT IGNORE INTO users_block_status(block_status_user_id, block_status, block_status_attempt_count, block_status_end, block_status_first_try) 
 VALUES('2vvta/FxVZrx0LnHV1o1hQ==', 'K992SZTEVF57Ki/fu/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u','1', null, null);
 
-INSERT IGNORE INTO users(user_id, user_name, user_last_name, user_mail, user_role, user_image_route, user_image_name, user_password, user_shortpass, user_phone, user_active)
-VALUES('Sj/an1ATwGJMnFdlYALugg==', 'XL8ni+01yoi1rijLH+M/QQ==', 'jhEO7tqfHYb3oxAUrLXQaQ==', '2bQ4sPCWzqqNKSmr/1A8Lg==', 'bv2ha6jljpAl7dOl6aOVYg==', 'UDxj6tOzyCbCCzCK+o8OWU6VXd33Ja4ql1yGC9Leufg=', 'EJl5Rx42MVsOtfOvn7JcRA==', 'MuBNBKsKVk4mMQbdaaB4HQ==', '237', '5OWzUhs8mITFdLUxTMRorw==', 'K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u');
+INSERT IGNORE INTO users(user_id, user_name, user_last_name, user_mail, user_role, user_image_route, user_image_name, user_password, user_phone, user_active)
+VALUES('Sj/an1ATwGJMnFdlYALugg==', 'XL8ni+01yoi1rijLH+M/QQ==', 'jhEO7tqfHYb3oxAUrLXQaQ==', '2bQ4sPCWzqqNKSmr/1A8Lg==', 'bv2ha6jljpAl7dOl6aOVYg==', 'UDxj6tOzyCbCCzCK+o8OWU6VXd33Ja4ql1yGC9Leufg=', 'EJl5Rx42MVsOtfOvn7JcRA==', 'zoA6OEf6DGiq/khxCpjp1A==', 'XHbHfEeqwg5euqsZTp2l8w==', 'K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u');
 
 INSERT IGNORE INTO users_block_status(block_status_user_id, block_status, block_status_attempt_count, block_status_end, block_status_first_try) 
 VALUES('Sj/an1ATwGJMnFdlYALugg==', 'K992SZTEVF57Ki/fu/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u','1', null, null);
 
 /*DELIVERY*/
-INSERT IGNORE INTO users(user_id, user_name, user_last_name, user_mail, user_role, user_image_route, user_image_name, user_password, user_shortpass, user_phone, user_active) 
-VALUES('+4nmfIJvZS+4BjBP1O7JuQ==', 'NO5yj7pQy1xfFtgklexYxg==', 'uvbROt/OhL+sjODdHct6fA==', '91YykS5APUj+hv37BWf3Sg==', 'INIKjDsbEsznKLwFmrgNAw==', 'CtarrfvT/WbyQwRI4y+J7ZxL3mwfw49jKVkGIX6LMVbnHbXQ/sEcQvTwCi+undDi7qqcr9bQj+WqoYWWXlInlx+aRV6D1ENTSIOEEnTf1r7NNuwoYVKrY2+0+z5Su9Zu', 'EJl5Rx42MVsOtfOvn7JcRA==', 'Cwshhq0bCO0DfChF6YX97g==', '238', '7xb/d+X2gc1sObFJRJm46A==', 'K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u');
+INSERT IGNORE INTO users(user_id, user_name, user_last_name, user_mail, user_role, user_image_route, user_image_name, user_password, user_phone, user_active) 
+VALUES('+4nmfIJvZS+4BjBP1O7JuQ==', 'NO5yj7pQy1xfFtgklexYxg==', 'uvbROt/OhL+sjODdHct6fA==', '91YykS5APUj+hv37BWf3Sg==', 'INIKjDsbEsznKLwFmrgNAw==', 'CtarrfvT/WbyQwRI4y+J7ZxL3mwfw49jKVkGIX6LMVbnHbXQ/sEcQvTwCi+undDi7qqcr9bQj+WqoYWWXlInlx+aRV6D1ENTSIOEEnTf1r7NNuwoYVKrY2+0+z5Su9Zu', 'EJl5Rx42MVsOtfOvn7JcRA==', '4AfSS14eN9jLPwMqBNjJYg==', '7xb/d+X2gc1sObFJRJm46A==', 'K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u');
 INSERT IGNORE INTO users_block_status(block_status_user_id, block_status, block_status_attempt_count, block_status_end, block_status_first_try) 
 VALUES('+4nmfIJvZS+4BjBP1O7JuQ==', 'K992SZTEVF57Ki/fu/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u','1', null, null);
 
-INSERT IGNORE INTO users(user_id, user_name, user_last_name, user_mail, user_role, user_image_route, user_image_name, user_password, user_shortpass, user_phone, user_active)
-VALUES('0Y5fBhpjfddGEAL5j/tgiQ==', 'wd1VjMtB0vv9aVckQne63u6pWmTI3Ilc8iLlnlf5lfA=', 'WBdapT4Pe5436nTIBs9b4Q==', 'p8A//bVlvusZseb0/mYCFw==', 'INIKjDsbEsznKLwFmrgNAw==', 'CtarrfvT/WbyQwRI4y+J7ZxL3mwfw49jKVkGIX6LMVbnHbXQ/sEcQvTwCi+undDi7qqcr9bQj+WqoYWWXlInlx+aRV6D1ENTSIOEEnTf1r7NNuwoYVKrY2+0+z5Su9Zu', 'EJl5Rx42MVsOtfOvn7JcRA==', 'Cwshhq0bCO0DfChF6YX97g==', '239', 'Zi8w6vzrmrlda2PL0TaOGw==', 'K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u');
+INSERT IGNORE INTO users(user_id, user_name, user_last_name, user_mail, user_role, user_image_route, user_image_name, user_password, user_phone, user_active)
+VALUES('0Y5fBhpjfddGEAL5j/tgiQ==', 'wd1VjMtB0vv9aVckQne63u6pWmTI3Ilc8iLlnlf5lfA=', 'WBdapT4Pe5436nTIBs9b4Q==', 'p8A//bVlvusZseb0/mYCFw==', 'INIKjDsbEsznKLwFmrgNAw==', 'CtarrfvT/WbyQwRI4y+J7ZxL3mwfw49jKVkGIX6LMVbnHbXQ/sEcQvTwCi+undDi7qqcr9bQj+WqoYWWXlInlx+aRV6D1ENTSIOEEnTf1r7NNuwoYVKrY2+0+z5Su9Zu', 'EJl5Rx42MVsOtfOvn7JcRA==', 'OJo/RLaEHp8/1QVSlasN5Q==', 'Zi8w6vzrmrlda2PL0TaOGw==', 'K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u');
 INSERT IGNORE INTO users_block_status(block_status_user_id, block_status, block_status_attempt_count, block_status_end, block_status_first_try) 
 VALUES('0Y5fBhpjfddGEAL5j/tgiQ==', 'K992SZTEVF57Ki/fu/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u','1', null, null);
 
-INSERT IGNORE INTO users(user_id, user_name, user_last_name, user_mail, user_role, user_image_route, user_image_name, user_password, user_shortpass, user_phone, user_active) 
-VALUES('obZQObtlJpAhIUIIPLOHCA==', 'QRCsHA2XcWk4Ac701foTQw==', '6f69CIAZqNMDNskG8gcD5A==', 'Sitwsd4DuUfe/Q7nccI0UrSCY4uIq8oA8PG4e754zm8=', 'INIKjDsbEsznKLwFmrgNAw==', 'CtarrfvT/WbyQwRI4y+J7ZxL3mwfw49jKVkGIX6LMVbnHbXQ/sEcQvTwCi+undDi7qqcr9bQj+WqoYWWXlInlx+aRV6D1ENTSIOEEnTf1r7NNuwoYVKrY2+0+z5Su9Zu', 'EJl5Rx42MVsOtfOvn7JcRA==', 'Cwshhq0bCO0DfChF6YX97g==', '23:', 'SDWn0csok4GFznUslGXHAQ==', 'K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u');
-
+INSERT IGNORE INTO users(user_id, user_name, user_last_name, user_mail, user_role, user_image_route, user_image_name, user_password, user_phone, user_active) 
+VALUES('obZQObtlJpAhIUIIPLOHCA==', 'QRCsHA2XcWk4Ac701foTQw==', '6f69CIAZqNMDNskG8gcD5A==', 'Sitwsd4DuUfe/Q7nccI0UrSCY4uIq8oA8PG4e754zm8=', 'INIKjDsbEsznKLwFmrgNAw==', 'CtarrfvT/WbyQwRI4y+J7ZxL3mwfw49jKVkGIX6LMVbnHbXQ/sEcQvTwCi+undDi7qqcr9bQj+WqoYWWXlInlx+aRV6D1ENTSIOEEnTf1r7NNuwoYVKrY2+0+z5Su9Zu', 'EJl5Rx42MVsOtfOvn7JcRA==', '3dW3fA1Ez0gradQtb3IRCQ==', 'SDWn0csok4GFznUslGXHAQ==', 'K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u');
 INSERT IGNORE INTO users_block_status(block_status_user_id, block_status, block_status_attempt_count, block_status_end, block_status_first_try) 
 VALUES('obZQObtlJpAhIUIIPLOHCA==', 'K992SZTEVF57Ki/fu/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u','1', null, null);
 
 /*COCINEROS*/
-INSERT INTO users(user_id, user_name, user_last_name, user_mail, user_role, user_image_route, user_image_name, user_password, user_shortpass, user_phone, user_active)
-VALUES( 'Yo1RbqTcPvBF2q3UkmIAfg==', 'riUGD9ryVPk0CwhqPa4fWQ==', 'esWJlrE6I5ZjYzYef6VTPA==', '09jQos69rQCImTC5XzoICw==', 'sY15wMEn6OHKR/WVXUaJIA==', 'UDxj6tOzyCbCCzCK+o8OWU6VXd33Ja4ql1yGC9Leufg=', 'EJl5Rx42MVsOtfOvn7JcRA==', '1eDBlDUvKGfxHMRQlH6hVQ==', '998', '23CGswJD8Ktk9g14crCj/A==', 'K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u');
+INSERT INTO users(user_id, user_name, user_last_name, user_mail, user_role, user_image_route, user_image_name, user_password, user_phone, user_active)
+VALUES( 'Yo1RbqTcPvBF2q3UkmIAfg==', 'riUGD9ryVPk0CwhqPa4fWQ==', 'esWJlrE6I5ZjYzYef6VTPA==', '09jQos69rQCImTC5XzoICw==', 'sY15wMEn6OHKR/WVXUaJIA==', 'UDxj6tOzyCbCCzCK+o8OWU6VXd33Ja4ql1yGC9Leufg=', 'EJl5Rx42MVsOtfOvn7JcRA==', 'uaV3b5jRIPtaS2fmWQ55Hg==', 'CseQb2fSrgkXueg+fxqUhA==', 'K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u');
 INSERT IGNORE INTO users_block_status(block_status_user_id, block_status, block_status_attempt_count, block_status_end, block_status_first_try) 
 VALUES('Yo1RbqTcPvBF2q3UkmIAfg==', 'K992SZTEVF57Ki/fu/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u','1', null, null);
 
-INSERT INTO users(user_id, user_name, user_last_name, user_mail, user_role, user_image_route, user_image_name, user_password, user_shortpass, user_phone, user_active)
-VALUES( 'vSk6aw1v8x4Z7EMKHqYojA==', 'Qv1ZQRDXMqeWaUdA6qW6Cg==', 'HRks0cDZRTIJJkG4LbrYhw==', 'QXjkmfb79jJrq5T8TN11Xg==', 'sY15wMEn6OHKR/WVXUaJIA==', 'UDxj6tOzyCbCCzCK+o8OWU6VXd33Ja4ql1yGC9Leufg=', 'EJl5Rx42MVsOtfOvn7JcRA==', '1eDBlDUvKGfxHMRQlH6hVQ==', '774', 'pS6mMJhSWqVOmzhyxJCK7A==', 'K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u');
+INSERT INTO users(user_id, user_name, user_last_name, user_mail, user_role, user_image_route, user_image_name, user_password, user_phone, user_active)
+VALUES( 'vSk6aw1v8x4Z7EMKHqYojA==', 'Qv1ZQRDXMqeWaUdA6qW6Cg==', 'HRks0cDZRTIJJkG4LbrYhw==', 'QXjkmfb79jJrq5T8TN11Xg==', 'sY15wMEn6OHKR/WVXUaJIA==', 'UDxj6tOzyCbCCzCK+o8OWU6VXd33Ja4ql1yGC9Leufg=', 'EJl5Rx42MVsOtfOvn7JcRA==', '+02c+s2+bPc02GzkJH/ydw==', 'Z4B4iIR6UdpY+j3IKaiDcA==', 'K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u');
 INSERT IGNORE INTO users_block_status(block_status_user_id, block_status, block_status_attempt_count, block_status_end, block_status_first_try) 
 VALUES('vSk6aw1v8x4Z7EMKHqYojA==', 'K992SZTEVF57Ki/fu/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u','1', null, null);
 

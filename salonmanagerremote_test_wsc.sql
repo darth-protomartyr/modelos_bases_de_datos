@@ -25,10 +25,10 @@ DROP TABLE IF EXISTS `cashier_workshifts`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cashier_workshifts` (
-  `cashier_workshift_id` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
-  `cashier_workshift_active` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `cashier_id_fkey` varchar(200) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `workshift_id_fkey` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `cashier_workshift_id` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `cashier_workshift_active` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `cashier_id_fkey` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `workshift_id_fkey` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   PRIMARY KEY (`cashier_workshift_id`),
   KEY `cashier_id_fkey` (`cashier_id_fkey`),
   KEY `workshift_id_fkey` (`workshift_id_fkey`),
@@ -55,7 +55,7 @@ DROP TABLE IF EXISTS `categories`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `categories` (
-  `category_name` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL
+  `category_name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -77,7 +77,7 @@ DROP TABLE IF EXISTS `chars`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `chars` (
-  `char_name` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL
+  `char_name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -99,10 +99,10 @@ DROP TABLE IF EXISTS `chats`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `chats` (
-  `chat_id` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `chat_chaters` varchar(5000) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `chat_views` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `chat_pendant` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL
+  `chat_id` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `chat_chaters` varchar(5000) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `chat_views` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `chat_pendant` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -112,7 +112,7 @@ CREATE TABLE `chats` (
 
 LOCK TABLES `chats` WRITE;
 /*!40000 ALTER TABLE `chats` DISABLE KEYS */;
-INSERT INTO `chats` VALUES ('2','+/TLZWjLqFtcvuHNx/3Yi0JScIvE0MkKlXmze2gRsszoCq2JEJFkDyn5+A56PD0x','oUNzq7116/Ypf67HPbQiOw==','K992SZTEVF57Ki/fu/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u');
+INSERT INTO `chats` VALUES ('2','nnDzDIynss5TApsigxZNVZ3huW4NJoEXIQpi1MQGZ+/oCq2JEJFkDyn5+A56PD0x','oUNzq7116/Ypf67HPbQiOw==','K992SZTEVF57Ki/fu/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u');
 /*!40000 ALTER TABLE `chats` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -124,10 +124,10 @@ DROP TABLE IF EXISTS `chef_workshifts`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `chef_workshifts` (
-  `chef_workshift_id` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
-  `chef_workshift_active` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `chef_id_fkey` varchar(200) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `workshift_id_fkey` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `chef_workshift_id` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `chef_workshift_active` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `chef_id_fkey` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `workshift_id_fkey` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   PRIMARY KEY (`chef_workshift_id`),
   KEY `chef_id_fkey` (`chef_id_fkey`),
   KEY `workshift_id_fkey` (`workshift_id_fkey`),
@@ -154,17 +154,17 @@ DROP TABLE IF EXISTS `config_actual`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `config_actual` (
-  `config_open_ws` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `config_open_ws_id` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `config_indexes_buttons` varchar(5000) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `config_tokken` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `config_update_cashier` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `config_update_waiter` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `config_update_chef` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `config_update_map_tables` text COLLATE utf8mb4_general_ci,
-  `config_update_map_item_monits` text COLLATE utf8mb4_general_ci,
-  `config_itemcard_c` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `config_itemcard_w` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL
+  `config_open_ws` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `config_open_ws_id` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `config_indexes_buttons` varchar(5000) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `config_tokken` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `config_update_cashier` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `config_update_waiter` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `config_update_chef` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `config_update_map_tables` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci,
+  `config_update_map_item_monits` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci,
+  `config_itemcard_c` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `config_itemcard_w` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -174,7 +174,7 @@ CREATE TABLE `config_actual` (
 
 LOCK TABLES `config_actual` WRITE;
 /*!40000 ALTER TABLE `config_actual` DISABLE KEYS */;
-INSERT INTO `config_actual` VALUES ('K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u','2','x7bka9p5GM+yFNNZ6/H22g==','5/Q5Z3zUQcH0VUi1X0cpNw==','e6YbuQSrnAz1xrhdmuu0ZA==','e6YbuQSrnAz1xrhdmuu0ZA==','e6YbuQSrnAz1xrhdmuu0ZA==','m+BC/x9C8dzscCrNe6AKnA==','m+BC/x9C8dzscCrNe6AKnA==','V7kE0Mi4Ezf3r1tquZkRcA==','V7kE0Mi4Ezf3r1tquZkRcA==');
+INSERT INTO `config_actual` VALUES ('K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u','2','x7bka9p5GM+yFNNZ6/H22g==','t4blaW0shD2rz5EdWFhS7g==','MelOj0Fg8cj14HI9+wjRbQ==','MelOj0Fg8cj14HI9+wjRbQ==','MelOj0Fg8cj14HI9+wjRbQ==','m+BC/x9C8dzscCrNe6AKnA==','m+BC/x9C8dzscCrNe6AKnA==','V7kE0Mi4Ezf3r1tquZkRcA==','V7kE0Mi4Ezf3r1tquZkRcA==');
 /*!40000 ALTER TABLE `config_actual` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -186,8 +186,8 @@ DROP TABLE IF EXISTS `config_defer_close_tabs`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `config_defer_close_tabs` (
-  `config_defer_close_tab_id` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
-  `config_defer_close_tab_active` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `config_defer_close_tab_id` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `config_defer_close_tab_active` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   PRIMARY KEY (`config_defer_close_tab_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -209,16 +209,16 @@ DROP TABLE IF EXISTS `config_general`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `config_general` (
-  `config_table_total` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `config_table_num_panes` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `config_table_name_panes` varchar(2000) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `config_table_chart_panes` varchar(200) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `config_table_name_categories` varchar(2000) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `config_table_tip` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `config_modkey` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `config_active` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `config_terminal_kitchen_1` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `config_terminal_waiter_1` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL
+  `config_table_total` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `config_table_num_panes` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `config_table_name_panes` varchar(2000) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `config_table_chart_panes` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `config_table_name_categories` varchar(2000) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `config_table_tip` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `config_modkey` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `config_active` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `config_terminal_kitchen_1` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `config_terminal_waiter_1` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -240,19 +240,19 @@ DROP TABLE IF EXISTS `consumers`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `consumers` (
-  `consumer_id` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
-  `consumer_street` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `consumer_street_num` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `consumer_dept_floor` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `consumer_dept_num` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `consumer_district` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `consumer_area` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `consumer_details` varchar(5000) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `consumer_name` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `consumer_lastname` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `consumer_phone` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `consumer_social_network` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `consumer_active` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `consumer_id` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `consumer_street` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `consumer_street_num` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `consumer_dept_floor` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `consumer_dept_num` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `consumer_district` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `consumer_area` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `consumer_details` varchar(5000) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `consumer_name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `consumer_lastname` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `consumer_phone` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `consumer_social_network` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `consumer_active` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   PRIMARY KEY (`consumer_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -297,12 +297,12 @@ DROP TABLE IF EXISTS `deliverys`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `deliverys` (
-  `delivery_id` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
-  `delivery_consumer_phone` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `delivery_tab_id` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `delivery_user_id` varchar(30) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `delivery_open` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `delivery_active` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `delivery_id` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `delivery_consumer_phone` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `delivery_tab_id` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `delivery_user_id` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `delivery_open` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `delivery_active` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   PRIMARY KEY (`delivery_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -324,9 +324,9 @@ DROP TABLE IF EXISTS `error_stacks`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `error_stacks` (
-  `error_stack_id` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
-  `error_stack_date` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `error_stack_text` varchar(5000) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `error_stack_id` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `error_stack_date` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `error_stack_text` varchar(5000) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   PRIMARY KEY (`error_stack_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -348,11 +348,11 @@ DROP TABLE IF EXISTS `failed_attempts`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `failed_attempts` (
-  `attempt_user_id` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
-  `attempt_ip_address` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `attempt_time` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `attempt_count` varchar(20) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `attempt_is_blocked` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `attempt_user_id` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `attempt_ip_address` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `attempt_time` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `attempt_count` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `attempt_is_blocked` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   PRIMARY KEY (`attempt_user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -374,9 +374,9 @@ DROP TABLE IF EXISTS `failed_attempts_tokken_k1`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `failed_attempts_tokken_k1` (
-  `attempt_tokken_time` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `attempt_tokken_count` varchar(20) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `attempt_tokken_is_blocked` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL
+  `attempt_tokken_time` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `attempt_tokken_count` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `attempt_tokken_is_blocked` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -398,9 +398,9 @@ DROP TABLE IF EXISTS `failed_attempts_tokken_w1`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `failed_attempts_tokken_w1` (
-  `attempt_tokken_time` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `attempt_tokken_count` varchar(20) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `attempt_tokken_is_blocked` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL
+  `attempt_tokken_time` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `attempt_tokken_count` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `attempt_tokken_is_blocked` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -422,10 +422,10 @@ DROP TABLE IF EXISTS `item_card_gift_tabs`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `item_card_gift_tabs` (
-  `item_card_gift_tab_id` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
-  `item_card_gift_tab_active` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `item_card_gift_id_fkey` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `table_id_fkey` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `item_card_gift_tab_id` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `item_card_gift_tab_active` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `item_card_gift_id_fkey` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `table_id_fkey` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   PRIMARY KEY (`item_card_gift_tab_id`),
   KEY `item_card_gift_id_fkey` (`item_card_gift_id_fkey`),
   KEY `table_id_fkey` (`table_id_fkey`),
@@ -451,10 +451,10 @@ DROP TABLE IF EXISTS `item_card_order_tabs`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `item_card_order_tabs` (
-  `item_card_order_tab_id` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
-  `item_card_order_tab_active` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `item_card_order_id_fkey` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `table_id_fkey` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `item_card_order_tab_id` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `item_card_order_tab_active` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `item_card_order_id_fkey` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `table_id_fkey` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   PRIMARY KEY (`item_card_order_tab_id`),
   KEY `item_card_order_id_fkey` (`item_card_order_id_fkey`),
   KEY `table_id_fkey` (`table_id_fkey`),
@@ -480,10 +480,10 @@ DROP TABLE IF EXISTS `item_card_payed_nd_tabs`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `item_card_payed_nd_tabs` (
-  `item_card_payed_nd_tab_id` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
-  `item_card_payed_nd_tab_active` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `item_card_payed_nd_id_fkey` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `table_id_fkey` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `item_card_payed_nd_tab_id` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `item_card_payed_nd_tab_active` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `item_card_payed_nd_id_fkey` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `table_id_fkey` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   PRIMARY KEY (`item_card_payed_nd_tab_id`),
   KEY `item_card_payed_nd_id_fkey` (`item_card_payed_nd_id_fkey`),
   KEY `table_id_fkey` (`table_id_fkey`),
@@ -509,10 +509,10 @@ DROP TABLE IF EXISTS `item_card_payed_tabs`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `item_card_payed_tabs` (
-  `item_card_payed_tab_id` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
-  `item_card_payed_tab_active` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `item_card_payed_id_fkey` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `table_id_fkey` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `item_card_payed_tab_id` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `item_card_payed_tab_active` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `item_card_payed_id_fkey` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `table_id_fkey` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   PRIMARY KEY (`item_card_payed_tab_id`),
   KEY `item_card_payed_id_fkey` (`item_card_payed_id_fkey`),
   KEY `table_id_fkey` (`table_id_fkey`),
@@ -538,19 +538,19 @@ DROP TABLE IF EXISTS `item_cards`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `item_cards` (
-  `item_card_id` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
-  `item_card_code` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `item_card_name` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `item_card_category` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `item_card_description` varchar(2500) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `item_card_cost` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `item_card_price` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `item_card_stock` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `item_card_date_creation` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `item_card_date_update` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `item_card_tip` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `item_card_station` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `item_card_active` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `item_card_id` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `item_card_code` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `item_card_name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `item_card_category` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `item_card_description` varchar(2500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `item_card_cost` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `item_card_price` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `item_card_stock` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `item_card_date_creation` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `item_card_date_update` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `item_card_tip` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `item_card_station` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `item_card_active` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   PRIMARY KEY (`item_card_id`),
   UNIQUE KEY `item_card_code` (`item_card_code`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -574,25 +574,25 @@ DROP TABLE IF EXISTS `item_monits`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `item_monits` (
-  `item_monit_id` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
-  `item_monit_table_id` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `item_monit_item_id` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `item_monit_station` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `item_monit_ws_id` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `item_monit_tipe` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `item_monit_init_bool` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `item_monit_init_date` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `item_monit_cook_bool` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `item_monit_cook_date` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `item_monit_ready_bool` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `item_monit_ready_date` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `item_monit_otw_bool` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `item_monit_otw_date` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `item_monit_open` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `item_monit_active` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `item_monit_indications` varchar(5000) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `item_monit_to_watch` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `item_monit_anuled` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `item_monit_id` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `item_monit_table_id` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `item_monit_item_id` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `item_monit_station` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `item_monit_ws_id` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `item_monit_tipe` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `item_monit_init_bool` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `item_monit_init_date` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `item_monit_cook_bool` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `item_monit_cook_date` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `item_monit_ready_bool` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `item_monit_ready_date` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `item_monit_otw_bool` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `item_monit_otw_date` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `item_monit_open` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `item_monit_active` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `item_monit_indications` varchar(5000) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `item_monit_to_watch` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `item_monit_anuled` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   PRIMARY KEY (`item_monit_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -615,16 +615,16 @@ DROP TABLE IF EXISTS `item_sales_statics`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `item_sales_statics` (
   `item_sale_static_id` int NOT NULL AUTO_INCREMENT,
-  `item_sale_id` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `item_sale_category` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `item_sale_tab_pos` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `item_sale_waiter_id` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `item_sale_workshift_id` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `item_sale_cost` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `item_sale_price` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `item_sale_client_id` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `item_sale_date` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `item_sale_active` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `item_sale_id` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `item_sale_category` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `item_sale_tab_pos` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `item_sale_waiter_id` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `item_sale_workshift_id` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `item_sale_cost` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `item_sale_price` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `item_sale_client_id` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `item_sale_date` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `item_sale_active` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   PRIMARY KEY (`item_sale_static_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -647,10 +647,10 @@ DROP TABLE IF EXISTS `messages`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `messages` (
   `message_id` int NOT NULL,
-  `message_wsc_id` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `message_user_id` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `message_string` varchar(5000) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `message_timestamp` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `message_wsc_id` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `message_user_id` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `message_string` varchar(5000) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `message_timestamp` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   PRIMARY KEY (`message_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -672,14 +672,14 @@ DROP TABLE IF EXISTS `money_flows`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `money_flows` (
-  `money_flow_id` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
-  `money_flow_kind` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `money_flow_m_k` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `money_flow_amount` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `money_flow_comment` varchar(5000) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `money_flow_date` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `money_flow_ws_id` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `money_flow_active` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `money_flow_id` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `money_flow_kind` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `money_flow_m_k` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `money_flow_amount` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `money_flow_comment` varchar(5000) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `money_flow_date` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `money_flow_ws_id` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `money_flow_active` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   PRIMARY KEY (`money_flow_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -701,12 +701,12 @@ DROP TABLE IF EXISTS `registers`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `registers` (
-  `register_id` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
-  `register_ejecution` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `register_userId` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `register_object_kind` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `register_object_id` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `register_operation` varchar(900) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `register_id` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `register_ejecution` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `register_userId` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `register_object_kind` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `register_object_id` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `register_operation` varchar(900) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   PRIMARY KEY (`register_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -717,7 +717,7 @@ CREATE TABLE `registers` (
 
 LOCK TABLES `registers` WRITE;
 /*!40000 ALTER TABLE `registers` DISABLE KEYS */;
-INSERT INTO `registers` VALUES ('bA1rEB+Ir64SCz9tT+Pd3w==','fTjM3xYh0TFteO6+41umpw==','CCEpngEGfhLKMstgG81ELQ==','OGcZWWuU5x4c90iZf9V0IQ==','blLvUsU8V7dogEDDLrtoQA==','QIWbb3+El2V3/jk7xfU55w==');
+INSERT INTO `registers` VALUES ('ZHeCYpT691pGcn1J9Blv3g==','iFbtGq5P1YUbMdK6YvHWyA==','CCEpngEGfhLKMstgG81ELQ==','OGcZWWuU5x4c90iZf9V0IQ==','blLvUsU8V7dogEDDLrtoQA==','QIWbb3+El2V3/jk7xfU55w==');
 /*!40000 ALTER TABLE `registers` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -729,7 +729,7 @@ DROP TABLE IF EXISTS `spaces`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `spaces` (
-  `space_name` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL
+  `space_name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -751,23 +751,23 @@ DROP TABLE IF EXISTS `tabs`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `tabs` (
-  `table_num` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `table_pos` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `table_open_time` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `table_close_time` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `table_id` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
-  `table_open` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `table_bill` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `table_to_pay` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `table_discount` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `table_error` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `table_price_correction` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `table_amount_cash` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `table_amount_electronic` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `table_total` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `table_comments` varchar(500) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `table_workshift` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `table_active` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `table_num` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `table_pos` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `table_open_time` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `table_close_time` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `table_id` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `table_open` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `table_bill` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `table_to_pay` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `table_discount` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `table_error` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `table_price_correction` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `table_amount_cash` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `table_amount_electronic` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `table_total` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `table_comments` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `table_workshift` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `table_active` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   PRIMARY KEY (`table_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -789,17 +789,16 @@ DROP TABLE IF EXISTS `users`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `users` (
-  `user_id` varchar(200) COLLATE utf8mb4_general_ci NOT NULL,
-  `user_name` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `user_last_name` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `user_mail` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `user_role` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `user_image_route` varchar(5000) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `user_image_name` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `user_password` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `user_shortpass` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `user_phone` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `user_active` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `user_id` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `user_name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `user_last_name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `user_mail` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `user_role` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `user_image_route` varchar(5000) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `user_image_name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `user_password` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `user_phone` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `user_active` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   PRIMARY KEY (`user_id`),
   UNIQUE KEY `user_id` (`user_id`),
   UNIQUE KEY `user_mail` (`user_mail`),
@@ -813,7 +812,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES ('+4nmfIJvZS+4BjBP1O7JuQ==','NO5yj7pQy1xfFtgklexYxg==','uvbROt/OhL+sjODdHct6fA==','91YykS5APUj+hv37BWf3Sg==','INIKjDsbEsznKLwFmrgNAw==','CtarrfvT/WbyQwRI4y+J7ZxL3mwfw49jKVkGIX6LMVbnHbXQ/sEcQvTwCi+undDi7qqcr9bQj+WqoYWWXlInlx+aRV6D1ENTSIOEEnTf1r7NNuwoYVKrY2+0+z5Su9Zu','EJl5Rx42MVsOtfOvn7JcRA==','Cwshhq0bCO0DfChF6YX97g==','238','7xb/d+X2gc1sObFJRJm46A==','K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u'),('0Y5fBhpjfddGEAL5j/tgiQ==','wd1VjMtB0vv9aVckQne63u6pWmTI3Ilc8iLlnlf5lfA=','WBdapT4Pe5436nTIBs9b4Q==','p8A//bVlvusZseb0/mYCFw==','INIKjDsbEsznKLwFmrgNAw==','CtarrfvT/WbyQwRI4y+J7ZxL3mwfw49jKVkGIX6LMVbnHbXQ/sEcQvTwCi+undDi7qqcr9bQj+WqoYWWXlInlx+aRV6D1ENTSIOEEnTf1r7NNuwoYVKrY2+0+z5Su9Zu','EJl5Rx42MVsOtfOvn7JcRA==','Cwshhq0bCO0DfChF6YX97g==','239','Zi8w6vzrmrlda2PL0TaOGw==','K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u'),('2vvta/FxVZrx0LnHV1o1hQ==','QRCsHA2XcWk4Ac701foTQw==','sAO9BHdAVjaRXiIsWwilwQ==','hVFgEuga1V9Q3mPemVSRWQ==','bv2ha6jljpAl7dOl6aOVYg==','UDxj6tOzyCbCCzCK+o8OWU6VXd33Ja4ql1yGC9Leufg=','EJl5Rx42MVsOtfOvn7JcRA==','bksAKCCiy+276R0setIqgA==','236','A0qPUcwXR5TCVcPFTmhJvQ==','K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u'),('c2OuJxQqABPRxKy/kPXW2A==','5FB3bF4LheVY0H6KFiHt/g==','+RzQUjtQ3UxomiHSZ0fmuQ==','S9FqHlkcN9TEgUKgVz/iTA==','M88re0RIWY4NF0w7/z6VRg==','CtarrfvT/WbyQwRI4y+J7ZxL3mwfw49jKVkGIX6LMVbnHbXQ/sEcQvTwCi+undDii4eUS9Zkgo93svn72ZXyX2r61k8ydfmPyOR1FhTHWuLmxVlzHSrQCRLmIortSRA5','fJ5rBMyacmtSuKFHHH34nA==','mfaEjOqNlJsxISmRZ33MdQ==','234','EtvVCnIlzRb1kVZUnbvHxg==','K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u'),('CCEpngEGfhLKMstgG81ELQ==','/yr270qn8LzgLsh8bFQSOw==','83hg9YUAVATXP1jly5rY5g==','n8X9y4/ki7ZrWXPr4J5suA==','M88re0RIWY4NF0w7/z6VRg==','UDxj6tOzyCbCCzCK+o8OWU6VXd33Ja4ql1yGC9Leufg=','EJl5Rx42MVsOtfOvn7JcRA==','mfaEjOqNlJsxISmRZ33MdQ==','235','n5lKOAAxYzcV8wg8Ty/wWA==','K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u'),('obZQObtlJpAhIUIIPLOHCA==','QRCsHA2XcWk4Ac701foTQw==','6f69CIAZqNMDNskG8gcD5A==','Sitwsd4DuUfe/Q7nccI0UrSCY4uIq8oA8PG4e754zm8=','INIKjDsbEsznKLwFmrgNAw==','CtarrfvT/WbyQwRI4y+J7ZxL3mwfw49jKVkGIX6LMVbnHbXQ/sEcQvTwCi+undDi7qqcr9bQj+WqoYWWXlInlx+aRV6D1ENTSIOEEnTf1r7NNuwoYVKrY2+0+z5Su9Zu','EJl5Rx42MVsOtfOvn7JcRA==','Cwshhq0bCO0DfChF6YX97g==','23:','SDWn0csok4GFznUslGXHAQ==','K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u'),('Sj/an1ATwGJMnFdlYALugg==','XL8ni+01yoi1rijLH+M/QQ==','jhEO7tqfHYb3oxAUrLXQaQ==','2bQ4sPCWzqqNKSmr/1A8Lg==','bv2ha6jljpAl7dOl6aOVYg==','UDxj6tOzyCbCCzCK+o8OWU6VXd33Ja4ql1yGC9Leufg=','EJl5Rx42MVsOtfOvn7JcRA==','MuBNBKsKVk4mMQbdaaB4HQ==','237','5OWzUhs8mITFdLUxTMRorw==','K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u'),('vSk6aw1v8x4Z7EMKHqYojA==','Qv1ZQRDXMqeWaUdA6qW6Cg==','HRks0cDZRTIJJkG4LbrYhw==','QXjkmfb79jJrq5T8TN11Xg==','sY15wMEn6OHKR/WVXUaJIA==','UDxj6tOzyCbCCzCK+o8OWU6VXd33Ja4ql1yGC9Leufg=','EJl5Rx42MVsOtfOvn7JcRA==','1eDBlDUvKGfxHMRQlH6hVQ==','774','pS6mMJhSWqVOmzhyxJCK7A==','K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u'),('Yo1RbqTcPvBF2q3UkmIAfg==','riUGD9ryVPk0CwhqPa4fWQ==','esWJlrE6I5ZjYzYef6VTPA==','09jQos69rQCImTC5XzoICw==','sY15wMEn6OHKR/WVXUaJIA==','UDxj6tOzyCbCCzCK+o8OWU6VXd33Ja4ql1yGC9Leufg=','EJl5Rx42MVsOtfOvn7JcRA==','1eDBlDUvKGfxHMRQlH6hVQ==','998','23CGswJD8Ktk9g14crCj/A==','K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u');
+INSERT INTO `users` VALUES ('+4nmfIJvZS+4BjBP1O7JuQ==','NO5yj7pQy1xfFtgklexYxg==','uvbROt/OhL+sjODdHct6fA==','91YykS5APUj+hv37BWf3Sg==','INIKjDsbEsznKLwFmrgNAw==','CtarrfvT/WbyQwRI4y+J7ZxL3mwfw49jKVkGIX6LMVbnHbXQ/sEcQvTwCi+undDi7qqcr9bQj+WqoYWWXlInlx+aRV6D1ENTSIOEEnTf1r7NNuwoYVKrY2+0+z5Su9Zu','EJl5Rx42MVsOtfOvn7JcRA==','4AfSS14eN9jLPwMqBNjJYg==','7xb/d+X2gc1sObFJRJm46A==','K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u'),('0Y5fBhpjfddGEAL5j/tgiQ==','wd1VjMtB0vv9aVckQne63u6pWmTI3Ilc8iLlnlf5lfA=','WBdapT4Pe5436nTIBs9b4Q==','p8A//bVlvusZseb0/mYCFw==','INIKjDsbEsznKLwFmrgNAw==','CtarrfvT/WbyQwRI4y+J7ZxL3mwfw49jKVkGIX6LMVbnHbXQ/sEcQvTwCi+undDi7qqcr9bQj+WqoYWWXlInlx+aRV6D1ENTSIOEEnTf1r7NNuwoYVKrY2+0+z5Su9Zu','EJl5Rx42MVsOtfOvn7JcRA==','OJo/RLaEHp8/1QVSlasN5Q==','Zi8w6vzrmrlda2PL0TaOGw==','K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u'),('2vvta/FxVZrx0LnHV1o1hQ==','QRCsHA2XcWk4Ac701foTQw==','sAO9BHdAVjaRXiIsWwilwQ==','hVFgEuga1V9Q3mPemVSRWQ==','bv2ha6jljpAl7dOl6aOVYg==','UDxj6tOzyCbCCzCK+o8OWU6VXd33Ja4ql1yGC9Leufg=','EJl5Rx42MVsOtfOvn7JcRA==','zTYtDrWavkAV7JB2zpvq8g==','A0qPUcwXR5TCVcPFTmhJvQ==','K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u'),('c2OuJxQqABPRxKy/kPXW2A==','5FB3bF4LheVY0H6KFiHt/g==','+RzQUjtQ3UxomiHSZ0fmuQ==','S9FqHlkcN9TEgUKgVz/iTA==','M88re0RIWY4NF0w7/z6VRg==','CtarrfvT/WbyQwRI4y+J7ZxL3mwfw49jKVkGIX6LMVbnHbXQ/sEcQvTwCi+undDii4eUS9Zkgo93svn72ZXyX2r61k8ydfmPyOR1FhTHWuLmxVlzHSrQCRLmIortSRA5','fJ5rBMyacmtSuKFHHH34nA==','FtQTVKWSz1xkndWtqwuxQQ==','EtvVCnIlzRb1kVZUnbvHxg==','K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u'),('CCEpngEGfhLKMstgG81ELQ==','/yr270qn8LzgLsh8bFQSOw==','83hg9YUAVATXP1jly5rY5g==','n8X9y4/ki7ZrWXPr4J5suA==','hUJKM96htIhqE9Zm1yfc5A==','UDxj6tOzyCbCCzCK+o8OWU6VXd33Ja4ql1yGC9Leufg=','EJl5Rx42MVsOtfOvn7JcRA==','soCu+qQ/+BRNSynTbTCdcg==','n5lKOAAxYzcV8wg8Ty/wWA==','K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u'),('obZQObtlJpAhIUIIPLOHCA==','QRCsHA2XcWk4Ac701foTQw==','6f69CIAZqNMDNskG8gcD5A==','Sitwsd4DuUfe/Q7nccI0UrSCY4uIq8oA8PG4e754zm8=','INIKjDsbEsznKLwFmrgNAw==','CtarrfvT/WbyQwRI4y+J7ZxL3mwfw49jKVkGIX6LMVbnHbXQ/sEcQvTwCi+undDi7qqcr9bQj+WqoYWWXlInlx+aRV6D1ENTSIOEEnTf1r7NNuwoYVKrY2+0+z5Su9Zu','EJl5Rx42MVsOtfOvn7JcRA==','3dW3fA1Ez0gradQtb3IRCQ==','SDWn0csok4GFznUslGXHAQ==','K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u'),('Sj/an1ATwGJMnFdlYALugg==','XL8ni+01yoi1rijLH+M/QQ==','jhEO7tqfHYb3oxAUrLXQaQ==','2bQ4sPCWzqqNKSmr/1A8Lg==','bv2ha6jljpAl7dOl6aOVYg==','UDxj6tOzyCbCCzCK+o8OWU6VXd33Ja4ql1yGC9Leufg=','EJl5Rx42MVsOtfOvn7JcRA==','zoA6OEf6DGiq/khxCpjp1A==','XHbHfEeqwg5euqsZTp2l8w==','K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u'),('vSk6aw1v8x4Z7EMKHqYojA==','Qv1ZQRDXMqeWaUdA6qW6Cg==','HRks0cDZRTIJJkG4LbrYhw==','QXjkmfb79jJrq5T8TN11Xg==','sY15wMEn6OHKR/WVXUaJIA==','UDxj6tOzyCbCCzCK+o8OWU6VXd33Ja4ql1yGC9Leufg=','EJl5Rx42MVsOtfOvn7JcRA==','+02c+s2+bPc02GzkJH/ydw==','Z4B4iIR6UdpY+j3IKaiDcA==','K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u'),('Yo1RbqTcPvBF2q3UkmIAfg==','riUGD9ryVPk0CwhqPa4fWQ==','esWJlrE6I5ZjYzYef6VTPA==','09jQos69rQCImTC5XzoICw==','sY15wMEn6OHKR/WVXUaJIA==','UDxj6tOzyCbCCzCK+o8OWU6VXd33Ja4ql1yGC9Leufg=','EJl5Rx42MVsOtfOvn7JcRA==','uaV3b5jRIPtaS2fmWQ55Hg==','CseQb2fSrgkXueg+fxqUhA==','K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -825,11 +824,11 @@ DROP TABLE IF EXISTS `users_block_status`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `users_block_status` (
-  `block_status_user_id` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
-  `block_status` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `block_status_attempt_count` varchar(20) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `block_status_end` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `block_status_first_try` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `block_status_user_id` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `block_status` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `block_status_attempt_count` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `block_status_end` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `block_status_first_try` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   PRIMARY KEY (`block_status_user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -852,10 +851,10 @@ DROP TABLE IF EXISTS `waiter_tabs`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `waiter_tabs` (
-  `waiter_tab_id` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
-  `waiter_tab_active` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `waiter_id_fkey` varchar(200) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `table_id_fkey` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `waiter_tab_id` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `waiter_tab_active` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `waiter_id_fkey` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `table_id_fkey` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   PRIMARY KEY (`waiter_tab_id`),
   KEY `waiter_id_fkey` (`waiter_id_fkey`),
   KEY `table_id_fkey` (`table_id_fkey`),
@@ -881,10 +880,10 @@ DROP TABLE IF EXISTS `waiter_workshifts`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `waiter_workshifts` (
-  `waiter_workshift_id` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
-  `waiter_workshift_active` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `waiter_id_fkey` varchar(200) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `workshift_id_fkey` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `waiter_workshift_id` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `waiter_workshift_active` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `waiter_id_fkey` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `workshift_id_fkey` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   PRIMARY KEY (`waiter_workshift_id`),
   KEY `waiter_id_fkey` (`waiter_id_fkey`),
   KEY `workshift_id_fkey` (`workshift_id_fkey`),
@@ -899,7 +898,7 @@ CREATE TABLE `waiter_workshifts` (
 
 LOCK TABLES `waiter_workshifts` WRITE;
 /*!40000 ALTER TABLE `waiter_workshifts` DISABLE KEYS */;
-INSERT INTO `waiter_workshifts` VALUES ('2','K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u','Sj/an1ATwGJMnFdlYALugg==','2'),('3','K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u','2vvta/FxVZrx0LnHV1o1hQ==','2');
+INSERT INTO `waiter_workshifts` VALUES ('2','K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u','2vvta/FxVZrx0LnHV1o1hQ==','2'),('3','K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u','Sj/an1ATwGJMnFdlYALugg==','2');
 /*!40000 ALTER TABLE `waiter_workshifts` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -911,9 +910,9 @@ DROP TABLE IF EXISTS `workshift_unmod_tabs`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `workshift_unmod_tabs` (
-  `workshift_unmod_tab_id` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
-  `workshift_unmod_tab_value` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `workshift_unmod_tab_ws_id` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `workshift_unmod_tab_id` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `workshift_unmod_tab_value` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `workshift_unmod_tab_ws_id` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   PRIMARY KEY (`workshift_unmod_tab_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -935,21 +934,22 @@ DROP TABLE IF EXISTS `workshifts`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `workshifts` (
-  `workshift_id` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
-  `workshift_open_time_shift` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `workshift_close_time_shift` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `workshift_state_shift` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `workshift_mount_cash` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `workshift_mount_electronic` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `workshift_total_mount_tabs` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `workshift_total_mount_ws` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `workshift_error_mount_tabs` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `workshift_error_mount_ws` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `workshift_cash_flow_cash` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `workshift_cash_flow_elec` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `workshift_comment` varchar(5000) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `workshift_error` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `workshift_active` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `workshift_id` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `workshift_open_time_shift` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `workshift_close_time_shift` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `workshift_state_shift` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `workshift_mount_cash` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `workshift_mount_electronic` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `workshift_total_mount_tabs` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `workshift_total_mount_ws` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `workshift_error_count_tabs` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `workshift_error_mount_tabs` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `workshift_error_mount_ws` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `workshift_cash_flow_cash` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `workshift_cash_flow_elec` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `workshift_comment` varchar(5000) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `workshift_error` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `workshift_active` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   PRIMARY KEY (`workshift_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -960,7 +960,7 @@ CREATE TABLE `workshifts` (
 
 LOCK TABLES `workshifts` WRITE;
 /*!40000 ALTER TABLE `workshifts` DISABLE KEYS */;
-INSERT INTO `workshifts` VALUES ('2','XpgFOzNkVqkLVfMu/HpsjA==','V7kE0Mi4Ezf3r1tquZkRcA==','K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u','1/1','1/1','1/1','1/1','1/1','1/1','1/1','1/1','Cwshhq0bCO0DfChF6YX97g==','K992SZTEVF57Ki/fu/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u','K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u');
+INSERT INTO `workshifts` VALUES ('2','zBSIgv3aWfZZ3g5GwckfKg==','V7kE0Mi4Ezf3r1tquZkRcA==','K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u','1/1','1/1','1/1','1/1','1','1/1','1/1','1/1','1/1','Cwshhq0bCO0DfChF6YX97g==','K992SZTEVF57Ki/fu/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u','K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u');
 /*!40000 ALTER TABLE `workshifts` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -981,4 +981,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-12-19 20:56:01
+-- Dump completed on 2026-02-04 17:25:59
