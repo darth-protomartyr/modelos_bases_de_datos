@@ -14,22 +14,47 @@ CREATE TABLE IF NOT EXISTS config_general(
     config_modkey VARCHAR(100), /*Clave de modificación*/
 	config_active VARCHAR(100), /*estado de la config*/
 	config_terminal_kitchen_1 VARCHAR(100), /*estado terminal cocina */
-	config_terminal_waiter_1 VARCHAR(100) /*estado terminal mozos */
+	config_terminal_waiter_1 VARCHAR(100), /*estado terminal mozos */
+    config_printer_profile VARCHAR(500), /*impresoras*/
+    config_typo_copies VARCHAR(1000) /*impresoras*/
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 CREATE TABLE IF NOT EXISTS config_actual(
     config_open_ws VARCHAR(100),/*turno actual abierto*/
     config_open_ws_id VARCHAR(100), /*openWsId*/
-	config_indexes_buttons VARCHAR (5000),
-    config_tokken VARCHAR(100),
+	config_tokken VARCHAR(100),
+    config_indexes_buttons VARCHAR (5000),
     config_update_cashier VARCHAR(100),
     config_update_waiter VARCHAR(100),
     config_update_chef VARCHAR(100),
-    config_update_map_tables TEXT,
-    config_update_map_item_monits TEXT,
     config_itemcard_c VARCHAR(100),
-    config_itemcard_w VARCHAR(100)
+    config_itemcard_w VARCHAR(100),
+    config_update_map_tables TEXT,
+    config_update_map_item_monits TEXT
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+CREATE TABLE IF NOT EXISTS config_security(
+    config_table_total VARCHAR(100), /*nro total de tabs*/
+    config_table_num_panes VARCHAR(100), /*número de mesas por pane*/
+    config_table_name_panes VARCHAR(2000), /*nombre de cada pane*/
+    config_table_chart_panes VARCHAR(200), /*Inicial de cada pane*/
+    config_table_name_categories VARCHAR(2000), /*nombre de rubros*/
+    config_table_tip VARCHAR(100), /*porcentaje propina*/
+    config_modkey VARCHAR(100), /*Clave de modificación*/
+	config_active VARCHAR(100), /*estado de la config*/
+	config_terminal_kitchen_1 VARCHAR(100), /*estado terminal cocina */
+	config_terminal_waiter_1 VARCHAR(100) /*estado terminal mozos */
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+CREATE TABLE licenses (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    license_key VARCHAR(100) UNIQUE NOT NULL,
+    expires_at TIMESTAMP NOT NULL,
+    active_status BOOLEAN,
+    tolerance_days INT,
+    last_check TIMESTAMP,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
 
 CREATE TABLE config_defer_close_tabs (
 	config_defer_close_tab_id VARCHAR(100) PRIMARY KEY,
@@ -390,11 +415,26 @@ INSERT IGNORE INTO users_block_status(block_status_user_id, block_status, block_
 VALUES('vSk6aw1v8x4Z7EMKHqYojA==', 'K992SZTEVF57Ki/fu/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u','1', null, null);
 
 /*Config*/
-INSERT IGNORE INTO config_general(config_table_total, config_table_num_panes, config_table_name_panes, config_table_chart_panes, config_table_name_categories, config_table_tip, config_modkey, config_active, config_terminal_kitchen_1, config_terminal_waiter_1)
-VALUES('6:', 'G2H3a8RgTJzktiQ28nKaEg==', 'HvAr7HMgFxu3jaxIMKfejQ==', 'CJhWHxf5rgNRsIvW1vwccA==', 'yALOUvaDGUFzi3yAgbq1nlnK1A/gjKmVg98NNj/YLtc2Uj6qkgmq79G1ApHAYROiCwshhq0bCO0DfChF6YX97g==', '21', 'dthhQYITGuY/5I6/tcf01g==', 'K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u', 'K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u', 'K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u');
 
-INSERT IGNORE INTO config_actual(config_open_ws, config_open_ws_id, config_indexes_buttons, config_tokken, config_update_cashier, config_update_waiter, config_update_chef, config_update_map_tables, config_update_map_item_monits, config_itemcard_c, config_itemcard_w)
-VALUES('K992SZTEVF57Ki/fu/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u', '1', 'x7bka9p5GM+yFNNZ6/H22g==', 'Zg1TI/3yh5v12hteBV/GZQ==', 'GAZ7H8bRLXtDTHXPZKKtXA==', 'GAZ7H8bRLXtDTHXPZKKtXA==', 'GAZ7H8bRLXtDTHXPZKKtXA==', 'm+BC/x9C8dzscCrNe6AKnA==', 'm+BC/x9C8dzscCrNe6AKnA==' , 'V7kE0Mi4Ezf3r1tquZkRcA==', 'V7kE0Mi4Ezf3r1tquZkRcA==');
+-- ConfigGeneral
+
+-- Null
+-- INSERT INTO config_general(config_table_total, config_table_num_panes, config_table_name_panes, config_table_chart_panes, config_table_name_categories, config_table_tip, config_modkey, config_active, config_terminal_kitchen_1, config_terminal_waiter_1, config_printer_profile, config_typo_copies)
+-- VALUES('1', 'Cwshhq0bCO0DfChF6YX97g==', 'Cwshhq0bCO0DfChF6YX97g==', 'Cwshhq0bCO0DfChF6YX97g==', 'Cwshhq0bCO0DfChF6YX97g==', '1', 'Cwshhq0bCO0DfChF6YX97g==', 'K992SZTEVF57Ki/fu/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u', 'K992SZTEVF57Ki/fu/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u', 'K992SZTEVF57Ki/fu/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u' , 'm+BC/x9C8dzscCrNe6AKnA==' , 'm+BC/x9C8dzscCrNe6AKnA==');
+
+-- Charge
+INSERT INTO config_general(config_table_total, config_table_num_panes, config_table_name_panes, config_table_chart_panes, config_table_name_categories, config_table_tip, config_modkey, config_active, config_terminal_kitchen_1, config_terminal_waiter_1, config_printer_profile, config_typo_copies)
+VALUES('6:', 'G2H3a8RgTJzktiQ28nKaEg==', 'HvAr7HMgFxu3jaxIMKfejQ==', 'CJhWHxf5rgNRsIvW1vwccA==', 'M52jYiw5pSL4vTEtLrqFn3vXtdxV+hvqAH9AlVR/EgtHRZ8i1IOZubaKg6KzeGcJRVI/zZDyajuYZ+0ivG3tpR6tsRsilDYdaGwU9a9FdYWwXfGEn7y1KZvst+rQKcyB03bG0z9JdnV35XgTl5/uu2f5FHylh4N2cuBdTNbfruU=', '21', 'hXUzZGuTChG0BIH3DgDfZA==', 'K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u', 'K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u', 'K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u' , 'XMOQpXWEobP/CIb+88xpT00NNejJ0wUhN0EGIwiGcdOUOy1GGptLGN0WACmO1vn/QR/IsM5U168yJyo9rsZ/dg==' , 'MNPdZM921tIur2XyrqRlu0WymJ4eLbPF6Q0K3QkKxixgA0CX2xJzpJx5G7E7Ly+AA+0m4tTMJZtF2yicnmR8eUEfyLDOVNevMicqPa7Gf3Y=');
+
+-- ConfigActual 
+INSERT INTO config_actual(config_open_ws, config_open_ws_id, config_tokken, config_indexes_buttons, config_update_cashier, config_update_waiter, config_update_chef, config_itemcard_c, config_itemcard_w,config_update_map_tables, config_update_map_item_monits)
+VALUES('K992SZTEVF57Ki/fu/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u', '1', 'x7bka9p5GM+yFNNZ6/H22g==', 'Zg1TI/3yh5v12hteBV/GZQ==', 'j8bHHONboP7HskMJJz3zhw==', 'j8bHHONboP7HskMJJz3zhw==', 'j8bHHONboP7HskMJJz3zhw==', 'j8bHHONboP7HskMJJz3zhw==', 'j8bHHONboP7HskMJJz3zhw==', 'm+BC/x9C8dzscCrNe6AKnA==', 'm+BC/x9C8dzscCrNe6AKnA==');
+
+INSERT INTO licenses( license_key, expires_at, active_status, tolerance_days)
+-- VALUES ('ABC123-XYZ789', DATE_ADD(UTC_TIMESTAMP(), INTERVAL 6 MONTH), true, 7);
+VALUES ('ABC123-XYZ789', DATE_ADD(UTC_TIMESTAMP(), INTERVAL 1 day), true, 7);
+-- VALUES ('ABC123-XYZ789', DATE_ADD(UTC_TIMESTAMP(), INTERVAL 6 MONTH), true, 7);
+-- VALUES ('ABC123-XYZ789', DATE_ADD(UTC_TIMESTAMP(), INTERVAL 6 MONTH), true, 7);
 
 /*CHAT*/
  INSERT INTO control_id_messages (id) VALUES (0);

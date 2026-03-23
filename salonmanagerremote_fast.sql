@@ -1,3 +1,5 @@
+CREATE DATABASE  IF NOT EXISTS `salonmanager` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `salonmanager`;
 -- MySQL dump 10.13  Distrib 8.0.36, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: salonmanager
@@ -151,15 +153,15 @@ DROP TABLE IF EXISTS `config_actual`;
 CREATE TABLE `config_actual` (
   `config_open_ws` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `config_open_ws_id` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `config_indexes_buttons` varchar(5000) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `config_tokken` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `config_indexes_buttons` varchar(5000) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `config_update_cashier` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `config_update_waiter` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `config_update_chef` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `config_update_map_tables` text COLLATE utf8mb4_general_ci,
-  `config_update_map_item_monits` text COLLATE utf8mb4_general_ci,
   `config_itemcard_c` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `config_itemcard_w` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL
+  `config_itemcard_w` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `config_update_map_tables` text COLLATE utf8mb4_general_ci,
+  `config_update_map_item_monits` text COLLATE utf8mb4_general_ci
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -169,7 +171,7 @@ CREATE TABLE `config_actual` (
 
 LOCK TABLES `config_actual` WRITE;
 /*!40000 ALTER TABLE `config_actual` DISABLE KEYS */;
-INSERT INTO `config_actual` VALUES ('K992SZTEVF57Ki/fu/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u','1','x7bka9p5GM+yFNNZ6/H22g==','Zg1TI/3yh5v12hteBV/GZQ==','GAZ7H8bRLXtDTHXPZKKtXA==','GAZ7H8bRLXtDTHXPZKKtXA==','GAZ7H8bRLXtDTHXPZKKtXA==','m+BC/x9C8dzscCrNe6AKnA==','m+BC/x9C8dzscCrNe6AKnA==','V7kE0Mi4Ezf3r1tquZkRcA==','V7kE0Mi4Ezf3r1tquZkRcA==');
+INSERT INTO `config_actual` VALUES ('K992SZTEVF57Ki/fu/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u','1','x7bka9p5GM+yFNNZ6/H22g==','Zg1TI/3yh5v12hteBV/GZQ==','j8bHHONboP7HskMJJz3zhw==','j8bHHONboP7HskMJJz3zhw==','j8bHHONboP7HskMJJz3zhw==','j8bHHONboP7HskMJJz3zhw==','j8bHHONboP7HskMJJz3zhw==','m+BC/x9C8dzscCrNe6AKnA==','m+BC/x9C8dzscCrNe6AKnA==');
 /*!40000 ALTER TABLE `config_actual` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -213,7 +215,9 @@ CREATE TABLE `config_general` (
   `config_modkey` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `config_active` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `config_terminal_kitchen_1` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `config_terminal_waiter_1` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL
+  `config_terminal_waiter_1` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `config_printer_profile` varchar(500) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `config_typo_copies` varchar(1000) COLLATE utf8mb4_general_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -223,8 +227,38 @@ CREATE TABLE `config_general` (
 
 LOCK TABLES `config_general` WRITE;
 /*!40000 ALTER TABLE `config_general` DISABLE KEYS */;
-INSERT INTO `config_general` VALUES ('6:','G2H3a8RgTJzktiQ28nKaEg==','HvAr7HMgFxu3jaxIMKfejQ==','CJhWHxf5rgNRsIvW1vwccA==','yALOUvaDGUFzi3yAgbq1nlnK1A/gjKmVg98NNj/YLtc2Uj6qkgmq79G1ApHAYROiCwshhq0bCO0DfChF6YX97g==','21','dthhQYITGuY/5I6/tcf01g==','K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u','K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u','K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u');
+INSERT INTO `config_general` VALUES ('6:','G2H3a8RgTJzktiQ28nKaEg==','HvAr7HMgFxu3jaxIMKfejQ==','CJhWHxf5rgNRsIvW1vwccA==','M52jYiw5pSL4vTEtLrqFn3vXtdxV+hvqAH9AlVR/EgtHRZ8i1IOZubaKg6KzeGcJRVI/zZDyajuYZ+0ivG3tpR6tsRsilDYdaGwU9a9FdYWwXfGEn7y1KZvst+rQKcyB03bG0z9JdnV35XgTl5/uu2f5FHylh4N2cuBdTNbfruU=','21','hXUzZGuTChG0BIH3DgDfZA==','K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u','K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u','K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u','XMOQpXWEobP/CIb+88xpT00NNejJ0wUhN0EGIwiGcdOUOy1GGptLGN0WACmO1vn/QR/IsM5U168yJyo9rsZ/dg==','MNPdZM921tIur2XyrqRlu0WymJ4eLbPF6Q0K3QkKxixgA0CX2xJzpJx5G7E7Ly+AA+0m4tTMJZtF2yicnmR8eUEfyLDOVNevMicqPa7Gf3Y=');
 /*!40000 ALTER TABLE `config_general` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `config_security`
+--
+
+DROP TABLE IF EXISTS `config_security`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `config_security` (
+  `config_table_total` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `config_table_num_panes` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `config_table_name_panes` varchar(2000) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `config_table_chart_panes` varchar(200) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `config_table_name_categories` varchar(2000) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `config_table_tip` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `config_modkey` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `config_active` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `config_terminal_kitchen_1` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `config_terminal_waiter_1` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `config_security`
+--
+
+LOCK TABLES `config_security` WRITE;
+/*!40000 ALTER TABLE `config_security` DISABLE KEYS */;
+/*!40000 ALTER TABLE `config_security` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -634,6 +668,36 @@ LOCK TABLES `item_sales_statics` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `licenses`
+--
+
+DROP TABLE IF EXISTS `licenses`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `licenses` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `license_key` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
+  `expires_at` timestamp NOT NULL,
+  `active_status` tinyint(1) DEFAULT NULL,
+  `tolerance_days` int DEFAULT NULL,
+  `last_check` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `license_key` (`license_key`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `licenses`
+--
+
+LOCK TABLES `licenses` WRITE;
+/*!40000 ALTER TABLE `licenses` DISABLE KEYS */;
+INSERT INTO `licenses` VALUES (1,'ABC123-XYZ789','2026-03-13 00:42:04',1,7,NULL,'2026-03-11 21:42:04');
+/*!40000 ALTER TABLE `licenses` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `messages`
 --
 
@@ -973,4 +1037,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-02-04 17:19:43
+-- Dump completed on 2026-03-11 18:43:19
