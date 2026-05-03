@@ -1,7 +1,5 @@
 /*TABLAS*/
 /*TABLAS*/
-/*TABLAS*/
-/*TABLAS*/
 CREATE DATABASE IF NOT EXISTS salonmanager DEFAULT CHARACTER SET utf8mb4 DEFAULT COLLATE utf8mb4_general_ci;
 USE salonmanager;
 CREATE TABLE IF NOT EXISTS config_general(
@@ -31,7 +29,6 @@ CREATE TABLE IF NOT EXISTS config_actual(
     config_update_map_item_monits TEXT
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-
 CREATE TABLE IF NOT EXISTS config_security(
     config_table_total VARCHAR(100), /*nro total de tabs*/
     config_table_num_panes VARCHAR(100), /*número de mesas por pane*/
@@ -49,28 +46,28 @@ CREATE TABLE IF NOT EXISTS config_security(
 -- IMPRESORAS
 CREATE TABLE config_print_printers (
     config_print_printers_id INT AUTO_INCREMENT PRIMARY KEY,
-    config_print_printers_name VARCHAR(100) NOT NULL,
-    config_print_printers_profile VARCHAR(50),
-    config_print_printers_paper_size VARCHAR(20) NOT NULL,
-    config_print_printers_encoding VARCHAR(50) NOT NULL,
-    config_print_printers_active VARCHAR(50) NOT NULL
+    config_print_printers_name VARCHAR(100) UNIQUE,
+    config_print_printers_profile VARCHAR(100),
+    config_print_printers_paper_size VARCHAR(100),
+    config_print_printers_encoding VARCHAR(100),
+    config_print_printers_station VARCHAR(100),
+    config_print_printers_active VARCHAR(100)
 );
 
 CREATE TABLE config_print_typos (
-    config_print_typos_id INT AUTO_INCREMENT PRIMARY KEY,
-    config_print_typos_typo VARCHAR(50) NOT NULL,
-    config_print_typos_station VARCHAR(50) NULL,
-    config_print_typos_active VARCHAR(50) NULL
+    config_print_typo_id INT PRIMARY KEY,
+    config_print_typo_typo VARCHAR(100),
+    config_print_typo_copies VARCHAR(100),
+    config_print_typo_active VARCHAR(100)
 );
 
 CREATE TABLE config_print_printer_typo (
     config_print_id INT AUTO_INCREMENT PRIMARY KEY,
-    config_print_printer_id INT NOT NULL,
-    config_print_typo_id INT NOT NULL,
-    config_print_active BOOLEAN DEFAULT TRUE,
-    config_print_copies INT DEFAULT 1,
+    config_print_printer_id INT,
+    config_print_typo_id INT,
+    config_print_typo_active VARCHAR(100),
     FOREIGN KEY (config_print_printer_id) REFERENCES config_print_printers(config_print_printers_id),
-    FOREIGN KEY (config_print_typo_id) REFERENCES config_print_typos(config_print_typos_id)
+    FOREIGN KEY (config_print_typo_id) REFERENCES config_print_typos(config_print_typo_id)
 );
 
 CREATE TABLE licenses (
@@ -387,6 +384,11 @@ CREATE TABLE IF NOT EXISTS control_id_messages (
 /*ENTRADAS*/
 /*USER*/
 
+
+-- REQUIRED
+-- REQUIRED
+-- REQUIRED
+-- REQUIRED
 /* MASTER */
 INSERT IGNORE INTO users(user_id, user_name, user_last_name, user_mail, user_role, user_image_route, user_image_name, user_password, user_phone, user_active)
 VALUES('CCEpngEGfhLKMstgG81ELQ==', '/yr270qn8LzgLsh8bFQSOw==', '83hg9YUAVATXP1jly5rY5g==', 'n8X9y4/ki7ZrWXPr4J5suA==', 'hUJKM96htIhqE9Zm1yfc5A==', 'UDxj6tOzyCbCCzCK+o8OWU6VXd33Ja4ql1yGC9Leufg=', 'EJl5Rx42MVsOtfOvn7JcRA==', 'soCu+qQ/+BRNSynTbTCdcg==', 'n5lKOAAxYzcV8wg8Ty/wWA==', 'K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u');
@@ -394,6 +396,73 @@ VALUES('CCEpngEGfhLKMstgG81ELQ==', '/yr270qn8LzgLsh8bFQSOw==', '83hg9YUAVATXP1jl
 INSERT IGNORE INTO users_block_status(block_status_user_id, block_status, block_status_attempt_count, block_status_end, block_status_first_try) 
 VALUES('TDynq6oCQ/QJKl5gI3x/Yw==', 'K992SZTEVF57Ki/fu/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u','1', null, null);
 
+-- PrinterConfig
+
+-- Null
+INSERT INTO config_general(config_table_total, config_table_num_panes, config_table_name_panes, config_table_chart_panes, config_table_name_categories, config_table_tip, config_modkey, config_active, config_terminal_kitchen_1, config_terminal_waiter_1)
+VALUES('1', 'Cwshhq0bCO0DfChF6YX97g==', 'Cwshhq0bCO0DfChF6YX97g==', 'Cwshhq0bCO0DfChF6YX97g==', 'Cwshhq0bCO0DfChF6YX97g==', '1', 'Cwshhq0bCO0DfChF6YX97g==', 'K992SZTEVF57Ki/fu/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u', 'K992SZTEVF57Ki/fu/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u', 'K992SZTEVF57Ki/fu/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u');
+
+-- Charge
+-- INSERT INTO config_general(config_table_total, config_table_num_panes, config_table_name_panes, config_table_chart_panes, config_table_name_categories, config_table_tip, config_modkey, config_active, config_terminal_kitchen_1, config_terminal_waiter_1)
+-- VALUES('6:', 'G2H3a8RgTJzktiQ28nKaEg==', 'HvAr7HMgFxu3jaxIMKfejQ==', 'CJhWHxf5rgNRsIvW1vwccA==', 'M52jYiw5pSL4vTEtLrqFn3vXtdxV+hvqAH9AlVR/EgtHRZ8i1IOZubaKg6KzeGcJRVI/zZDyajuYZ+0ivG3tpR6tsRsilDYdaGwU9a9FdYWwXfGEn7y1KZvst+rQKcyB03bG0z9JdnV35XgTl5/uu2f5FHylh4N2cuBdTNbfruU=', '21', 'hXUzZGuTChG0BIH3DgDfZA==', 'K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u', 'K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u', 'K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u');
+
+
+-- Typo
+INSERT INTO config_print_typos(config_print_typo_id, config_print_typo_typo, config_print_typo_copies, config_print_typo_active)VALUES('1', 'SMDyF0iPmBfOiOGE1iI1nw==', '1', 'K992SZTEVF57Ki/fu/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u');
+INSERT INTO config_print_typos(config_print_typo_id, config_print_typo_typo, config_print_typo_copies, config_print_typo_active)VALUES('2', '3WeHWlLk/EKbU8sRFAbPIQ==', '1', 'K992SZTEVF57Ki/fu/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u');
+INSERT INTO config_print_typos(config_print_typo_id, config_print_typo_typo, config_print_typo_copies, config_print_typo_active)VALUES('3', 'GZ9FtW6vxAstQDrHJU0DsA==', '1', 'K992SZTEVF57Ki/fu/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u');
+INSERT INTO config_print_typos(config_print_typo_id, config_print_typo_typo, config_print_typo_copies, config_print_typo_active)VALUES('4', 'Tj5t36FB2EVNeXhPjdWqLA==', '1', 'K992SZTEVF57Ki/fu/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u');
+INSERT INTO config_print_typos(config_print_typo_id, config_print_typo_typo, config_print_typo_copies, config_print_typo_active)VALUES('5', 'yKXdNc4l1waNjzkkGBZxoQ==', '1', 'K992SZTEVF57Ki/fu/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u');
+
+/*Tokken fail*/
+INSERT INTO failed_attempts_tokken_W1(attempt_tokken_time, attempt_tokken_count, attempt_tokken_is_blocked)
+VALUES("zRxkWw+Dyx6M+gv0zqO79A==", "1", "K992SZTEVF57Ki/fu/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u");
+
+-- Category
+INSERT IGNORE INTO categories(category_name)VALUES('vJE0iCtYQQkdgPmO1UHFrw==');
+INSERT IGNORE INTO categories(category_name)VALUES('oq+ndGGeFoWVRa7z+jTQTg==');
+INSERT IGNORE INTO categories(category_name)VALUES('QvhC0YyKkb+kHspXS3N7ug==');
+INSERT IGNORE INTO categories(category_name)VALUES('99y4KhBCS3ZbirBVAQd0ig==');
+INSERT IGNORE INTO categories(category_name)VALUES('cHJ6Jv8NGi+AtZJa4SPWZQ==');
+INSERT IGNORE INTO categories(category_name)VALUES('BsOSSiksfXMpJ2bjNzRm6A==');
+INSERT IGNORE INTO categories(category_name)VALUES('NlM2TVDCyk88sO9Bg19dRQ==');
+INSERT IGNORE INTO categories(category_name)VALUES('puEq3qaOs63+2iQpl2/EtQ==');
+INSERT IGNORE INTO categories(category_name)VALUES('ja/VBo/i753G3PBFQhwCiQ==');
+INSERT IGNORE INTO categories(category_name)VALUES('zatBMBmei9d068q239VJhA==');
+INSERT IGNORE INTO categories(category_name)VALUES('ME0GRKLK63WlQ4HSogwNQg==');
+INSERT IGNORE INTO categories(category_name)VALUES('/HiphkqA6tuhoJxd12hZkQ==');
+INSERT IGNORE INTO categories(category_name)VALUES('IQaqUCs7F9QVP6pskF+osA==');
+INSERT IGNORE INTO categories(category_name)VALUES('lTn5UNcRhKkPYRyje/XNxQ==');
+INSERT IGNORE INTO categories(category_name)VALUES('D/N6BHzba2d5rFTb8KJQ+A==');
+
+-- Spaces
+INSERT IGNORE INTO spaces(space_name)VALUES('kr9FPCHZNULu2Rd+WRBKfw==');
+INSERT IGNORE INTO chars(char_name)VALUES('4DGEGm380j1veqRaESm0XA==');
+INSERT IGNORE INTO spaces(space_name)VALUES('gBssOtGvtk5dum9jDlbmUw==');
+INSERT IGNORE INTO chars(char_name)VALUES('mp5Dplj/sbi3D5XKdGSOqg==');
+INSERT IGNORE INTO spaces(space_name)VALUES('Nhqu7QVAElpZI2OUXnYcjw==');
+INSERT IGNORE INTO chars(char_name)VALUES('wkX9vSxYN2lKSHBEtQA9Ww==');
+INSERT IGNORE INTO spaces(space_name)VALUES('6t51xrHrtwbNyTCoXNCe6w==');
+INSERT IGNORE INTO chars(char_name)VALUES('m9zxrulihJiX6idVm17Nuw==');
+INSERT IGNORE INTO spaces(space_name)VALUES('f5WebHIAnVcMXPq3museXw==');
+INSERT IGNORE INTO chars(char_name)VALUES('t9OP6Yue4LYUl3MxX98FnQ==');
+INSERT IGNORE INTO spaces(space_name)VALUES('0luuqsaK0U3+ykh/L2j5xQ==');
+INSERT IGNORE INTO chars(char_name)VALUES('o42Gv9GJ8bMVgPemehHQOw==');
+INSERT IGNORE INTO spaces(space_name)VALUES('Qj03zVC3VaugmycKGcJQow==');
+INSERT IGNORE INTO chars(char_name)VALUES('pxWX9eR0L1daK4/bFbTuYQ==');
+INSERT IGNORE INTO spaces(space_name)VALUES('Iv9pyXUcQZlzYNyfJUPmgw==');
+INSERT IGNORE INTO chars(char_name)VALUES('e6hb1xIADTZW19PqacZFjw==');
+INSERT IGNORE INTO spaces(space_name)VALUES('quT9g3Ig6Ef5FejezGFUZw==');
+INSERT IGNORE INTO chars(char_name)VALUES('xUbBrCswPqYoULLBtI3lpQ==');
+INSERT IGNORE INTO spaces(space_name)VALUES('w3tURT+QFzvP8nvVc09Yrw==');
+INSERT IGNORE INTO chars(char_name)VALUES('tsoCPT0IQgTiDC6YA1WGaQ==');
+INSERT IGNORE INTO spaces(space_name)VALUES('xCos15Avkq9RZALZTaBVJw==');
+INSERT IGNORE INTO chars(char_name)VALUES('3Gt04JXQbjBdecdaxf0CGw==');
+
+-- REQUIRED
+-- REQUIRED
+-- REQUIRED
+-- REQUIRED
 /*ADMIN*/
 INSERT IGNORE INTO users(user_id, user_name, user_last_name, user_mail, user_role, user_image_route, user_image_name, user_password, user_phone, user_active)
 VALUES('c2OuJxQqABPRxKy/kPXW2A==', '5FB3bF4LheVY0H6KFiHt/g==', '+RzQUjtQ3UxomiHSZ0fmuQ==', 'S9FqHlkcN9TEgUKgVz/iTA==', 'M88re0RIWY4NF0w7/z6VRg==', 'CtarrfvT/WbyQwRI4y+J7ZxL3mwfw49jKVkGIX6LMVbnHbXQ/sEcQvTwCi+undDii4eUS9Zkgo93svn72ZXyX2r61k8ydfmPyOR1FhTHWuLmxVlzHSrQCRLmIortSRA5', 'fJ5rBMyacmtSuKFHHH34nA==', 'FtQTVKWSz1xkndWtqwuxQQ==', 'EtvVCnIlzRb1kVZUnbvHxg==', 'K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u');
@@ -445,15 +514,7 @@ VALUES('vSk6aw1v8x4Z7EMKHqYojA==', 'K992SZTEVF57Ki/fu/UUXu/Y1r6cqpvxCcVQRsD/kqML
 
 -- ConfigGeneral
 
--- Null
-INSERT INTO config_general(config_table_total, config_table_num_panes, config_table_name_panes, config_table_chart_panes, config_table_name_categories, config_table_tip, config_modkey, config_active, config_terminal_kitchen_1, config_terminal_waiter_1)
-VALUES('1', 'Cwshhq0bCO0DfChF6YX97g==', 'Cwshhq0bCO0DfChF6YX97g==', 'Cwshhq0bCO0DfChF6YX97g==', 'Cwshhq0bCO0DfChF6YX97g==', '1', 'Cwshhq0bCO0DfChF6YX97g==', 'K992SZTEVF57Ki/fu/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u', 'K992SZTEVF57Ki/fu/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u', 'K992SZTEVF57Ki/fu/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u');
-
--- Charge
--- INSERT INTO config_general(config_table_total, config_table_num_panes, config_table_name_panes, config_table_chart_panes, config_table_name_categories, config_table_tip, config_modkey, config_active, config_terminal_kitchen_1, config_terminal_waiter_1)
--- VALUES('6:', 'G2H3a8RgTJzktiQ28nKaEg==', 'HvAr7HMgFxu3jaxIMKfejQ==', 'CJhWHxf5rgNRsIvW1vwccA==', 'M52jYiw5pSL4vTEtLrqFn3vXtdxV+hvqAH9AlVR/EgtHRZ8i1IOZubaKg6KzeGcJRVI/zZDyajuYZ+0ivG3tpR6tsRsilDYdaGwU9a9FdYWwXfGEn7y1KZvst+rQKcyB03bG0z9JdnV35XgTl5/uu2f5FHylh4N2cuBdTNbfruU=', '21', 'hXUzZGuTChG0BIH3DgDfZA==', 'K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u', 'K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u', 'K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u');
-
--- ConfigActual 
+-- ConfigActual
 INSERT INTO config_actual(config_open_ws, config_open_ws_id, config_tokken, config_indexes_buttons, config_update_cashier, config_update_waiter, config_update_chef, config_itemcard_c, config_itemcard_w,config_update_map_tables, config_update_map_item_monits)
 VALUES('K992SZTEVF57Ki/fu/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u', '1', 'x7bka9p5GM+yFNNZ6/H22g==', 'Zg1TI/3yh5v12hteBV/GZQ==', 'j8bHHONboP7HskMJJz3zhw==', 'j8bHHONboP7HskMJJz3zhw==', 'j8bHHONboP7HskMJJz3zhw==', 'j8bHHONboP7HskMJJz3zhw==', 'j8bHHONboP7HskMJJz3zhw==', 'm+BC/x9C8dzscCrNe6AKnA==', 'm+BC/x9C8dzscCrNe6AKnA==');
 
@@ -463,59 +524,26 @@ VALUES ('ABC123-XYZ789', DATE_ADD(UTC_TIMESTAMP(), INTERVAL 1 day), true, 7);
 -- VALUES ('ABC123-XYZ789', DATE_ADD(UTC_TIMESTAMP(), INTERVAL 6 MONTH), true, 7);
 -- VALUES ('ABC123-XYZ789', DATE_ADD(UTC_TIMESTAMP(), INTERVAL 6 MONTH), true, 7);
 
-/*CHAT*/
+-- CHAT
  INSERT INTO control_id_messages (id) VALUES (0);
 
-/*Tokken fail*/
-INSERT INTO failed_attempts_tokken_W1(attempt_tokken_time, attempt_tokken_count, attempt_tokken_is_blocked)
-VALUES("zRxkWw+Dyx6M+gv0zqO79A==", "1", "K992SZTEVF57Ki/fu/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u");
-
-/*Tokken fail*/
-INSERT INTO failed_attempts_tokken_K1(attempt_tokken_time, attempt_tokken_count, attempt_tokken_is_blocked)
-VALUES("zRxkWw+Dyx6M+gv0zqO79A==", "1", "K992SZTEVF57Ki/fu/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u");
-
-INSERT IGNORE INTO categories(category_name)VALUES('vJE0iCtYQQkdgPmO1UHFrw==');
-INSERT IGNORE INTO categories(category_name)VALUES('oq+ndGGeFoWVRa7z+jTQTg==');
-INSERT IGNORE INTO categories(category_name)VALUES('QvhC0YyKkb+kHspXS3N7ug==');
-INSERT IGNORE INTO categories(category_name)VALUES('99y4KhBCS3ZbirBVAQd0ig==');
-INSERT IGNORE INTO categories(category_name)VALUES('cHJ6Jv8NGi+AtZJa4SPWZQ==');
-INSERT IGNORE INTO categories(category_name)VALUES('BsOSSiksfXMpJ2bjNzRm6A==');
-INSERT IGNORE INTO categories(category_name)VALUES('NlM2TVDCyk88sO9Bg19dRQ==');
-INSERT IGNORE INTO categories(category_name)VALUES('puEq3qaOs63+2iQpl2/EtQ==');
-INSERT IGNORE INTO categories(category_name)VALUES('ja/VBo/i753G3PBFQhwCiQ==');
-INSERT IGNORE INTO categories(category_name)VALUES('zatBMBmei9d068q239VJhA==');
-INSERT IGNORE INTO categories(category_name)VALUES('ME0GRKLK63WlQ4HSogwNQg==');
-INSERT IGNORE INTO categories(category_name)VALUES('/HiphkqA6tuhoJxd12hZkQ==');
-INSERT IGNORE INTO categories(category_name)VALUES('IQaqUCs7F9QVP6pskF+osA==');
-INSERT IGNORE INTO categories(category_name)VALUES('lTn5UNcRhKkPYRyje/XNxQ==');
-INSERT IGNORE INTO categories(category_name)VALUES('D/N6BHzba2d5rFTb8KJQ+A==');
-
-INSERT IGNORE INTO spaces(space_name)VALUES('kr9FPCHZNULu2Rd+WRBKfw==');
-INSERT IGNORE INTO chars(char_name)VALUES('4DGEGm380j1veqRaESm0XA==');
-INSERT IGNORE INTO spaces(space_name)VALUES('gBssOtGvtk5dum9jDlbmUw==');
-INSERT IGNORE INTO chars(char_name)VALUES('mp5Dplj/sbi3D5XKdGSOqg==');
-INSERT IGNORE INTO spaces(space_name)VALUES('Nhqu7QVAElpZI2OUXnYcjw==');
-INSERT IGNORE INTO chars(char_name)VALUES('wkX9vSxYN2lKSHBEtQA9Ww==');
-INSERT IGNORE INTO spaces(space_name)VALUES('6t51xrHrtwbNyTCoXNCe6w==');
-INSERT IGNORE INTO chars(char_name)VALUES('m9zxrulihJiX6idVm17Nuw==');
-INSERT IGNORE INTO spaces(space_name)VALUES('f5WebHIAnVcMXPq3museXw==');
-INSERT IGNORE INTO chars(char_name)VALUES('t9OP6Yue4LYUl3MxX98FnQ==');
-INSERT IGNORE INTO spaces(space_name)VALUES('0luuqsaK0U3+ykh/L2j5xQ==');
-INSERT IGNORE INTO chars(char_name)VALUES('o42Gv9GJ8bMVgPemehHQOw==');
-INSERT IGNORE INTO spaces(space_name)VALUES('Qj03zVC3VaugmycKGcJQow==');
-INSERT IGNORE INTO chars(char_name)VALUES('pxWX9eR0L1daK4/bFbTuYQ==');
-INSERT IGNORE INTO spaces(space_name)VALUES('Iv9pyXUcQZlzYNyfJUPmgw==');
-INSERT IGNORE INTO chars(char_name)VALUES('e6hb1xIADTZW19PqacZFjw==');
-INSERT IGNORE INTO spaces(space_name)VALUES('quT9g3Ig6Ef5FejezGFUZw==');
-INSERT IGNORE INTO chars(char_name)VALUES('xUbBrCswPqYoULLBtI3lpQ==');
-INSERT IGNORE INTO spaces(space_name)VALUES('w3tURT+QFzvP8nvVc09Yrw==');
-INSERT IGNORE INTO chars(char_name)VALUES('tsoCPT0IQgTiDC6YA1WGaQ==');
-INSERT IGNORE INTO spaces(space_name)VALUES('xCos15Avkq9RZALZTaBVJw==');
-INSERT IGNORE INTO chars(char_name)VALUES('3Gt04JXQbjBdecdaxf0CGw==');
-
+-- consumers
 INSERT IGNORE INTO consumers(consumer_id, consumer_street, consumer_street_num, consumer_dept_floor, consumer_dept_num, consumer_district, consumer_area, consumer_details, consumer_name, consumer_lastname, consumer_phone, consumer_social_network, consumer_active)VALUES('2', 'a8dssl4DwaUBZEVkOZ4l8w==', '42di7RLCcJPHB4gxbrDoHQ==', 'MxyuI1iRndQg8r3ImtVuOA==', 'MxyuI1iRndQg8r3ImtVuOA==', 'xXYXf0+U+SRf5fFDYlin6w==', 'B+L83g+pb/bsT42oYrcItw==', 'g7pvkdEIWypwFeABOAFStA==', 'pI31lVQTA+ve9VBfyH/MaA==', 'JWOaojhyt9t8JsYUUCj4zw==', 'MHAfUtazhe8lzBp51ye08A==', 'yKQWXd2W9asS7zSZYFf2dc6MJgm7FH4QPxod2YDtRWc=', 'K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u');
 INSERT IGNORE INTO consumers(consumer_id, consumer_street, consumer_street_num, consumer_dept_floor, consumer_dept_num, consumer_district, consumer_area, consumer_details, consumer_name, consumer_lastname, consumer_phone, consumer_social_network, consumer_active)VALUES('3', 'GlbjJioajyGW2QlJPAENolVaCre9Ird8JN47NjIrVHA=', 'wBHGlDusfSwPGfLCQj6heg==', 'MxyuI1iRndQg8r3ImtVuOA==', 'MxyuI1iRndQg8r3ImtVuOA==', 'BZZ72d2fh/olRRdPx2/iKQ==', 'kgDLXunllYyQw6VEjVkCZw==', 'WdEPWmTMFV8mCRxViufTpqfukJ0D4vyulgsEfunPC3Q=', '+A8S6bLjh991D3bHASzdHQ==', '4kPhtgfIwyHiussm3r2BzQ==', 'w3sn15pDmJJUJAQRazjYJA==', 'daEtqIb/iYeDgmNIji/Iba//to0rc5groyi2BksI9+c=', 'K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u');
-											  -- IN20FhnCzf0yxxvcLlJKxg==
+
+-- Printer
+-- A4
+INSERT INTO config_print_printers(config_print_printers_name, config_print_printers_profile, config_print_printers_paper_size, config_print_printers_encoding, config_print_printers_station, config_print_printers_active)VALUES('s3lGgx/ENuyb2VgrJwIZW7N9MRLq/UkQTDuLmBfmBjg=', 'GInnAUGTGFkBAQsw68fIlQ==', 'qvS2RtH7m1NOSXP7lmAOxQ==', 'h2bk4uxKtxKpsBAk2adDPg==', 'M88re0RIWY4NF0w7/z6VRg==', 'K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u');
+UPDATE config_print_typos SET config_print_typo_copies = '2', config_print_typo_active = 'K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u' WHERE config_print_typo_id = 5;
+INSERT INTO config_print_printer_typo( config_print_printer_id, config_print_typo_id, config_print_typo_active)VALUES('1', '5', 'K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u');
+-- EscPos
+INSERT INTO config_print_printers(config_print_printers_name, config_print_printers_profile, config_print_printers_paper_size, config_print_printers_encoding, config_print_printers_station, config_print_printers_active)VALUES('4S9TBn9DMm+MMvjB9d8yqA==', '0vmARofwR//GvkKO2Ae9Bg==', 'qlsz1mJ/4oS+Wm6ZDu6W1g==', 'h2bk4uxKtxKpsBAk2adDPg==', 'CitbeVxHjUuDh09nJlOdRQ==', 'K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u');
+UPDATE config_print_typos SET config_print_typo_copies = '3', config_print_typo_active = 'K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u' WHERE config_print_typo_id = 1;
+INSERT INTO config_print_printer_typo( config_print_printer_id, config_print_typo_id, config_print_typo_active)VALUES('2', '1', 'K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u');
+UPDATE config_print_typos SET config_print_typo_copies = '2', config_print_typo_active = 'K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u' WHERE config_print_typo_id = 2;
+INSERT INTO config_print_printer_typo( config_print_printer_id, config_print_typo_id, config_print_typo_active)VALUES('2', '2', 'K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u');
+
+-- Items
 INSERT IGNORE INTO `item_cards` VALUES ('21','sXv9vBIoBOWsupafyn8taw==','/1GcI9xwraDwQqNMnn017nasNiFERFuQ+dMt3h08asA=','vJE0iCtYQQkdgPmO1UHFrw==','8BbRvt87p+kLBv+KKkzAvgBCiv8jQsdtK3uOAHiMMdOXQeuwOjj7N8zGNVZKbseDYZEDZBdmlYjeCNjcb/bDIlveTBtg53gTDRX1jdK+Y1M=','8111/1','yeW2K5bT0Z3EFnggMr9R59aSwWxOe8gK76eQEl4xcmE=','23','SuTQlOQ/N5iYiJon8Emiyg==',NULL,'K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u','cLVW6LZbYiNHKsjnWxVsNg==','K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u');
 INSERT IGNORE INTO `item_cards` VALUES ('22','NrvATbrJT1n2JF6DGICRHQ==','xBxCceYbODV56Nn8RBnqHg==','cHJ6Jv8NGi+AtZJa4SPWZQ==','ALcL+iUk2pSFsfJiMLSwZMCxWa6ZzZLjD3eIZi3UZn235HVvz9rij0HcXqU2xfftMYiVLGipFHYSrijIyC8dEJEf0TG+yXBEKbY8VEUtFgVMkLxwv5m6WRt+DqYAN9wY1zvcjMYyzoKZ5ThKd4lbgtjYSU58MlULcV1pTdTT5Nrh0XgnNTZSCNbTy2olqWei','4611/1','tFG1DInYbKP1erhKB2NJouEpL5+PWR+jV+wNxR0MOIE=','23','6l0SYLZviVo9sqjI/Eha5A==',NULL,'K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u','cLVW6LZbYiNHKsjnWxVsNg==','K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u');
 INSERT IGNORE INTO `item_cards` VALUES ('23','+4UbnH/QUgkXBfXMR199mg==','wwzMdVkgv3dM5lMxpmKAmryZHwOkYIXJcYzKvqgAgvI=','cHJ6Jv8NGi+AtZJa4SPWZQ==','CsAjjwnHX8fasOfY1RGnYxHAjaWWNAGLCItoCnDSi+aJxON/00BFfb91ykCT1hvxguMrKBsyYHczlkvkkRcnjXIhROEuG0R7TBUpkMOWFf0xcdRDW8Ncjrq6VPgoCntweaucS1V3VdCtyAzJICSK+VNNjLmHrcKb9sDy4IcnPkhnL3rfbKyDG0o3INpNyr3c','3111/1','/YGzaqGrJRy58wqnxsKxYuEpL5+PWR+jV+wNxR0MOIE=','23','BPHznfn5heov0Tv5JwqMDg==',NULL,'K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u','cLVW6LZbYiNHKsjnWxVsNg==','K992SZTEVF57Ki/ju/UUXu/Y1r6cqpvxCcVQRsD/kqMLCyGGrRsI7QN8KEXphf3u');
